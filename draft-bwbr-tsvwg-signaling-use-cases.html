@@ -1169,6 +1169,11 @@ enables different traffic treatment.<a href="#section-abstract-2" class="pilcrow
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-everyone-is-a-fire-engine" class="internal xref">Everyone Is a Fire Engine</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
@@ -1180,12 +1185,18 @@ enables different traffic treatment.<a href="#section-abstract-2" class="pilcrow
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-priority-between-flows-inte" class="internal xref">Priority Between Flows (Inter-Flow)</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
-                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-interactive-media" class="internal xref">Interactive Media</a></p>
+                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-interactive-media" class="internal xref">Interactive Media</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-priority-within-a-flow-intr" class="internal xref">Priority Within a Flow (Intra-Flow)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
 </li>
             </ul>
 </li>
@@ -1276,7 +1287,7 @@ performance constraints usually exist with a "B".<a href="#section-1-2" class="p
               <text x="476" y="68">host</text>
               <text x="120" y="84">point</text>
               <text x="392" y="116">Transit</text>
-              <text x="484" y="116">Peer's</text>
+              <text x="488" y="116">Content</text>
               <text x="44" y="132">User</text>
               <text x="96" y="132">Network</text>
               <text x="224" y="132">ISP</text>
@@ -1287,26 +1298,51 @@ performance constraints usually exist with a "B".<a href="#section-1-2" class="p
           </svg><a href="#section-1-3.1" class="pilcrow">¶</a>
 </div>
 </div>
-<p id="section-1-4">A difficulty is traffic arriving from the peer host (on the right)
-cannot be differentiated from other traffic arriving from other
-hosts on the Internet -- it all looks like incoming traffic.  But
-the receiving host would like to indicate the traffic's importance
-to the host (or to the application) to those bottleneck locations.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">While DiffServ and IntServ are initial candidates to solve the
-problem, the ISP's router has no reason to believe the DiffServ
-code points set by the remote host, especially as some hosts will
-set it incorrectly on purpose to boost the speed of their own traffic.
-A mechanism for the host to signal its desire that received traffic
-receive differentiated treatment problem of undesired traffic from
-being given undesired priority treatment. Instead, the client
-who is a subscriber of the ISP decides which incoming flows are
-important to the client.  IntServ suffers from the need for the
-remote peer to implement IntServ for the beenfit of the local
-network: this is a mis-aligned incentive and is among the reasons
-IntServ has not been deployed on the Internet.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">There is consensus that applications can benefit by signaling
+<p id="section-1-4">A difficulty is traffic arriving from the content provider cannot be
+differentiated from other traffic arriving from other hosts on the
+Internet -- it is all incoming traffic.  But the receiving host would
+like to indicate the traffic's importance to the host (or to the
+application) to those bottleneck locations.  A solution to this
+problem is configuring the ISP equipment with the content network's
+source IP addresses and providing that traffic differentiated
+access.  That differentiated access might be honoring the
+DSCP bits of the traffic, providing lower latency or jitter,
+assured bandwidth, or suchlike.  However such an arrangement
+benefits large players (large ISPs and large content network)
+but disadvantages small players and new players.  A more egalitarian
+approach would provide the same benefit to all parties -- large
+and small -- and also provide richer signaling to further improve
+user experience. This allows all parties to become part of the
+"Internet fast lane".<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">There is consensus that applications can benefit by signaling
 the network (<span>[<a href="#IAB" class="cite xref">IAB</a>]</span>, <span>[<a href="#ATIS" class="cite xref">ATIS</a>]</span>).  This document provides
-use-cases where such signaling is valuable.<a href="#section-1-6" class="pilcrow">¶</a></p>
+use-cases where such signaling is valuable.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<div id="everyone-is-a-fire-engine">
+<section id="section-1.1">
+        <h3 id="name-everyone-is-a-fire-engine">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-everyone-is-a-fire-engine" class="section-name selfRef">Everyone Is a Fire Engine</a>
+        </h3>
+<p id="section-1.1-1">While DiffServ is a candidates technology which meets many of the
+use-cases, the ISP's router has no reason to believe the DiffServ
+code points set by the remote host, especially as some hosts will
+set DSCP in an attempt to boost the speed of their traffic at the
+detriment of other traffic the receiving host considers more important.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">Other technologies being considered for host-to-network signaling
+suffer a similar problem as DiffServ: they need authorization from the
+receiving host, or else accidentally misconfigured senders or
+purposefully misbehaving senders will interfere with networks, or else
+only large ISPs and large CSPs will prevail.  These proposals include
+embedding information in the UDP payload
+(<span>[<a href="#I-D.draft-trammell-plus-spec" class="cite xref">I-D.draft-trammell-plus-spec</a>]</span>), UDP options
+(<span>[<a href="#I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless" class="cite xref">I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless</a>]</span>), overloading
+the IPv6 Flow Label (<span>[<a href="#I-D.draft-cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.draft-cc-v6ops-wlcg-flow-label-marking</a>]</span>,
+and Hop-by-Hop Options.  Occasionally to provide the necessary
+authorization those specifications suggest establishing a key to
+mitigate against malicious use, see <a href="#key" class="auto internal xref">Section 3.3</a>.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">Many approaches being considered today for host-to-network signaling
+have a similar<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1392,13 +1428,52 @@ and those traffic source IP addresses are known a priori.<a href="#section-3.2-2
 <p id="section-3.2-3">TODO.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="key">
+<section id="section-3.3">
+        <h3 id="name-key-establishment">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
+        </h3>
+<p id="section-3.3-1">Various proposals have suggested establishing a key to validate
+per-packet metadata or to decrypt per-packet metadata.  However, most
+proposals have not specified how this key would be established.  A
+signaling protocol from the receiving host to its ISP could establish
+such a key. The host can then convey the key to the sending host to
+use to integrity protect or encrypt the per-packet metadata.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3.3-2.1">
+            <p id="section-3.3-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
+needs to be carefully considered by the signaling protocol proposing such
+keying.<a href="#section-3.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="metadata-versioncapability-exchange">
+<section id="section-3.4">
+        <h3 id="name-metadata-version-capability">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
+        </h3>
+<p id="section-3.4-1">TODO.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">To be useful, the sender has to convey metadata in a way that is understood
+by the various network elements on the path -- which might be operated by
+different entities.  For example, the Wi-Fi access point might be operated
+by an enterprise network, hotel, or home user, whereas the ISP's router
+is operated by the ISP.  Each of those might support different versions
+of the same metadata, or might need the metadata expressed in different
+ways.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">The signaling protocol would provide a way to learn the needs of those
+networks, and provide metadata signaling satisfying most or all of their
+needs.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="requirements-summary">
 <section id="section-4">
       <h2 id="name-requirements-summary">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-requirements-summary" class="section-name selfRef">Requirements Summary</a>
-    </h2>
+      </h2>
+<p id="section-4-1">TODO summary.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1427,9 +1502,21 @@ and those traffic source IP addresses are known a priori.<a href="#section-3.2-2
       <dd>
 <span class="refTitle">"Content Classification for Traffic Optimization"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://access.atis.org/higherlogic/ws/public/download/72240">https://access.atis.org/higherlogic/ws/public/download/72240</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.draft-cc-v6ops-wlcg-flow-label-marking">[I-D.draft-cc-v6ops-wlcg-flow-label-marking]</dt>
+      <dd>
+<span class="refAuthor">Carder, D. W.</span>, <span class="refAuthor">Chown, T.</span>, <span class="refAuthor">McKee, S.</span>, and <span class="refAuthor">M. Babik</span>, <span class="refTitle">"Use of the IPv6 Flow Label for WLCG Packet Marking"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-cc-v6ops-wlcg-flow-label-marking-02</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-cc-v6ops-wlcg-flow-label-marking-02">https://datatracker.ietf.org/doc/html/draft-cc-v6ops-wlcg-flow-label-marking-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless">[I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless]</dt>
+      <dd>
+<span class="refAuthor">Kaippallimalil, J.</span>, <span class="refAuthor">Gundavelli, S.</span>, and <span class="refAuthor">S. Dawkins</span>, <span class="refTitle">"Media Handling Considerations for Wireless Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kaippallimalil-tsvwg-media-hdr-wireless-04</span>, <time datetime="2024-02-14" class="refDate">14 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04">https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.draft-kpugin-rush">[I-D.draft-kpugin-rush]</dt>
       <dd>
 <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.draft-trammell-plus-spec">[I-D.draft-trammell-plus-spec]</dt>
+      <dd>
+<span class="refAuthor">Trammell, B.</span> and <span class="refAuthor">M. Kühlewind</span>, <span class="refTitle">"Path Layer UDP Substrate Specification"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-trammell-plus-spec-01</span>, <time datetime="2017-03-13" class="refDate">13 March 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01">https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IAB">[IAB]</dt>
       <dd>

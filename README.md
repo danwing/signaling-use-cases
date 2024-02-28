@@ -2,10 +2,10 @@
 
 This is the working area for the individual Internet-Draft, "Signaling Use Cases for Traffic Differentiation".
 
-* [Editor's Copy](https://danwing.github.io/signaling-use-cases/#go.draft-wing-tsvwg-signaling-use-cases.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-wing-tsvwg-signaling-use-cases)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-wing-tsvwg-signaling-use-cases)
-* [Compare Editor's Copy to Individual Draft](https://danwing.github.io/signaling-use-cases/#go.draft-wing-tsvwg-signaling-use-cases.diff)
+* [Editor's Copy](https://danwing.github.io/signaling-use-cases/#go.draft-bwbr-tsvwg-signaling-use-cases.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-bwbr-tsvwg-signaling-use-cases)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-bwbr-tsvwg-signaling-use-cases)
+* [Compare Editor's Copy to Individual Draft](https://danwing.github.io/signaling-use-cases/#go.draft-bwbr-tsvwg-signaling-use-cases.diff)
 
 
 ## Contributing

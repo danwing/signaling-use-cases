@@ -102,32 +102,59 @@ performance constraints usually exist with a "B".
 |host+--B--+access+--B--+router+--+router+---+router+---+host|
 +----+     |point |  |  +------+  +------+ | +------+ | +----+
            +------+  |                     |          |
-                     |                     | Transit  |  Peer's
+                     |                     | Transit  |  Content
    User Network      |    ISP Network      | Network  |  Network
 ~~~~~
 
-A difficulty is traffic arriving from the peer host (on the right)
-cannot be differentiated from other traffic arriving from other
-hosts on the Internet -- it all looks like incoming traffic.  But
-the receiving host would like to indicate the traffic's importance
-to the host (or to the application) to those bottleneck locations.
-
-While DiffServ and IntServ are initial candidates to solve the
-problem, the ISP's router has no reason to believe the DiffServ
-code points set by the remote host, especially as some hosts will
-set it incorrectly on purpose to boost the speed of their own traffic.
-A mechanism for the host to signal its desire that received traffic
-receive differentiated treatment problem of undesired traffic from
-being given undesired priority treatment. Instead, the client
-who is a subscriber of the ISP decides which incoming flows are
-important to the client.  IntServ suffers from the need for the
-remote peer to implement IntServ for the beenfit of the local
-network: this is a mis-aligned incentive and is among the reasons
-IntServ has not been deployed on the Internet.
+A difficulty is traffic arriving from the content provider cannot be
+differentiated from other traffic arriving from other hosts on the
+Internet -- it is all incoming traffic.  But the receiving host would
+like to indicate the traffic's importance to the host (or to the
+application) to those bottleneck locations.  A solution to this
+problem is configuring the ISP equipment with the content network's
+source IP addresses and providing that traffic differentiated
+access.  That differentiated access might be honoring the
+DSCP bits of the traffic, providing lower latency or jitter,
+assured bandwidth, or suchlike.  However such an arrangement
+benefits large players (large ISPs and large content network)
+but disadvantages small players and new players.  A more egalitarian
+approach would provide the same benefit to all parties -- large
+and small -- and also provide richer signaling to further improve
+user experience. This allows all parties to become part of the
+"Internet fast lane".
 
 There is consensus that applications can benefit by signaling
 the network ({{?IAB=RFC9419}}, {{ATIS}}).  This document provides
 use-cases where such signaling is valuable.
+
+
+## Everyone Is a Fire Engine
+
+While DiffServ is a candidates technology which meets many of the
+use-cases, the ISP's router has no reason to believe the DiffServ
+code points set by the remote host, especially as some hosts will
+set DSCP in an attempt to boost the speed of their traffic at the
+detriment of other traffic the receiving host considers more important.
+
+Other technologies being considered for host-to-network signaling
+suffer a similar problem as DiffServ: they need authorization from the
+receiving host, or else accidentally misconfigured senders or
+purposefully misbehaving senders will interfere with networks, or else
+only large ISPs and large CSPs will prevail.  These proposals include
+embedding information in the UDP payload
+({{?I-D.draft-trammell-plus-spec}}), UDP options
+({{?I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
+the IPv6 Flow Label ({{?I-D.draft-cc-v6ops-wlcg-flow-label-marking}},
+and Hop-by-Hop Options.  Occasionally to provide the necessary
+authorization those specifications suggest establishing a key to
+mitigate against malicious use, see {{key}}.
+
+
+Many approaches being considered today for host-to-network signaling
+have a similar
+
+
+
 
 # Conventions and Definitions
 
@@ -191,8 +218,38 @@ and those traffic source IP addresses are known a priori.
 
 TODO.
 
+## Key Establishment {#key}
+
+Various proposals have suggested establishing a key to validate
+per-packet metadata or to decrypt per-packet metadata.  However, most
+proposals have not specified how this key would be established.  A
+signaling protocol from the receiving host to its ISP could establish
+such a key. The host can then convey the key to the sending host to
+use to integrity protect or encrypt the per-packet metadata.
+
+> Note: The CPU overhead of validating or decrypting such per-packet metadata
+needs to be carefully considered by the signaling protocol proposing such
+keying.
+
+## Metadata Version/Capability Exchange
+
+TODO.
+
+To be useful, the sender has to convey metadata in a way that is understood
+by the various network elements on the path -- which might be operated by
+different entities.  For example, the Wi-Fi access point might be operated
+by an enterprise network, hotel, or home user, whereas the ISP's router
+is operated by the ISP.  Each of those might support different versions
+of the same metadata, or might need the metadata expressed in different
+ways.
+
+The signaling protocol would provide a way to learn the needs of those
+networks, and provide metadata signaling satisfying most or all of their
+needs.
 
 # Requirements Summary
+
+TODO summary.
 
 # Security Considerations
 

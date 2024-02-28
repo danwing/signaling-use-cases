@@ -30,7 +30,7 @@ venue:
   mail: "tsvwg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/tsvwg/"
   github: "danwing/signaling-use-cases"
-  latest: "https://danwing.github.io/differentiation-use-cases/draft-wing-tsvwg-signaling-use-cases.html"
+  latest: "https://danwing.github.io/signaling-use-cases/draft-wing-tsvwg-signaling-use-cases.html"
 
 author:
  -

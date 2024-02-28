@@ -3,7 +3,7 @@ title: "Signaling Use Cases for Traffic Differentiation"
 abbrev: "Signaling Use Cases"
 category: info
 
-docname: draft-wing-tsvwg-signaling-use-cases
+docname: draft-wing-tsvwg-signaling-use-cases-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:

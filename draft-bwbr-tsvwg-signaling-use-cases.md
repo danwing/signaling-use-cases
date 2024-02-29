@@ -171,6 +171,23 @@ of flows to a network element (e.g., router, MASQUE proxy), the network element 
 those flows to best accomodate the needs of the various applications (on a single host) and
 between hosts on a network.
 
+### Abuse and Constraints
+
+It is important that not every flow be prioritized; otherwise, the
+network devolves into the best-effort network that existed prior to
+metadata signaling. It is a requirement that mechanisms exist to
+prevent this occurrence. The mechanism might be simple, for example a
+cellular network might allow one flow from a subscriber to declare
+itself as important; other flows with that subscriber are denied
+attempts to prioritize themselves.  The mechanism might be more
+complex where authentication and authorization is performed by an
+enterprise network which, itself, decides which flows are important
+based on its policy and only the enterprise network communicates flow
+priorities to the ISP network.  The enterprise might prioritize
+certain users (e.g., IT staff, CEO), certain equipment (audio/video
+equipment in a conference room), or whatever its policies it might
+want.
+
 #### Interactive Media
 
 Examples: VoIP, gaming, virtual desktop.
@@ -186,9 +203,9 @@ Todo: this section on cooperation needs editing.
 
 #### Bulk Data Transfer
 
-Examples: backup/restore, software update
+Examples: backup/restore, software update, RSS feed update, email
 
-Requirement: Signal the flow
+Requirement: Signal the flow as below best-effort.
 
 
 ## Priority Within a Flow (Intra-Flow)

@@ -231,7 +231,7 @@ operated by different entities and have different capabilities.  For
 example, the Wi-Fi access point might be operated by an enterprise
 network, hotel, or home user, whereas the ISP's router is operated by
 the ISP.  Each of those might support different versions of the same
-metadata, or might need the metadata expressed in different ways. 
+metadata, or might need the metadata expressed in different ways.
 
 The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their

@@ -83,7 +83,7 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Use Cases
      3.1.  Priority Between Flows (Inter-Flow)
-       3.1.1.  Interactive Media
+       3.1.1.  Abuse and Constraints
      3.2.  Priority Within a Flow (Intra-Flow)
      3.3.  Key Establishment
      3.4.  Metadata Version/Capability Exchange
@@ -179,7 +179,24 @@ Table of Contents
    best accomodate the needs of the various applications (on a single
    host) and between hosts on a network.
 
-3.1.1.  Interactive Media
+3.1.1.  Abuse and Constraints
+
+   It is important that not every flow be prioritized; otherwise, the
+   network devolves into the best-effort network that existed prior to
+   metadata signaling.  It is a requirement that mechanisms exist to
+   prevent this occurrence.  The mechanism might be simple, for example
+   a cellular network might allow one flow from a subscriber to declare
+   itself as important; other flows with that subscriber are denied
+   attempts to prioritize themselves.  The mechanism might be more
+   complex where authentication and authorization is performed by an
+   enterprise network which, itself, decides which flows are important
+   based on its policy and only the enterprise network communicates flow
+   priorities to the ISP network.  The enterprise might prioritize
+   certain users (e.g., IT staff, CEO), certain equipment (audio/video
+   equipment in a conference room), or whatever its policies it might
+   want.
+
+3.1.1.1.  Interactive Media
 
    Examples: VoIP, gaming, virtual desktop.
 
@@ -193,11 +210,11 @@ Table of Contents
 
    Todo: this section on cooperation needs editing.
 
-3.1.1.1.  Bulk Data Transfer
+3.1.1.2.  Bulk Data Transfer
 
-   Examples: backup/restore, software update
+   Examples: backup/restore, software update, RSS feed update, email
 
-   Requirement: Signal the flow
+   Requirement: Signal the flow as below best-effort.
 
 3.2.  Priority Within a Flow (Intra-Flow)
 

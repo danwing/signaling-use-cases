@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 31 August 2024                                     M. Boucadair
+Expires: 1 September 2024                                   M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                        28 February 2024
+                                                        29 February 2024
 
 
             Signaling Use Cases for Traffic Differentiation
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2024.
+   This Internet-Draft will expire on 1 September 2024.
 
 Copyright Notice
 
@@ -80,7 +80,6 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  Everyone Is a Fire Engine
    2.  Conventions and Definitions
    3.  Use Cases
      3.1.  Priority Between Flows (Inter-Flow)
@@ -115,50 +114,47 @@ Table of Contents
                         |                     | Transit  |  Content
       User Network      |    ISP Network      | Network  |  Network
 
-   A difficulty is traffic arriving from the content provider cannot be
-   differentiated from other traffic arriving from other hosts on the
-   Internet -- it is all incoming traffic.  But the receiving host would
-   like to indicate the traffic's importance to the host (or to the
-   application) to those bottleneck locations.  A solution to this
-   problem is configuring the ISP equipment with the content network's
-   source IP addresses and providing that traffic differentiated access.
-   That differentiated access might be honoring the DSCP bits of the
-   traffic, providing lower latency or jitter, assured bandwidth, or
-   suchlike.  However such an arrangement benefits large players (large
-   ISPs and large content network) but disadvantages small players and
-   new players.  A more egalitarian approach would provide the same
-   benefit to all parties -- large and small -- and also provide richer
-   signaling to further improve user experience.  This allows all
-   parties to become part of the "Internet fast lane".
+   For traffic sent in either direction, the network network element(s)
+   immediately prior to the bandwidth constraining link can be augmented
+   with flow metadata.  Such augmentation allows those network elements
+   to make autonomous decisions to prioritize, delay, or drop packets
+   especially to when performing Reactive Management.
+
+   A difficulty with this metadata augmentation is deciding which
+   metadata to trust.  Traffic arriving from a content provider cannot
+   be differentiated from traffic arriving from other hosts on the
+   Internet.  The metadata signals from the content provider are more
+   likely to be authentic but the metadata signals from other hosts may
+   be wrong, undesired by the local host, or maliciously contain
+   improper metadata.  Attempts to automate identification of content
+   providers have included HTTP "Host" header inspection and TLS SNI
+   inspection which are expected to fail as encrypted SNI and privacy-
+   enhancin MASQUE proxies become more prevalant.  A remaining mechanism
+   to authorize metadata signals from the content provider is to
+   configure the ISP equipment with the content network's source IP
+   addresses and provide only that traffic with differentiated service.
+   However, such an arrangement benefits large players (large ISPs and
+   large content network) and disadvantages small players (and new
+   players).  A more egalitarian approach would provide the same benefit
+   to all parties -- large and small -- and also provide richer
+   signaling to further improve user experience and metadata
+   interoperability.  This would allow all parties to become part of the
+   "Internet fast lane".
+
+   The authorization problem exists with technologies as relatively
+   simple as DiffServ and the problem persists with many other recently
+   discussed metadata signaling mechanisms including embedding
+   information in the UDP payload ([I-D.draft-trammell-plus-spec]), UDP
+   options ([I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless]),
+   overloading the IPv6 Flow Label
+   ([I-D.draft-cc-v6ops-wlcg-flow-label-marking], and Hop-by-Hop
+   Options.  One mechanism suggested occasionally is to encrypt or
+   integrity protect the metadata with a key; such a key could be
+   established with a signaling protocol, see Section 3.3.
 
    There is consensus that applications can benefit by signaling the
-   network ([IAB], [ATIS]).  This document provides use-cases where such
-   signaling is valuable.
-
-1.1.  Everyone Is a Fire Engine
-
-   While DiffServ is a candidates technology which meets many of the
-   use-cases, the ISP's router has no reason to believe the DiffServ
-   code points set by the remote host, especially as some hosts will set
-   DSCP in an attempt to boost the speed of their traffic at the
-   detriment of other traffic the receiving host considers more
-   important.
-
-   Other technologies being considered for host-to-network signaling
-   suffer a similar problem as DiffServ: they need authorization from
-   the receiving host, or else accidentally misconfigured senders or
-   purposefully misbehaving senders will interfere with networks, or
-   else only large ISPs and large CSPs will prevail.  These proposals
-   include embedding information in the UDP payload
-   ([I-D.draft-trammell-plus-spec]), UDP options
-   ([I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless]), overloading
-   the IPv6 Flow Label ([I-D.draft-cc-v6ops-wlcg-flow-label-marking],
-   and Hop-by-Hop Options.  Occasionally to provide the necessary
-   authorization those specifications suggest establishing a key to
-   mitigate against malicious use, see Section 3.3.
-
-   Many approaches being considered today for host-to-network signaling
-   have a similar
+   network ([IAB], [ATIS]).  This document provides use-cases to further
+   detail the need of such signaling.
 
 2.  Conventions and Definitions
 
@@ -207,20 +203,20 @@ Table of Contents
 
    Interactive Audio/Video has long been using [RTP] which runs over
    UDP.  As described in Section 2.3.7.2 of [RFC7478], there is value in
-   differentiating between voice, video and data.  When video streaming
-   uses unreliable transport ([RFC9221]) as proposed by
-   [I-D.draft-kpugin-rush] it is beneficial to differentiate the
-   important video keyframes from other video frames.
+   differentiating between voice, video and data.  Today's video
+   streaming is exclusively over TCP but will migrate to QUIC and
+   eventually is likely to support unreliable transport ([RFC9221],
+   [I-D.draft-kpugin-rush]).  With unreliable transport of video in RTP
+   or QUIC, it is beneficial to differentiate the important video
+   keyframes from other video frames.  Other applications such as gaming
+   and remote desktop also benefit from differentiating their packets to
+   the network.
 
-   As these types of flows are received over the Internet -- and not
-   from IP addresses known a priori -- there is no way to authorize
-   using packet markings from some sources while not authorizing traffic
-   markings from other sources.  In contrast, authorization is implicit
-   when cooperating content providers are sending traffic that is known
-   to be compliant with the ISP's expectations, and those traffic source
-   IP addresses are known a priori.
-
-   TODO.
+   Many of these flows do not originate from a content provider's
+   network.  Thus, the flows originate from an IP address that is not
+   known before connection establishment, so there needs to be a way for
+   the client to authorize the network elements to honor the metadata of
+   those packets.
 
 3.3.  Key Establishment
 
@@ -237,15 +233,13 @@ Table of Contents
 
 3.4.  Metadata Version/Capability Exchange
 
-   TODO.
-
-   To be useful, the sender has to convey metadata in a way that is
-   understood by the various network elements on the path -- which might
-   be operated by different entities.  For example, the Wi-Fi access
-   point might be operated by an enterprise network, hotel, or home
-   user, whereas the ISP's router is operated by the ISP.  Each of those
-   might support different versions of the same metadata, or might need
-   the metadata expressed in different ways.
+   The sender has to convey metadata in a way that is understood by the
+   various network elements on the path -- each of which might be
+   operated by different entities and have different capabilities.  For
+   example, the Wi-Fi access point might be operated by an enterprise
+   network, hotel, or home user, whereas the ISP's router is operated by
+   the ISP.  Each of those might support different versions of the same
+   metadata, or might need the metadata expressed in different ways.
 
    The signaling protocol would provide a way to learn the needs of
    those networks, and provide metadata signaling satisfying most or all

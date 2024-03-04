@@ -297,6 +297,8 @@ of video delta frames (P-frame and B-frame) have least importance (importance=lo
 
 Video Streaming Metadata:
 
+Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata}}, the host to network metadata parameters for video streaming type is given below.
+
 | Traffic type                             | Importance | PacketNature      | PacketType           |
 |:----------------------------------------:|:----------:|:-----------------:|:--------------------:|
 | video I-frame (key frame)                | low        | realtime          | reliable             |
@@ -331,7 +333,7 @@ upstream direction.
 
 Metadata:
 
-Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata-}}, the host to network metadata parameters for interactive media type will as given below.
+Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata}}, the host to network metadata parameters for interactive media type is given below.
 
 Interactive A/V, downstream Metadata:
 
@@ -398,6 +400,8 @@ tables, client-to-server traffic ({{table-desktop-virtualization-c2s}})
 and server-to-client traffic ({{table-desktop-virtualization-s2c}}).
 
 Remote Desktop Virtualization Metadata:
+
+Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata}}, the host to network metadata parameters for remote desktop virtualization type is given below.
 
 | Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
 |:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|

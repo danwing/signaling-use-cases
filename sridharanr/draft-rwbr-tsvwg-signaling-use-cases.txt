@@ -338,7 +338,7 @@ Table of Contents
 
    Based on metadata types listed in the
    [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
-   parameters for interactive media type will as given below.
+   parameters for video streaming type will as given below.
 
         +===============+============+==============+============+
         |  Traffic type | Importance | PacketNature | PacketType |

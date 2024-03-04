@@ -5,28 +5,32 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 1 September 2024                                   M. Boucadair
+Expires: 5 September 2024                                   M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                        29 February 2024
+                                                            4 March 2024
 
 
-            Signaling Use Cases for Traffic Differentiation
+     Signaling Use Cases for Collaborative Traffic Differentiation
               draft-bwbr-tsvwg-signaling-use-cases-latest
 
 Abstract
 
-   Host-to-network signaling can improve the user experience by
-   informing the network which flows are more important and which
-   packets within a flow are more important.  The differentiated service
-   may be provided at the network (e.g., packet prioritization), the
-   sender (e.g., adaptive transmission), or through cooperation of both
-   the sender and the network.
+   Host-to-network (and vice versa) signaling can improve the user
+   experience by informing the network which flows are more important
+   and which packets within a flow are more important without having to
+   disclose the content of the packets being delivered.  The
+   differentiated service may be provided at the network (e.g., packet
+   discard preference), the sender (e.g., adaptive transmission or
+   session migration), or through cooperation of both the host and the
+   network.
 
-   This document outlines use-cases that highlight the need for a new
-   signaling protocol from the receiver to its network elements which
-   enables different traffic treatment.
+   This document outlines a set of use-cases that highlight the need for
+   a mechanism to share metadata about flows between a host and its
+   network in order to enable different traffic treatment.  Such a
+   mechanism is typically implemented using a signaling protocol between
+   the host and a set of trusted netwrok elements.
 
 About This Document
 
@@ -61,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2024.
+   This Internet-Draft will expire on 5 September 2024.
 
 Copyright Notice
 

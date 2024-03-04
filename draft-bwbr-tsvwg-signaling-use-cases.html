@@ -1224,14 +1224,17 @@ a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Bandwidth constraints exist most predominently at the access network.
-Users of those networks run various hosts which run various
-applications, each having different needs for the best user
-experience.  These requirements are not fixed but change over time
-depending on the application and even depending on how the application
-is used.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">Bandwidth constraints exist most predominantly at the access network (e.g., radio access networks).
+Users who are serviced via these networks use various hosts which run various
+applications; each having different connectivity needs for an optimal user
+experience. These needs are not frozen but change over time
+depending on the application and even depending on how an application
+is used (e.g., user's preferences).<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The simple network diagram below shows where such bandwidth and
-performance constraints usually exist with a "B".<a href="#section-1-2" class="pilcrow">¶</a></p>
+performance constraints usually exist with a "B" (for Bottleneck).
+Other network bottlenecks may be experienced in other segments not shown
+in the figure, such as interconnection links or the infrastructure that hosts the service (e.g.,
+flash crowds). A bottleneck may be limited in time, present or not regular patters, etc.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <div id="section-1-3">
         <div class="alignLeft art-svg artwork" id="section-1-3.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="144" width="520" viewBox="0 0 520 144" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -1273,7 +1276,7 @@ performance constraints usually exist with a "B".<a href="#section-1-2" class="p
             <path d="M 456,80 L 496,80" fill="none" stroke="black"></path>
             <path d="M 96,96 L 152,96" fill="none" stroke="black"></path>
             <g class="text">
-              <text x="120" y="52">Wi-Fi</text>
+              <text x="116" y="52">WLAN</text>
               <text x="28" y="68">host</text>
               <text x="72" y="68">B</text>
               <text x="124" y="68">access</text>
@@ -1295,43 +1298,71 @@ performance constraints usually exist with a "B".<a href="#section-1-2" class="p
           </svg><a href="#section-1-3.1" class="pilcrow">¶</a>
 </div>
 </div>
-<p id="section-1-4">For traffic sent in either direction, the network network element(s)
-immediately prior to the bandwidth constraining link can be augmented
-with flow metadata.  Such augmentation allows those network elements
-to make autonomous decisions to prioritize, delay, or drop packets
-especially to when performing Reactive Management.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">A difficulty with this metadata augmentation is deciding which
-metadata to trust.  Traffic arriving from a content provider cannot be
-differentiated from traffic arriving from other hosts on the Internet.
-The metadata signals from the content provider are more likely to be
-authentic but the metadata signals from other hosts may be wrong,
-undesired by the local host, or maliciously contain improper metadata.
+<p id="section-1-4">Complications that are induced by such phenomena may be eliminated by
+adequate dimensioning and upgrades. However, such upgrades may not
+be always immediately possible or economically justified.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">Complementary mitigations are thus needed to soften these complications
+by introducing some collaboration between hosts and networks to adjust
+their behaviors.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">For traffic sent in either direction, the network network elements
+that terminate a bandwidth constraining link (or located few hops next to that element) can be fed
+with flow metadata. Such augmentation allows those network elements
+to make autonomous decisions to prioritize, delay, or drop packets,
+especially when performing reactive resource management. Absent such metadata,
+these network elements have no means to guide the enforcement of the reactive
+resource policy.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">There are several challenges with this metadata augmentation:<a href="#section-1-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1-8.1">
+          <p id="section-1-8.1.1">for hosts: which data to share without privacy breach or lowering confidentiality.<a href="#section-1-8.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-1-8.2">
+          <p id="section-1-8.2.1">for network elements:<a href="#section-1-8.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1-8.2.2.1">
+              <p id="section-1-8.2.2.1.1">Deciding which metadata to trust<a href="#section-1-8.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-1-8.2.2.2">
+              <p id="section-1-8.2.2.2.1">Tradeoff between the extra cost (including processing) vs. expected benefits<a href="#section-1-8.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-1-8.2.2.3">
+              <p id="section-1-8.2.2.3.1">Impact on the network operations<a href="#section-1-8.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+      </ul>
+<p id="section-1-9">The metadata signals from a content provider are more likely to be
+authentic (if adequate authorization/validation are in place) but the metadata signals from other hosts may be "wrong",
+undesired by the peer host, or maliciously contain improper metadata.
 Attempts to automate identification of content providers have included
 HTTP "Host" header inspection and TLS SNI inspection which are
-expected to fail as encrypted SNI and privacy-enhancin MASQUE proxies
-become more prevalant.  A remaining mechanism to authorize metadata
-signals from the content provider is to configure the ISP equipment
-with the content network's source IP addresses and provide only that
-traffic with differentiated service.  However, such an arrangement
-benefits large players (large ISPs and large content network) and
+expected to fail as encrypted SNI and privacy-enhancing proxies
+become more prevalent. Another mechanism to authorize metadata
+signals from a content provider is to configure the ISP equipment
+with the content network's source IP addresses (or other labels that
+may be visible on the packets) and provide a differentiated service
+to the traffic that match these criteria. However, such an arrangement
+may have scalability issues. An approach to mitigate these issues is to limit
+the target contents networks and networks that would put in place these arrangements.
+Such limitations would benefit large players (large ISPs and large content network) and
 disadvantages small players (and new players).  A more egalitarian
 approach would provide the same benefit to all parties -- large and
 small -- and also provide richer signaling to further improve user
 experience and metadata interoperability. This would allow all parties
-to become part of the "Internet fast lane".<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">The authorization problem exists with technologies as relatively
+to become part of the "Internet fast lane".<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">The authorization problem exists with technologies as relatively
 simple as DiffServ and the problem persists with many other
-recently discussed metadata signaling mechanisms including
+recently discussed metadata signaling mechanisms, including
 embedding information in the UDP payload
 (<span>[<a href="#I-D.draft-trammell-plus-spec" class="cite xref">I-D.draft-trammell-plus-spec</a>]</span>), UDP options
 (<span>[<a href="#I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless" class="cite xref">I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless</a>]</span>), overloading
 the IPv6 Flow Label (<span>[<a href="#I-D.draft-cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.draft-cc-v6ops-wlcg-flow-label-marking</a>]</span>,
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
-could be established with a signaling protocol, see <a href="#key" class="auto internal xref">Section 3.3</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">There is consensus that applications can benefit by signaling
+could be established using a signaling protocol, see <a href="#key" class="auto internal xref">Section 3.3</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">There is consensus that applications can benefit by signaling
 the network (<span>[<a href="#IAB" class="cite xref">IAB</a>]</span>, <span>[<a href="#ATIS" class="cite xref">ATIS</a>]</span>).  This document provides
-use-cases to further detail the need of such signaling.<a href="#section-1-7" class="pilcrow">¶</a></p>
+use-cases to further detail the need of such signaling.<a href="#section-1-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">

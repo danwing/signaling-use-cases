@@ -1,6 +1,6 @@
 ---
-title: "Signaling Use Cases for Traffic Differentiation"
-abbrev: "Signaling Use Cases"
+title: "Signaling Use Cases for Collaborative Traffic Differentiation"
+abbrev: "Collaborative Host/Network Signaling: Use Cases"
 category: info
 
 docname: draft-bwbr-tsvwg-signaling-use-cases-latest
@@ -69,36 +69,39 @@ informative:
 
 --- abstract
 
-Host-to-network signaling can improve the user experience by informing
+Host-to-network (and vice versa) signaling can improve the user experience by informing
 the network which flows are more important and which packets within a
-flow are more important.  The differentiated service may be provided
-at the network (e.g., packet prioritization), the sender (e.g.,
-adaptive transmission), or through cooperation of both the sender
+flow are more important without having to disclose the content of the packets being delivered. The differentiated service may be provided
+at the network (e.g., packet discard preference), the sender (e.g.,
+adaptive transmission or session migration), or through cooperation of both the host
 and the network.
 
-This document outlines use-cases that highlight the need for a new
-signaling protocol from the receiver to its network elements which
-enables different traffic treatment.
+This document outlines a set of use-cases that highlight the need for a mechanism
+to share metadata about flows between a host and its network in order to enable different traffic treatment.
+Such a mechanism is typically implemented using a signaling protocol between the host and
+a set of trusted netwrok elements.
 
 --- middle
 
 # Introduction
 
-Bandwidth constraints exist most predominently at the access network.
-Users of those networks run various hosts which run various
-applications, each having different needs for the best user
-experience.  These requirements are not fixed but change over time
-depending on the application and even depending on how the application
-is used.
-
+Bandwidth constraints exist most predominantly at the access network (e.g., radio access networks).
+Users who are serviced via these networks use various hosts which run various
+applications; each having different connectivity needs for an optimal user
+experience. These needs are not frozen but change over time
+depending on the application and even depending on how an application
+is used (e.g., user's preferences).
 
 The simple network diagram below shows where such bandwidth and
-performance constraints usually exist with a "B".
+performance constraints usually exist with a "B" (for Bottleneck).
+Other network bottlenecks may be experienced in other segments not shown
+in the figure, such as interconnection links or the infrastructure that hosts the service (e.g.,
+flash crowds). A bottleneck may be limited in time, present or not regular patters, etc.
 
 ~~~~~ aasvg
 
            +------+  |                     |          |
-+----+     |Wi-Fi |  |  +------+  +------+ | +------+ | +----+
++----+     |WLAN  |  |  +------+  +------+ | +------+ | +----+
 |host+--B--+access+--B--+router+--+router+---+router+---+host|
 +----+     |point |  |  +------+  +------+ | +------+ | +----+
            +------+  |                     |          |
@@ -106,26 +109,46 @@ performance constraints usually exist with a "B".
    User Network      |    ISP Network      | Network  |  Network
 ~~~~~
 
-For traffic sent in either direction, the network network element(s)
-immediately prior to the bandwidth constraining link can be augmented
-with flow metadata.  Such augmentation allows those network elements
-to make autonomous decisions to prioritize, delay, or drop packets
-especially to when performing Reactive Management.
+Complications that are induced by such phenomena may be eliminated by
+adequate dimensioning and upgrades. However, such upgrades may not
+be always immediately possible or economically justified.
 
-A difficulty with this metadata augmentation is deciding which
-metadata to trust.  Traffic arriving from a content provider cannot be
-differentiated from traffic arriving from other hosts on the Internet.
-The metadata signals from the content provider are more likely to be
-authentic but the metadata signals from other hosts may be wrong,
-undesired by the local host, or maliciously contain improper metadata.
+Complementary mitigations are thus needed to soften these complications
+by introducing some collaboration between hosts and networks to adjust
+their behaviors.
+
+For traffic sent in either direction, the network network elements
+that terminate a bandwidth constraining link (or located few hops next to that element) can be fed
+with flow metadata. Such augmentation allows those network elements
+to make autonomous decisions to prioritize, delay, or drop packets,
+especially when performing reactive resource management. Absent such metadata,
+these network elements have no means to guide the enforcement of the reactive
+resource policy.
+
+There are several challenges with this metadata augmentation:
+
+* for hosts: which data to share without privacy breach or lowering confidentiality.
+* for network elements:
+
+  + Deciding which metadata to trust
+  + Tradeoff between the extra cost (including processing) vs. expected benefits
+  + Impact on the network operations
+
+
+The metadata signals from a content provider are more likely to be
+authentic (if adequate authorization/validation are in place) but the metadata signals from other hosts may be "wrong",
+undesired by the peer host, or maliciously contain improper metadata.
 Attempts to automate identification of content providers have included
 HTTP "Host" header inspection and TLS SNI inspection which are
-expected to fail as encrypted SNI and privacy-enhancin MASQUE proxies
-become more prevalant.  A remaining mechanism to authorize metadata
-signals from the content provider is to configure the ISP equipment
-with the content network's source IP addresses and provide only that
-traffic with differentiated service.  However, such an arrangement
-benefits large players (large ISPs and large content network) and
+expected to fail as encrypted SNI and privacy-enhancing proxies
+become more prevalent. Another mechanism to authorize metadata
+signals from a content provider is to configure the ISP equipment
+with the content network's source IP addresses (or other labels that
+may be visible on the packets) and provide a differentiated service
+to the traffic that match these criteria. However, such an arrangement
+may have scalability issues. An approach to mitigate these issues is to limit
+the target contents networks and networks that would put in place these arrangements.
+Such limitations would benefit large players (large ISPs and large content network) and
 disadvantages small players (and new players).  A more egalitarian
 approach would provide the same benefit to all parties -- large and
 small -- and also provide richer signaling to further improve user
@@ -134,19 +157,30 @@ to become part of the "Internet fast lane".
 
 The authorization problem exists with technologies as relatively
 simple as DiffServ and the problem persists with many other
-recently discussed metadata signaling mechanisms including
+recently discussed metadata signaling mechanisms, including
 embedding information in the UDP payload
 ({{?I-D.draft-trammell-plus-spec}}), UDP options
 ({{?I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
 the IPv6 Flow Label ({{?I-D.draft-cc-v6ops-wlcg-flow-label-marking}},
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
-could be established with a signaling protocol, see {{key}}.
+could be established using a signaling protocol, see {{key}}.
 
-There is consensus that applications can benefit by signaling
+There is some consensus that applications can benefit by collaborative signaling
 the network ({{?IAB=RFC9419}}, {{ATIS}}).  This document provides
 use-cases to further detail the need of such signaling.
 
+# Scope & Running Experiments
+
+This document does not intend to define any signaling protocol
+nor call whether a new signaling protocol, a new extension, one or more
+signaling protocols are needed.
+
+However, this document provides a reference to digest the intended
+benefits for enabling collaborating between hosts and networks. These
+benefits are yet to be backed up with more evidence. Some experimental
+work would be reasonable to be endorsed by the IETF to solicit more
+feedback and collect assess the benefits under various setups.
 
 # Conventions and Definitions
 
@@ -158,11 +192,65 @@ Reactive Management:
 durations  (e.g., varying wireless and mobile air
 interface conditions).
 
+# Various Approaches for Collaborative Signaling
+
+{{design-approaches}} depicts examples of approaches to establish channels to convey
+and share metadata between hosts, networks, and servers.
+
+Metadata exchanges can occur in one single direction or both directions of a flows.
+
+~~~~~ aasvg
+(1)  Proxied Connection
+                       .--------------.                   +------+
+                      |                |                +-+----+ |
++------+              |   Network(s)   |              +-+----+ +-+
+|Client+--------------)----------------(--------------+Server+-+
++---+--+              |                |              +---+--+
+    |                  '-------+------'                   |
+    |                          |                          |
+    +<===User Data+Metadata===>+<===User Data+Metadata===>+
+    |   Secure Connection 1    |   Secure Connection 2    |
+    |                          |                          |
+
+(2)  Out-of-band Metadata Sharing
+                        .--------------.                  +------+
+                       |                |               +-+----+ |
++------+               |   Network(s)   |             +-+----+ +-+
+|Client+---------------)----------------(-------------+Server+-+
++---+--+               |                |             +---+--+
+    |                   '-------+------'                  |
+    |                           |                         |
+    +<-----End-to-End Secure Connection + User Data------>+<---.
+    |                           |                         | GLUE|
+    |                           |                         | CXs |
+    +<-- Metadata (Optional) -->+<----- Metadata -------->+<---'
+    |    Secure Connection 1    |    Secure Connection 2  |
+    |                           |                         |
+
+(3)  Client-centric Metadata Sharing
+                          .--------------.                  +------+
+                         |                |               +-+----+ |
++------+                 |   Network(s)   |             +-+----+ +-+
+|Client+-----------------)----------------(-------------+Server+-+
++---+--+                 |                |             +---+--+
+    |                     '-------+------'                  |
+    |                             |                         |
+    +<--------- Metadata -------->+                         |
+    |        Secure Connection    |                         |
+    |                             |                         |
+    +<== End-to-End Secure Connection User Data+Metadata ==>+
+    |                             |                         |
+~~~~~
+{: #design-approaches artwork-align="center" title="Candidate Signaling Approaches"}
+
+The client-centric metadata sharing approach because it preserves privacy and also
+takes advantage of clients having a full view on their available network attachments.
 
 # Use Cases
 
 
 ## Priority Between Flows (Inter-Flow) of The Same Host
+
 
 Certain flows being received by a host (or by an application on a host) are less or more important than other
 flows of **the same host**.  For example, a host downloading a software update is generally considered less important

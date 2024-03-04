@@ -87,7 +87,7 @@ Table of Contents
      3.2.  Priority Within a Flow (Intra-Flow)
      3.3.  Key Establishment
      3.4.  Metadata Version/Capability Exchange
-     3.5.  Real-world Use cases
+     3.5.  Detailed Use Cases
        3.5.1.  Video Streaming
        3.5.2.  Interactive Media
        3.5.3.  Bulk Data Transfer
@@ -149,12 +149,11 @@ Table of Contents
    The authorization problem exists with technologies as relatively
    simple as DiffServ and the problem persists with many other recently
    discussed metadata signaling mechanisms including embedding
-   information in the UDP payload ([I-D.draft-trammell-plus-spec]), UDP
-   options ([I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless]),
-   overloading the IPv6 Flow Label
-   ([I-D.draft-cc-v6ops-wlcg-flow-label-marking], and Hop-by-Hop
-   Options.  One mechanism suggested occasionally is to encrypt or
-   integrity protect the metadata with a key; such a key could be
+   information in the UDP payload ([I-D.trammell-plus-spec]), UDP
+   options ([I-D.kaippallimalil-tsvwg-media-hdr-wireless]), overloading
+   the IPv6 Flow Label ([I-D.cc-v6ops-wlcg-flow-label-marking], and Hop-
+   by-Hop Options.  One mechanism suggested occasionally is to encrypt
+   or integrity protect the metadata with a key; such a key could be
    established with a signaling protocol, see Section 3.3.
 
    There is consensus that applications can benefit by signaling the
@@ -201,26 +200,6 @@ Table of Contents
    equipment in a conference room), or whatever its policies it might
    want.
 
-3.1.1.1.  Interactive Media
-
-   Examples: VoIP, gaming, virtual desktop.
-
-   Requirement: Signal the flow needs low jitter and low delay.
-   However, the network can only provide a limited amount of low jitter/
-   low delay to each host, maybe as few as one.  This requires signaling
-   feedback indicating that low jitter and low delay flows are already
-   subscribed to other hosts.  In response, the user and the application
-   will likely continue, occasionally re-attempting to get the desired
-   quality of service from the network.
-
-   Todo: this section on cooperation needs editing.
-
-3.1.1.2.  Bulk Data Transfer
-
-   Examples: backup/restore, software update, RSS feed update, email
-
-   Requirement: Signal the flow as below best-effort.
-
 3.2.  Priority Within a Flow (Intra-Flow)
 
    Interactive Audio/Video has long been using [RTP] which runs over
@@ -228,11 +207,11 @@ Table of Contents
    differentiating between voice, video and data.  Today's video
    streaming is exclusively over TCP but will migrate to QUIC and
    eventually is likely to support unreliable transport ([RFC9221],
-   [I-D.draft-kpugin-rush]).  With unreliable transport of video in RTP
-   or QUIC, it is beneficial to differentiate the important video
-   keyframes from other video frames.  Other applications such as gaming
-   and remote desktop also benefit from differentiating their packets to
-   the network.
+   [I-D.kpugin-rush]).  With unreliable transport of video in RTP or
+   QUIC, it is beneficial to differentiate the important video keyframes
+   from other video frames.  Other applications such as gaming and
+   remote desktop also benefit from differentiating their packets to the
+   network.
 
    Many of these flows do not originate from a content provider's
    network.  Thus, the flows originate from an IP address that is not
@@ -267,7 +246,7 @@ Table of Contents
    those networks, and provide metadata signaling satisfying most or all
    of their needs.
 
-3.5.  Real-world Use cases
+3.5.  Detailed Use Cases
 
 3.5.1.  Video Streaming
 
@@ -334,8 +313,8 @@ Table of Contents
    Metadata:
 
    Based on metadata types listed in the
-   [I-D.draft-rwbr-sconepro-flow-metadata-latest], the host to network
-   metadata parameters for interactive media type will as given below.
+   [I-D.rwbr-sconepro-flow-metadata-], the host to network metadata
+   parameters for interactive media type will as given below.
 
    Interactive A/V, downstream Metadata:
 
@@ -682,7 +661,7 @@ Table of Contents
               <https://access.atis.org/higherlogic/ws/public/
               download/72240>.
 
-   [I-D.draft-cc-v6ops-wlcg-flow-label-marking]
+   [I-D.cc-v6ops-wlcg-flow-label-marking]
               Carder, D. W., Chown, T., McKee, S., and M. Babik, "Use of
               the IPv6 Flow Label for WLCG Packet Marking", Work in
               Progress, Internet-Draft, draft-cc-v6ops-wlcg-flow-label-
@@ -690,7 +669,7 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-cc-v6ops-
               wlcg-flow-label-marking-02>.
 
-   [I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless]
+   [I-D.kaippallimalil-tsvwg-media-hdr-wireless]
               Kaippallimalil, J., Gundavelli, S., and S. Dawkins, "Media
               Handling Considerations for Wireless Networks", Work in
               Progress, Internet-Draft, draft-kaippallimalil-tsvwg-
@@ -698,17 +677,17 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-
               kaippallimalil-tsvwg-media-hdr-wireless-04>.
 
-   [I-D.draft-kpugin-rush]
+   [I-D.kpugin-rush]
               Pugin, K., Frindell, A., Ferret, J. C., and J. Weissman,
               "RUSH - Reliable (unreliable) streaming protocol", Work in
               Progress, Internet-Draft, draft-kpugin-rush-02, 10 May
               2023, <https://datatracker.ietf.org/doc/html/draft-kpugin-
               rush-02>.
 
-   [I-D.draft-rwbr-sconepro-flow-metadata-latest]
+   [I-D.rwbr-sconepro-flow-metadata-]
               "*** BROKEN REFERENCE ***".
 
-   [I-D.draft-trammell-plus-spec]
+   [I-D.trammell-plus-spec]
               Trammell, B. and M. Kühlewind, "Path Layer UDP Substrate
               Specification", Work in Progress, Internet-Draft, draft-
               trammell-plus-spec-01, 13 March 2017,

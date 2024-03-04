@@ -1194,16 +1194,16 @@ enables different traffic treatment.<a href="#section-abstract-2" class="pilcrow
                 <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-real-world-use-cases" class="internal xref">Real-world Use cases</a></p>
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-detailed-use-cases" class="internal xref">Detailed Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.1">
                     <p id="section-toc.1-1.3.2.5.2.1.1"><a href="#section-3.5.1" class="auto internal xref">3.5.1</a>.  <a href="#name-video-streaming" class="internal xref">Video Streaming</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.2">
-                    <p id="section-toc.1-1.3.2.5.2.2.1"><a href="#section-3.5.2" class="auto internal xref">3.5.2</a>.  <a href="#name-interactive-media-2" class="internal xref">Interactive Media</a></p>
+                    <p id="section-toc.1-1.3.2.5.2.2.1"><a href="#section-3.5.2" class="auto internal xref">3.5.2</a>.  <a href="#name-interactive-media" class="internal xref">Interactive Media</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.3">
-                    <p id="section-toc.1-1.3.2.5.2.3.1"><a href="#section-3.5.3" class="auto internal xref">3.5.3</a>.  <a href="#name-bulk-data-transfer-2" class="internal xref">Bulk Data Transfer</a></p>
+                    <p id="section-toc.1-1.3.2.5.2.3.1"><a href="#section-3.5.3" class="auto internal xref">3.5.3</a>.  <a href="#name-bulk-data-transfer" class="internal xref">Bulk Data Transfer</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.4">
                     <p id="section-toc.1-1.3.2.5.2.4.1"><a href="#section-3.5.4" class="auto internal xref">3.5.4</a>.  <a href="#name-mixed-traffic" class="internal xref">Mixed Traffic</a></p>
@@ -1338,9 +1338,9 @@ to become part of the "Internet fast lane".<a href="#section-1-5" class="pilcrow
 simple as DiffServ and the problem persists with many other
 recently discussed metadata signaling mechanisms including
 embedding information in the UDP payload
-(<span>[<a href="#I-D.draft-trammell-plus-spec" class="cite xref">I-D.draft-trammell-plus-spec</a>]</span>), UDP options
-(<span>[<a href="#I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless" class="cite xref">I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless</a>]</span>), overloading
-the IPv6 Flow Label (<span>[<a href="#I-D.draft-cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.draft-cc-v6ops-wlcg-flow-label-marking</a>]</span>,
+(<span>[<a href="#I-D.trammell-plus-spec" class="cite xref">I-D.trammell-plus-spec</a>]</span>), UDP options
+(<span>[<a href="#I-D.kaippallimalil-tsvwg-media-hdr-wireless" class="cite xref">I-D.kaippallimalil-tsvwg-media-hdr-wireless</a>]</span>), overloading
+the IPv6 Flow Label (<span>[<a href="#I-D.cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.cc-v6ops-wlcg-flow-label-marking</a>]</span>,
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
 could be established with a signaling protocol, see <a href="#key" class="auto internal xref">Section 3.3</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
@@ -1405,29 +1405,6 @@ priorities to the ISP network.  The enterprise might prioritize
 certain users (e.g., IT staff, CEO), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
 want.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
-<div id="interactive-media">
-<section id="section-3.1.1.1">
-            <h5 id="name-interactive-media">
-<a href="#section-3.1.1.1" class="section-number selfRef">3.1.1.1. </a><a href="#name-interactive-media" class="section-name selfRef">Interactive Media</a>
-            </h5>
-<p id="section-3.1.1.1-1">Examples: VoIP, gaming, virtual desktop.<a href="#section-3.1.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.1.1-2">Requirement:  Signal the flow needs low jitter and low delay.  However, the network can only provide
-a limited amount of low jitter/low delay to each host, maybe as few as one.  This requires signaling
-feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
-response, the user and the application will likely continue, occasionally re-attempting to get the
-desired quality of service from the network.<a href="#section-3.1.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1.1.1-3">Todo: this section on cooperation needs editing.<a href="#section-3.1.1.1-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="bulk-data-transfer">
-<section id="section-3.1.1.2">
-            <h5 id="name-bulk-data-transfer">
-<a href="#section-3.1.1.2" class="section-number selfRef">3.1.1.2. </a><a href="#name-bulk-data-transfer" class="section-name selfRef">Bulk Data Transfer</a>
-            </h5>
-<p id="section-3.1.1.2-1">Examples: backup/restore, software update, RSS feed update, email<a href="#section-3.1.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.1.2-2">Requirement: Signal the flow as below best-effort.<a href="#section-3.1.1.2-2" class="pilcrow">¶</a></p>
-</section>
-</div>
 </section>
 </div>
 </section>
@@ -1442,7 +1419,7 @@ runs over UDP.  As described in <span><a href="https://rfc-editor.org/rfc/rfc747
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
 eventually is likely to support unreliable transport (<span>[<a href="#RFC9221" class="cite xref">RFC9221</a>]</span>,
-<span>[<a href="#I-D.draft-kpugin-rush" class="cite xref">I-D.draft-kpugin-rush</a>]</span>).  With unreliable transport of video in
+<span>[<a href="#I-D.kpugin-rush" class="cite xref">I-D.kpugin-rush</a>]</span>).  With unreliable transport of video in
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to
@@ -1491,10 +1468,10 @@ networks, and provide metadata signaling satisfying most or all of their
 needs.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="real-world-use-cases">
+<div id="detailed-use-cases">
 <section id="section-3.5">
-        <h3 id="name-real-world-use-cases">
-<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-real-world-use-cases" class="section-name selfRef">Real-world Use cases</a>
+        <h3 id="name-detailed-use-cases">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-detailed-use-cases" class="section-name selfRef">Detailed Use Cases</a>
         </h3>
 <div id="example-video-streaming">
 <section id="section-3.5.1">
@@ -1557,10 +1534,10 @@ of video delta frames (P-frame and B-frame) have least importance (importance=lo
 </div>
 </section>
 </div>
-<div id="interactive-media-1">
+<div id="interactive-media">
 <section id="section-3.5.2">
-          <h4 id="name-interactive-media-2">
-<a href="#section-3.5.2" class="section-number selfRef">3.5.2. </a><a href="#name-interactive-media-2" class="section-name selfRef">Interactive Media</a>
+          <h4 id="name-interactive-media">
+<a href="#section-3.5.2" class="section-number selfRef">3.5.2. </a><a href="#name-interactive-media" class="section-name selfRef">Interactive Media</a>
           </h4>
 <p id="section-3.5.2-1">Examples: VoIP, gaming.<a href="#section-3.5.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.5.2-2">Requirement:  Signal the flow needs low jitter and low delay. However, the network can only provide
@@ -1581,7 +1558,7 @@ example.  Additionally, most Internet service providers constrain
 upstream bandwidth so proper packet treatment is critical in the
 upstream direction.<a href="#section-3.5.2-4" class="pilcrow">¶</a></p>
 <p id="section-3.5.2-5">Metadata:<a href="#section-3.5.2-5" class="pilcrow">¶</a></p>
-<p id="section-3.5.2-6">Based on metadata types listed in the <span>[<a href="#I-D.draft-rwbr-sconepro-flow-metadata-latest" class="cite xref">I-D.draft-rwbr-sconepro-flow-metadata-latest</a>]</span>, the host to network metadata parameters for interactive media type will as given below.<a href="#section-3.5.2-6" class="pilcrow">¶</a></p>
+<p id="section-3.5.2-6">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata-" class="cite xref">I-D.rwbr-sconepro-flow-metadata-</a>]</span>, the host to network metadata parameters for interactive media type will as given below.<a href="#section-3.5.2-6" class="pilcrow">¶</a></p>
 <p id="section-3.5.2-7">Interactive A/V, downstream Metadata:<a href="#section-3.5.2-7" class="pilcrow">¶</a></p>
 <span id="name-example-values-for-interact"></span><div id="_table-interactive-av-downstream">
 <table class="center" id="table-2">
@@ -1711,10 +1688,10 @@ than audio.<a href="#section-3.5.2-13" class="pilcrow">¶</a></p>
 <p id="section-3.5.2-14">Todo: this section on cooperation needs editing.<a href="#section-3.5.2-14" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="bulk-data-transfer-1">
+<div id="bulk-data-transfer">
 <section id="section-3.5.3">
-          <h4 id="name-bulk-data-transfer-2">
-<a href="#section-3.5.3" class="section-number selfRef">3.5.3. </a><a href="#name-bulk-data-transfer-2" class="section-name selfRef">Bulk Data Transfer</a>
+          <h4 id="name-bulk-data-transfer">
+<a href="#section-3.5.3" class="section-number selfRef">3.5.3. </a><a href="#name-bulk-data-transfer" class="section-name selfRef">Bulk Data Transfer</a>
           </h4>
 <p id="section-3.5.3-1">Examples: backup/restore, software update, RSS feed update, email, printing to a print server<a href="#section-3.5.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.5.3-2">Requirement: Signal the flow as below best-effort.<a href="#section-3.5.3-2" class="pilcrow">¶</a></p>
@@ -1947,23 +1924,23 @@ traffic but a different application.<a href="#section-3.5.4-7" class="pilcrow">�
       <dd>
 <span class="refTitle">"Content Classification for Traffic Optimization"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://access.atis.org/higherlogic/ws/public/download/72240">https://access.atis.org/higherlogic/ws/public/download/72240</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-cc-v6ops-wlcg-flow-label-marking">[I-D.draft-cc-v6ops-wlcg-flow-label-marking]</dt>
+<dt id="I-D.cc-v6ops-wlcg-flow-label-marking">[I-D.cc-v6ops-wlcg-flow-label-marking]</dt>
       <dd>
 <span class="refAuthor">Carder, D. W.</span>, <span class="refAuthor">Chown, T.</span>, <span class="refAuthor">McKee, S.</span>, and <span class="refAuthor">M. Babik</span>, <span class="refTitle">"Use of the IPv6 Flow Label for WLCG Packet Marking"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-cc-v6ops-wlcg-flow-label-marking-02</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-cc-v6ops-wlcg-flow-label-marking-02">https://datatracker.ietf.org/doc/html/draft-cc-v6ops-wlcg-flow-label-marking-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless">[I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless]</dt>
+<dt id="I-D.kaippallimalil-tsvwg-media-hdr-wireless">[I-D.kaippallimalil-tsvwg-media-hdr-wireless]</dt>
       <dd>
 <span class="refAuthor">Kaippallimalil, J.</span>, <span class="refAuthor">Gundavelli, S.</span>, and <span class="refAuthor">S. Dawkins</span>, <span class="refTitle">"Media Handling Considerations for Wireless Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kaippallimalil-tsvwg-media-hdr-wireless-04</span>, <time datetime="2024-02-14" class="refDate">14 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04">https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-kpugin-rush">[I-D.draft-kpugin-rush]</dt>
+<dt id="I-D.kpugin-rush">[I-D.kpugin-rush]</dt>
       <dd>
 <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-rwbr-sconepro-flow-metadata-latest">[I-D.draft-rwbr-sconepro-flow-metadata-latest]</dt>
+<dt id="I-D.rwbr-sconepro-flow-metadata-">[I-D.rwbr-sconepro-flow-metadata-]</dt>
       <dd>
 <span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-trammell-plus-spec">[I-D.draft-trammell-plus-spec]</dt>
+<dt id="I-D.trammell-plus-spec">[I-D.trammell-plus-spec]</dt>
       <dd>
 <span class="refAuthor">Trammell, B.</span> and <span class="refAuthor">M. Kühlewind</span>, <span class="refTitle">"Path Layer UDP Substrate Specification"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-trammell-plus-spec-01</span>, <time datetime="2017-03-13" class="refDate">13 March 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01">https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>

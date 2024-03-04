@@ -338,7 +338,7 @@ Table of Contents
 
    Based on metadata types listed in the
    [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
-   parameters for video streaming type will as given below.
+   parameters for video streaming type is given below.
 
         +===============+============+==============+============+
         |  Traffic type | Importance | PacketNature | PacketType |
@@ -387,7 +387,7 @@ Table of Contents
 
    Based on metadata types listed in the
    [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
-   parameters for interactive media type will as given below.
+   parameters for interactive media type is given below.
 
    Interactive A/V, downstream Metadata:
 
@@ -488,8 +488,7 @@ Table of Contents
 
    Based on metadata types listed in the
    [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
-   parameters for remote desktop virtualization type will as given
-   below.
+   parameters for remote desktop virtualization type is given below.
 
    +================+==========+==============+==========+=============+
    |  Traffic type  |Importance| PacketNature |PacketType|   Comments  |

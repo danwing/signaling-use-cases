@@ -249,13 +249,14 @@ takes advantage of clients having a full view on their available network attachm
 # Use Cases
 
 
-## Priority Between Flows (Inter-Flow)
+## Priority Between Flows (Inter-Flow) of The Same Host
 
-Certain flows being received by a host or by an application are less or more important than other
-flows.  For example, a host downloading a software update is generally considered less important
+
+Certain flows being received by a host (or by an application on a host) are less or more important than other
+flows of **the same host**.  For example, a host downloading a software update is generally considered less important
 than another host doing interactive audio/video or gaming.  By signaling the relative importance
-of flows to a network element (e.g., router, MASQUE proxy), the network element can (de-)prioritize
-those flows to best accomodate the needs of the various applications (on a single host) and
+of flows to a network element, the network element can (de-)prioritize
+those flows to best accomodate the needs of the various applications (on a same host) and
 between hosts on a network.
 
 ### Abuse and Constraints
@@ -263,7 +264,9 @@ between hosts on a network.
 It is important that not every flow be prioritized; otherwise, the
 network devolves into the best-effort network that existed prior to
 metadata signaling. It is a requirement that mechanisms exist to
-prevent this occurrence. The mechanism might be simple, for example a
+prevent this occurrence.
+
+Such a mechanism might be simple, for example, a
 cellular network might allow one flow from a subscriber to declare
 itself as important; other flows with that subscriber are denied
 attempts to prioritize themselves.  The mechanism might be more
@@ -271,7 +274,7 @@ complex where authentication and authorization is performed by an
 enterprise network which, itself, decides which flows are important
 based on its policy and only the enterprise network communicates flow
 priorities to the ISP network.  The enterprise might prioritize
-certain users (e.g., IT staff, CEO), certain equipment (audio/video
+certain users (e.g., IT staff), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
 want.
 
@@ -302,7 +305,7 @@ runs over UDP.  As described in {{Section 2.3.7.2 of ?RFC7478}}, there
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
 eventually is likely to support unreliable transport ({{?RFC9221}},
-{{?I-D.draft-kpugin-rush}}).  With unreliable transport of video in
+{{?I-D.kpugin-rush}}).  With unreliable transport of video in
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to
@@ -311,21 +314,35 @@ the network.
 Many of these flows do not originate from a content provider's network.
 Thus, the flows originate from an IP address that is not known before
 connection establishment, so there needs to be a way for the client
-to authorize the network elements to honor the metadata of those
+to authorize the network elements to receive and hopefully to honor the metadata of those
 packets.
+
+## Assisted Offload
+
+There are  cases (crisis) where "normal" network
+resources cannot be used at maximum and, thus, a network would seek to
+reduce or offload some of the traffic during these events -- often
+called 'reactive traffic policy'. An example of such sue case is cellular networks
+that are overly used (and radio resources exhausted) while alternative network
+attachment networks are available to host.
+
+Network-to-host signals are
+useful to put in place adequate traffic distribution policies (e.g.,
+prefer the use of alternate paths, offload a network).
 
 ## Key Establishment {#key}
 
 Various proposals have suggested establishing a key to validate
 per-packet metadata or to decrypt per-packet metadata.  However, most
-proposals have not specified how this key would be established.  A
+proposals have not specified how this key would be established. A
 signaling protocol from the receiving host to its ISP could establish
 such a key. The host can then convey the key to the sending host to
 use to integrity protect or encrypt the per-packet metadata.
 
 > Note: The CPU overhead of validating or decrypting such per-packet metadata
-needs to be carefully considered by the signaling protocol proposing such
-keying.
+needs to be carefully considered (and further assessed via experiments) by the signaling protocol proposing such
+keying. Also, the required operational setup should be documented.
+
 
 ## Metadata Version/Capability Exchange
 
@@ -333,7 +350,7 @@ The sender has to convey metadata in a way that is understood by the
 various network elements on the path -- each of which might be
 operated by different entities and have different capabilities.  For
 example, the Wi-Fi access point might be operated by an enterprise
-network, hotel, or home user, whereas the ISP's router is operated by
+network, hotel, or home user, whereas the upstream router is operated by
 the ISP.  Each of those might support different versions of the same
 metadata, or might need the metadata expressed in different ways.
 

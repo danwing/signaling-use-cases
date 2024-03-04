@@ -13,7 +13,7 @@ Expires: 5 September 2024                                   M. Boucadair
 
 
      Signaling Use Cases for Collaborative Traffic Differentiation
-              draft-bwbr-tsvwg-signaling-use-cases-latest
+              draft-rwbr-tsvwg-signaling-use-cases-latest
 
 Abstract
 
@@ -39,7 +39,7 @@ About This Document
    The latest revision of this draft can be found at
    https://danwing.github.io/signaling-use-cases/draft-wing-tsvwg-
    signaling-use-cases.html.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-bwbr-tsvwg-
+   be found at https://datatracker.ietf.org/doc/draft-rwbr-tsvwg-
    signaling-use-cases/.
 
    Discussion of this document takes place on the Transport and Services

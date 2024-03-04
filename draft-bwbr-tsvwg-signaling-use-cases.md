@@ -143,10 +143,21 @@ and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
 could be established with a signaling protocol, see {{key}}.
 
-There is consensus that applications can benefit by signaling
+There is some consensus that applications can benefit by collaborative signaling
 the network ({{?IAB=RFC9419}}, {{ATIS}}).  This document provides
 use-cases to further detail the need of such signaling.
 
+# Scope & Running Experiments
+
+This document does not intend to define any signaling protocol
+nor call whether a new signaling protocol, a new extension, one or more
+signaling protocols are needed.
+
+However, this document provides a reference to digest the intended
+benefits for enabling collaborating between hosts and networks. These
+benefits are yet to be backed up with more evidence. Some experimental
+work would be reasonable to be endorsed by the IETF to solicit more
+feedback and collect assess the benefits under various setups.
 
 # Conventions and Definitions
 

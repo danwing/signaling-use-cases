@@ -1730,6 +1730,7 @@ is more important than video (importance=high, PT=keep, RU=reliable), video key 
 have middle importance (importance=low, PT=discard, RU=reliable), and both types
 of video delta frames (P-frame and B-frame) have least importance (importance=low, PT=discard, RU=unreliable).<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-3">Video Streaming Metadata:<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-4">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>, the host to network metadata parameters for interactive media type will as given below.<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
 <span id="name-example-values-for-video-st"></span><div id="_table-video-streaming">
 <table class="center" id="table-1">
             <caption>
@@ -1798,7 +1799,7 @@ example.  Additionally, most Internet service providers constrain
 upstream bandwidth so proper packet treatment is critical in the
 upstream direction.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-5">Metadata:<a href="#section-5.2.2-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-6">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata-" class="cite xref">I-D.rwbr-sconepro-flow-metadata-</a>]</span>, the host to network metadata parameters for interactive media type will as given below.<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-6">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>, the host to network metadata parameters for interactive media type will as given below.<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-7">Interactive A/V, downstream Metadata:<a href="#section-5.2.2-7" class="pilcrow">¶</a></p>
 <span id="name-example-values-for-interact"></span><div id="_table-interactive-av-downstream">
 <table class="center" id="table-2">
@@ -1978,6 +1979,7 @@ Virtual Apps and Desktops - CVAD) application.  This is shown in two
 tables, client-to-server traffic (<a href="#_table-desktop-virtualization-c2s" class="auto internal xref">Table 6</a>)
 and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class="auto internal xref">Table 7</a>).<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.4-4">Remote Desktop Virtualization Metadata:<a href="#section-5.2.4-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-5">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>, the host to network metadata parameters for remote desktop virtualization type will as given below.<a href="#section-5.2.4-5" class="pilcrow">¶</a></p>
 <span id="name-example-values-for-remote-d"></span><div id="_table-desktop-virtualization-c2s">
 <table class="center" id="table-6">
             <caption>
@@ -2114,7 +2116,7 @@ and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class
             </tbody>
           </table>
 </div>
-<p id="section-5.2.4-7">*** A video key frame should be handled differently by the network
+<p id="section-5.2.4-8">*** A video key frame should be handled differently by the network
 depending on a streaming application versus a remote desktop
 application.  The video streaming application's primary and only
 nature of traffic is video and audio.  In contrast, a remote desktop
@@ -2123,7 +2125,7 @@ the same time the user is editing a document.  The user's keystrokes
 and those glyphs need to be prioritized over the video lest the user
 think their inputs are being ignored (and type the same characters
 again). Hence, the values are different even for the same nature of
-traffic but a different application.<a href="#section-5.2.4-7" class="pilcrow">¶</a></p>
+traffic but a different application.<a href="#section-5.2.4-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="assisted-offload">
@@ -2274,9 +2276,9 @@ needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
       <dd>
 <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.rwbr-sconepro-flow-metadata-">[I-D.rwbr-sconepro-flow-metadata-]</dt>
+<dt id="I-D.rwbr-sconepro-flow-metadata">[I-D.rwbr-sconepro-flow-metadata]</dt>
       <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
+<span class="refAuthor">Rajagopalan, S.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">T. Reddy.K</span>, <span class="refTitle">"Flow Metadata for Collaborative Host/Network Signaling"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rwbr-sconepro-flow-metadata-00</span>, <time datetime="2024-03-04" class="refDate">4 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00">https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.trammell-plus-spec">[I-D.trammell-plus-spec]</dt>
       <dd>

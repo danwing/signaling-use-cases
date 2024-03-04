@@ -1185,7 +1185,7 @@ a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-priority-between-flows-inte" class="internal xref">Priority Between Flows (Inter-Flow)</a></p>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-priority-between-flows-inte" class="internal xref">Priority Between Flows (Inter-Flow) of The Same Host</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
                     <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
@@ -1196,10 +1196,13 @@ a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-priority-within-a-flow-intr" class="internal xref">Priority Within a Flow (Intra-Flow)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-assisted-offload" class="internal xref">Assisted Offload</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
 </li>
             </ul>
 </li>
@@ -1365,7 +1368,7 @@ embedding information in the UDP payload
 the IPv6 Flow Label (<span>[<a href="#I-D.draft-cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.draft-cc-v6ops-wlcg-flow-label-marking</a>]</span>,
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
-could be established using a signaling protocol, see <a href="#key" class="auto internal xref">Section 5.3</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
+could be established using a signaling protocol, see <a href="#key" class="auto internal xref">Section 5.4</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">There is some consensus that applications can benefit by collaborative signaling
 the network (<span>[<a href="#IAB" class="cite xref">IAB</a>]</span>, <span>[<a href="#ATIS" class="cite xref">ATIS</a>]</span>).  This document provides
 use-cases to further detail the need of such signaling.<a href="#section-1-11" class="pilcrow">¶</a></p>
@@ -1632,16 +1635,16 @@ takes advantage of clients having a full view on their available network attachm
       <h2 id="name-use-cases">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
       </h2>
-<div id="priority-between-flows-inter-flow">
+<div id="priority-between-flows-inter-flow-of-the-same-host">
 <section id="section-5.1">
         <h3 id="name-priority-between-flows-inte">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-priority-between-flows-inte" class="section-name selfRef">Priority Between Flows (Inter-Flow)</a>
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-priority-between-flows-inte" class="section-name selfRef">Priority Between Flows (Inter-Flow) of The Same Host</a>
         </h3>
-<p id="section-5.1-1">Certain flows being received by a host or by an application are less or more important than other
-flows.  For example, a host downloading a software update is generally considered less important
+<p id="section-5.1-1">Certain flows being received by a host (or by an application on a host) are less or more important than other
+flows of <strong>the same host</strong>.  For example, a host downloading a software update is generally considered less important
 than another host doing interactive audio/video or gaming.  By signaling the relative importance
-of flows to a network element (e.g., router, MASQUE proxy), the network element can (de-)prioritize
-those flows to best accomodate the needs of the various applications (on a single host) and
+of flows to a network element, the network element can (de-)prioritize
+those flows to best accomodate the needs of the various applications (on a same host) and
 between hosts on a network.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <div id="abuse-and-constraints">
 <section id="section-5.1.1">
@@ -1651,7 +1654,8 @@ between hosts on a network.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-1">It is important that not every flow be prioritized; otherwise, the
 network devolves into the best-effort network that existed prior to
 metadata signaling. It is a requirement that mechanisms exist to
-prevent this occurrence. The mechanism might be simple, for example a
+prevent this occurrence.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Such a mechanism might be simple, for example, a
 cellular network might allow one flow from a subscriber to declare
 itself as important; other flows with that subscriber are denied
 attempts to prioritize themselves.  The mechanism might be more
@@ -1659,9 +1663,9 @@ complex where authentication and authorization is performed by an
 enterprise network which, itself, decides which flows are important
 based on its policy and only the enterprise network communicates flow
 priorities to the ISP network.  The enterprise might prioritize
-certain users (e.g., IT staff, CEO), certain equipment (audio/video
+certain users (e.g., IT staff), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
-want.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+want.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
 <div id="interactive-media">
 <section id="section-5.1.1.1">
             <h5 id="name-interactive-media">
@@ -1699,7 +1703,7 @@ runs over UDP.  As described in <span><a href="https://rfc-editor.org/rfc/rfc747
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
 eventually is likely to support unreliable transport (<span>[<a href="#RFC9221" class="cite xref">RFC9221</a>]</span>,
-<span>[<a href="#I-D.draft-kpugin-rush" class="cite xref">I-D.draft-kpugin-rush</a>]</span>).  With unreliable transport of video in
+<span>[<a href="#I-D.kpugin-rush" class="cite xref">I-D.kpugin-rush</a>]</span>).  With unreliable transport of video in
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to
@@ -1707,45 +1711,61 @@ the network.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">Many of these flows do not originate from a content provider's network.
 Thus, the flows originate from an IP address that is not known before
 connection establishment, so there needs to be a way for the client
-to authorize the network elements to honor the metadata of those
+to authorize the network elements to receive and hopefully to honor the metadata of those
 packets.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="key">
+<div id="assisted-offload">
 <section id="section-5.3">
-        <h3 id="name-key-establishment">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
+        <h3 id="name-assisted-offload">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-assisted-offload" class="section-name selfRef">Assisted Offload</a>
         </h3>
-<p id="section-5.3-1">Various proposals have suggested establishing a key to validate
+<p id="section-5.3-1">There are  cases (crisis) where "normal" network
+resources cannot be used at maximum and, thus, a network would seek to
+reduce or offload some of the traffic during these events -- often
+called 'reactive traffic policy'. An example of such sue case is cellular networks
+that are overly used (and radio resources exhausted) while alternative network
+attachment networks are available to host.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-2">Network-to-host signals are
+useful to put in place adequate traffic distribution policies (e.g.,
+prefer the use of alternate paths, offload a network).<a href="#section-5.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="key">
+<section id="section-5.4">
+        <h3 id="name-key-establishment">
+<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
+        </h3>
+<p id="section-5.4-1">Various proposals have suggested establishing a key to validate
 per-packet metadata or to decrypt per-packet metadata.  However, most
-proposals have not specified how this key would be established.  A
+proposals have not specified how this key would be established. A
 signaling protocol from the receiving host to its ISP could establish
 such a key. The host can then convey the key to the sending host to
-use to integrity protect or encrypt the per-packet metadata.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+use to integrity protect or encrypt the per-packet metadata.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-5.3-2.1">
-            <p id="section-5.3-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
-needs to be carefully considered by the signaling protocol proposing such
-keying.<a href="#section-5.3-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-5.4-2.1">
+            <p id="section-5.4-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
+needs to be carefully considered (and further assessed via experiments) by the signaling protocol proposing such
+keying. Also, the required operational setup should be documented.<a href="#section-5.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="metadata-versioncapability-exchange">
-<section id="section-5.4">
+<section id="section-5.5">
         <h3 id="name-metadata-version-capability">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
+<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
         </h3>
-<p id="section-5.4-1">The sender has to convey metadata in a way that is understood by the
+<p id="section-5.5-1">The sender has to convey metadata in a way that is understood by the
 various network elements on the path -- each of which might be
 operated by different entities and have different capabilities.  For
 example, the Wi-Fi access point might be operated by an enterprise
-network, hotel, or home user, whereas the ISP's router is operated by
+network, hotel, or home user, whereas the upstream router is operated by
 the ISP.  Each of those might support different versions of the same
-metadata, or might need the metadata expressed in different ways.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.4-2">The signaling protocol would provide a way to learn the needs of those
+metadata, or might need the metadata expressed in different ways.<a href="#section-5.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.5-2">The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
-needs.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
+needs.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1792,13 +1812,13 @@ needs.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
       <dd>
 <span class="refAuthor">Kaippallimalil, J.</span>, <span class="refAuthor">Gundavelli, S.</span>, and <span class="refAuthor">S. Dawkins</span>, <span class="refTitle">"Media Handling Considerations for Wireless Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kaippallimalil-tsvwg-media-hdr-wireless-04</span>, <time datetime="2024-02-14" class="refDate">14 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04">https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-kpugin-rush">[I-D.draft-kpugin-rush]</dt>
-      <dd>
-<span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.draft-trammell-plus-spec">[I-D.draft-trammell-plus-spec]</dt>
       <dd>
 <span class="refAuthor">Trammell, B.</span> and <span class="refAuthor">M. Kühlewind</span>, <span class="refTitle">"Path Layer UDP Substrate Specification"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-trammell-plus-spec-01</span>, <time datetime="2017-03-13" class="refDate">13 March 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01">https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.kpugin-rush">[I-D.kpugin-rush]</dt>
+      <dd>
+<span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IAB">[IAB]</dt>
       <dd>

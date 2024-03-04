@@ -1,6 +1,6 @@
 ---
-title: "Signaling Use Cases for Traffic Differentiation"
-abbrev: "Signaling Use Cases"
+title: "Signaling Use Cases for Collaborative Traffic Differentiation"
+abbrev: "Collaborative Host/Network Signaling: Use Cases"
 category: info
 
 docname: draft-bwbr-tsvwg-signaling-use-cases-latest
@@ -69,16 +69,17 @@ informative:
 
 --- abstract
 
-Host-to-network signaling can improve the user experience by informing
+Host-to-network (and vice versa) signaling can improve the user experience by informing
 the network which flows are more important and which packets within a
-flow are more important.  The differentiated service may be provided
-at the network (e.g., packet prioritization), the sender (e.g.,
-adaptive transmission), or through cooperation of both the sender
+flow are more important without having to disclose the content of the packets being delivered. The differentiated service may be provided
+at the network (e.g., packet discard preference), the sender (e.g.,
+adaptive transmission or session migration), or through cooperation of both the host
 and the network.
 
-This document outlines use-cases that highlight the need for a new
-signaling protocol from the receiver to its network elements which
-enables different traffic treatment.
+This document outlines a set of use-cases that highlight the need for a mechanism
+to share metadata about flows between a host and its network in order to enable different traffic treatment.
+Such a mechanism is typically implemented using a signaling protocol between the host and
+a set of trusted netwrok elements.
 
 --- middle
 

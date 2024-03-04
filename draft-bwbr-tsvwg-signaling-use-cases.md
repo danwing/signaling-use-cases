@@ -192,13 +192,66 @@ Reactive Management:
 durations  (e.g., varying wireless and mobile air
 interface conditions).
 
+# Various Approaches for Collaborative Signaling
+
+{{design-approaches}} depicts examples of approaches to establish channels to convey
+and share metadata between hosts, networks, and servers.
+
+Metadata exchanges can occur in one single direction or both directions of a flows.
+
+~~~~~ aasvg
+(1)  Proxied Connection
+                       .--------------.                   +------+
+                      |                |                +-+----+ |
++------+              |   Network(s)   |              +-+----+ +-+
+|Client+--------------)----------------(--------------+Server+-+
++---+--+              |                |              +---+--+
+    |                  '-------+------'                   |
+    |                          |                          |
+    +<===User Data+Metadata===>+<===User Data+Metadata===>+
+    |   Secure Connection 1    |   Secure Connection 2    |
+    |                          |                          |
+
+(2)  Out-of-band Metadata Sharing
+                        .--------------.                  +------+
+                       |                |               +-+----+ |
++------+               |   Network(s)   |             +-+----+ +-+
+|Client+---------------)----------------(-------------+Server+-+
++---+--+               |                |             +---+--+
+    |                   '-------+------'                  |
+    |                           |                         |
+    +<-----End-to-End Secure Connection + User Data------>+<---.
+    |                           |                         | GLUE|
+    |                           |                         | CXs |
+    +<-- Metadata (Optional) -->+<----- Metadata -------->+<---'
+    |    Secure Connection 1    |    Secure Connection 2  |
+    |                           |                         |
+
+(3)  Client-centric Metadata Sharing
+                          .--------------.                  +------+
+                         |                |               +-+----+ |
++------+                 |   Network(s)   |             +-+----+ +-+
+|Client+-----------------)----------------(-------------+Server+-+
++---+--+                 |                |             +---+--+
+    |                     '-------+------'                  |
+    |                             |                         |
+    +<--------- Metadata -------->+                         |
+    |        Secure Connection    |                         |
+    |                             |                         |
+    +<== End-to-End Secure Connection User Data+Metadata ==>+
+    |                             |                         |
+~~~~~
+{: #design-approaches artwork-align="center" title="Candidate Signaling Approaches"}
+
+The client-centric metadata sharing approach because it preserves privacy and also
+takes advantage of clients having a full view on their available network attachments.
 
 # Use Cases
 
 
 ## Priority Between Flows (Inter-Flow)
 
-Certain flows being received by an host or by an application are less or more important than other
+Certain flows being received by a host or by an application are less or more important than other
 flows.  For example, a host downloading a software update is generally considered less important
 than another host doing interactive audio/video or gaming.  By signaling the relative importance
 of flows to a network element (e.g., router, MASQUE proxy), the network element can (de-)prioritize

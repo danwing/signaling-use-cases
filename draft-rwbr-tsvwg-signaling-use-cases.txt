@@ -336,6 +336,10 @@ Table of Contents
 
    Video Streaming Metadata:
 
+   Based on metadata types listed in the
+   [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
+   parameters for video streaming type is given below.
+
         +===============+============+==============+============+
         |  Traffic type | Importance | PacketNature | PacketType |
         +===============+============+==============+============+
@@ -382,8 +386,8 @@ Table of Contents
    Metadata:
 
    Based on metadata types listed in the
-   [I-D.rwbr-sconepro-flow-metadata-], the host to network metadata
-   parameters for interactive media type will as given below.
+   [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
+   parameters for interactive media type is given below.
 
    Interactive A/V, downstream Metadata:
 
@@ -481,6 +485,10 @@ Table of Contents
    traffic (Table 7).
 
    Remote Desktop Virtualization Metadata:
+
+   Based on metadata types listed in the
+   [I-D.rwbr-sconepro-flow-metadata], the host to network metadata
+   parameters for remote desktop virtualization type is given below.
 
    +================+==========+==============+==========+=============+
    |  Traffic type  |Importance| PacketNature |PacketType|   Comments  |
@@ -823,8 +831,13 @@ Table of Contents
               2023, <https://datatracker.ietf.org/doc/html/draft-kpugin-
               rush-02>.
 
-   [I-D.rwbr-sconepro-flow-metadata-]
-              "*** BROKEN REFERENCE ***".
+   [I-D.rwbr-sconepro-flow-metadata]
+              Rajagopalan, S., Wing, D., Boucadair, M., and T. Reddy.K,
+              "Flow Metadata for Collaborative Host/Network Signaling",
+              Work in Progress, Internet-Draft, draft-rwbr-sconepro-
+              flow-metadata-00, 4 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-rwbr-
+              sconepro-flow-metadata-00>.
 
    [I-D.trammell-plus-spec]
               Trammell, B. and M. Kühlewind, "Path Layer UDP Substrate

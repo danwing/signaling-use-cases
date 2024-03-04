@@ -159,9 +159,9 @@ The authorization problem exists with technologies as relatively
 simple as DiffServ and the problem persists with many other
 recently discussed metadata signaling mechanisms, including
 embedding information in the UDP payload
-({{?I-D.draft-trammell-plus-spec}}), UDP options
-({{?I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
-the IPv6 Flow Label ({{?I-D.draft-cc-v6ops-wlcg-flow-label-marking}},
+({{?I-D.trammell-plus-spec}}), UDP options
+({{?I-D.kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
+the IPv6 Flow Label ({{?I-D.cc-v6ops-wlcg-flow-label-marking}},
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
 could be established using a signaling protocol, see {{key}}.
@@ -278,26 +278,6 @@ certain users (e.g., IT staff), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
 want.
 
-#### Interactive Media
-
-Examples: VoIP, gaming, virtual desktop.
-
-Requirement:  Signal the flow needs low jitter and low delay.  However, the network can only provide
-a limited amount of low jitter/low delay to each host, maybe as few as one.  This requires signaling
-feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
-response, the user and the application will likely continue, occasionally re-attempting to get the
-desired quality of service from the network.
-
-Todo: this section on cooperation needs editing.
-
-
-#### Bulk Data Transfer
-
-Examples: backup/restore, software update, RSS feed update, email
-
-Requirement: Signal the flow as below best-effort.
-
-
 ## Priority Within a Flow (Intra-Flow)
 
 Interactive Audio/Video has long been using {{?RTP=RFC3550}} which
@@ -357,6 +337,160 @@ metadata, or might need the metadata expressed in different ways.
 The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
 needs.
+
+## Detailed Use Cases
+
+### Video Streaming {#example-video-streaming}
+
+Streaming video contains the occasional key frame ("i-frame")
+containing a full video frame.  These are necessary to rebuild
+receiver state after loss of delta frames.  The key frames are
+therefore more critical to deliver to the receiver than delta frames.
+
+Streaming video also contains audio frames which can be encoded
+separately and thus can be signaled separately.  Audio is more
+critical than video for almost all applications, but its importance
+(relative to other packets in the flow) is still an application decision.  In the example below, the audio
+is more important than video (importance=high, PT=keep, RU=reliable), video key frames
+have middle importance (importance=low, PT=discard, RU=reliable), and both types
+of video delta frames (P-frame and B-frame) have least importance (importance=low, PT=discard, RU=unreliable).
+
+Video Streaming Metadata:
+
+| Traffic type                             | Importance | PacketNature      | PacketType           |
+|:----------------------------------------:|:----------:|:-----------------:|:--------------------:|
+| video I-frame (key frame)                | low        | realtime          | reliable             |
+| video delta P-frame                      | low        | discard           | unreliable           |
+| video delta B-frame                      | low        | discard           | unreliable           |
+| audio                                    | high       | realtime          | reliable             |
+{: #table-video-streaming title="Example Values for Video Streaming Metadata"}
+
+### Interactive Media
+
+Examples: VoIP, gaming.
+
+Requirement:  Signal the flow needs low jitter and low delay. However, the network can only provide
+a limited amount of low jitter/low delay to each host, maybe as few as one. This requires signaling
+feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
+response, the user and the application will likely continue, occasionally re-attempting to get the
+desired quality of service from the network.
+
+In many scenarios a game or VoIP application will want to signal different
+metadata for the same type of packet in each direction.  For example, for
+a game, video in the server-to-client direction might be more important
+than audio, whereas input devices (e.g., keystrokes) might be more important
+than audio.
+
+Both gaming (video in both directions, audio in both directions, input
+devices from client to server) and interactive audio/video (VoIP,
+video conference) involves important traffic in both directions --
+thus is a slightly more complicated use-case than the previous
+example.  Additionally, most Internet service providers constrain
+upstream bandwidth so proper packet treatment is critical in the
+upstream direction.
+
+Metadata:
+
+Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata-}}, the host to network metadata parameters for interactive media type will as given below.
+
+Interactive A/V, downstream Metadata:
+
+| Traffic type      | Importance | PacketNature      | PacketType           |
+|:-----------------:|:----------:|:-----------------:|:--------------------:|
+| video key frame   | low        | realtime          | reliable             |
+| video delta frame | low        | discard           | unreliable           |
+| audio             | high       | realtime          | reliable             |
+{: #table-interactive-av-downstream title="Example Values for Interactive A/V, downstream"}
+
+| Traffic type      | Importance | PacketNature      | PacketType           |
+|:-----------------:|:----------:|:-----------------:|:--------------------:|
+| video key frame   | low        | realtime          | reliable             |
+| video delta frame | low        | discard           | unreliable           |
+| audio             | high       | realtime          | reliable             |
+{: #table-video-av-upstream title="Example Values for Interactive A/V, upstream"}
+
+Many interactive audio/video applications also support sharing the presenter's
+screen, file, video, or pictures.  During this sharing the presenter's video
+is less important but the screen or picture is more important.  This change
+of imporance can be conveyed in metadata to the network, as in the table
+below:
+
+Interactive A/V, upstream Metadata:
+
+| Traffic type      | Importance | PacketNature      | PacketType           |
+|:-----------------:|:----------:|:-----------------:|:--------------------:|
+| video key frame   | low        | realtime          | reliable             |
+| video delta frame | low        | discard           | unreliable           |
+| audio             | high       | realtime          | reliable             |
+| picture sharing   | high       | realtime          | reliable             |
+{: #table-video-av-sharing title="Example Values for Interactive A/V with picture sharing, upstream"}
+
+In many scenarios a game or VoIP application will want to signal different
+metadata for the same type of packet in each direction.  For example, for
+a game, video in the server-to-client direction might be more important
+than audio, whereas input devices (e.g., keystrokes) might be more important
+than audio.
+
+Todo: this section on cooperation needs editing.
+
+### Bulk Data Transfer
+
+Examples: backup/restore, software update, RSS feed update, email, printing to a print server
+
+Requirement: Signal the flow as below best-effort.
+
+Metadata:
+
+| Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
+|:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|
+| File copy                  | low        | bulk            | reliable            |           |
+| Printing                   | high       | bulk            | reliable            |           |
+
+### Mixed Traffic
+
+Examples: Desktop Virtualization, Office software in the cloud (editing local files, typing is interactive while save operation is bulk transfer)
+
+Requirement: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance.
+
+Example packet metadata for Desktop Virtualization (like Citrix
+Virtual Apps and Desktops - CVAD) application.  This is shown in two
+tables, client-to-server traffic ({{table-desktop-virtualization-c2s}})
+and server-to-client traffic ({{table-desktop-virtualization-s2c}}).
+
+Remote Desktop Virtualization Metadata:
+
+| Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
+|:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|
+| User typing                | high       | realtime        | reliable            |           |
+| Mouse click/End Position   | high       | realtime        | reliable            | The start and endpoint of the pointer movement is vital to ensure user action is completed correctly. So, the endpoints have to be reliably transmitted with real-time priority. **|
+| Interactive audio          | high       | keep            | unreliable          |   |
+| Authentication - Finger print, smart card | low | realtime | reliable |  |
+| Interactive video key frame            | low        | keep            | unreliable          | Video key frames form the base frames of a video upon which the next 'n' timeframe of video updates is applied on. These frames, are hence, critical and without them, the video would not be coherent until the next critical frame is received. Retransmits of these are harmful to the UX. ***|
+| Mouse position tracking    | low        | discard         | unreliable          | When the pointer is moved from one point to another, the coordinates of the pointers between the two points can be lost without much of an impact to the UX as long as the start and endpoint reaches. This would ensure the user action is completed, even if the experience seems glitchy. |
+| Interactive video delta frame           | low        | discard            | unreliable          |   |
+{: #table-desktop-virtualization-c2s title="Example Values for Remote Desktop Virtualization Metadata, client to server"}
+
+| Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
+|:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|
+| Glyph critical             | high       | realtime        | reliable          | The frames that form the base for the image is more critical and needs to be transmitted as reliably as possible. Retransmits of these are harmful to the UX.**|
+| Interactive (or streaming) audio   | high       | keep            | unreliable          |   |
+| Haptic feedback            | high       | discard         | unreliable          | Virtualizing haptic feedback is real-time and high importance although the feedback being delivered late is of no use. So dropping the packet altogether and not retransmitting it makes more sense |
+| Interactive (or streaming) video key frame            | low        | keep            | unreliable          | Video key frames form the base frames of a video upon which the next 'n' timeframe of video updates is applied on. These frames, are hence, critical and without them, the video would not be coherent until the next critical frame is received. Retransmits of these are harmful to the UX. ***|
+| File copy                  | low        | bulk            | reliable            |   |
+| Interactive (or streaming) video predictive frame     | low        | discard         | unreliable          | Video predictive frames can be lost, which would result in minor glitch but not compromise the user activity and video would still be coherent and useful. The reception of subsequent video key frame would mitigate the loss in quality caused by lost predictive frames. |
+| Glyph smoothing            | low        | discard         | Unreliable          | The smoothing elements of the glyph can be lost and would still present a recognizable image, although with a lesser quality. Hence, these can be marked as loss tolerant as the user action is still completed with a small compromise to the UX. Moreover, with the reception of the next glyph critical frame would mitigate the loss in quality caused by lost glyph smoothing elements. |
+{: #table-desktop-virtualization-s2c title="Example Values for Remote Desktop Virtualization Metadata, server to client"}
+
+*** A video key frame should be handled differently by the network
+depending on a streaming application versus a remote desktop
+application.  The video streaming application's primary and only
+nature of traffic is video and audio.  In contrast, a remote desktop
+application might be playing a video and its associated audio while at
+the same time the user is editing a document.  The user's keystrokes
+and those glyphs need to be prioritized over the video lest the user
+think their inputs are being ignored (and type the same characters
+again). Hence, the values are different even for the same nature of
+traffic but a different application.
 
 # Requirements Summary
 

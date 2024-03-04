@@ -1177,36 +1177,21 @@ enables different traffic treatment.<a href="#section-abstract-2" class="pilcrow
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-priority-between-flows-inte" class="internal xref">Priority Between Flows (Inter-Flow)</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-priority-within-a-flow-intr" class="internal xref">Priority Within a Flow (Intra-Flow)</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
-                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-real-world-use-cases" class="internal xref">Real-world Use cases</a></p>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-priority-between-flows-inte" class="internal xref">Priority Between Flows (Inter-Flow)</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6.2.1">
-                    <p id="section-toc.1-1.3.2.6.2.1.1"><a href="#section-3.6.1" class="auto internal xref">3.6.1</a>.  <a href="#name-video-streaming" class="internal xref">Video Streaming</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6.2.2">
-                    <p id="section-toc.1-1.3.2.6.2.2.1"><a href="#section-3.6.2" class="auto internal xref">3.6.2</a>.  <a href="#name-interactive-media" class="internal xref">Interactive Media</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6.2.3">
-                    <p id="section-toc.1-1.3.2.6.2.3.1"><a href="#section-3.6.3" class="auto internal xref">3.6.3</a>.  <a href="#name-bulk-data-transfer" class="internal xref">Bulk Data Transfer</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6.2.4">
-                    <p id="section-toc.1-1.3.2.6.2.4.1"><a href="#section-3.6.4" class="auto internal xref">3.6.4</a>.  <a href="#name-mixed-traffic" class="internal xref">Mixed Traffic</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
 </li>
                 </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-priority-within-a-flow-intr" class="internal xref">Priority Within a Flow (Intra-Flow)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
 </li>
             </ul>
 </li>
@@ -1341,7 +1326,7 @@ embedding information in the UDP payload
 the IPv6 Flow Label (<span>[<a href="#I-D.draft-cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.draft-cc-v6ops-wlcg-flow-label-marking</a>]</span>,
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
-could be established with a signaling protocol, see <a href="#key" class="auto internal xref">Section 3.4</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
+could be established with a signaling protocol, see <a href="#key" class="auto internal xref">Section 3.3</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">There is consensus that applications can benefit by signaling
 the network (<span>[<a href="#IAB" class="cite xref">IAB</a>]</span>, <span>[<a href="#ATIS" class="cite xref">ATIS</a>]</span>).  This document provides
 use-cases to further detail the need of such signaling.<a href="#section-1-7" class="pilcrow">¶</a></p>
@@ -1384,14 +1369,12 @@ than another host doing interactive audio/video or gaming.  By signaling the rel
 of flows to a network element (e.g., router, MASQUE proxy), the network element can (de-)prioritize
 those flows to best accomodate the needs of the various applications (on a single host) and
 between hosts on a network.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-</section>
-</div>
 <div id="abuse-and-constraints">
-<section id="section-3.2">
-        <h3 id="name-abuse-and-constraints">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-abuse-and-constraints" class="section-name selfRef">Abuse and Constraints</a>
-        </h3>
-<p id="section-3.2-1">It is important that not every flow be prioritized; otherwise, the
+<section id="section-3.1.1">
+          <h4 id="name-abuse-and-constraints">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-abuse-and-constraints" class="section-name selfRef">Abuse and Constraints</a>
+          </h4>
+<p id="section-3.1.1-1">It is important that not every flow be prioritized; otherwise, the
 network devolves into the best-effort network that existed prior to
 metadata signaling. It is a requirement that mechanisms exist to
 prevent this occurrence. The mechanism might be simple, for example a
@@ -1404,15 +1387,40 @@ based on its policy and only the enterprise network communicates flow
 priorities to the ISP network.  The enterprise might prioritize
 certain users (e.g., IT staff, CEO), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
-want. The ISP can choose to limit the prioritization to a specified limit and choose to ignore metadata beyond the bandwidth. This available bandwdith can be signaled through Network-to-Host data specified in <span>[<a href="#I-D.draft-rwbr-sconepro-flow-metadata-latest" class="cite xref">I-D.draft-rwbr-sconepro-flow-metadata-latest</a>]</span>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+want.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<div id="interactive-media">
+<section id="section-3.1.1.1">
+            <h5 id="name-interactive-media">
+<a href="#section-3.1.1.1" class="section-number selfRef">3.1.1.1. </a><a href="#name-interactive-media" class="section-name selfRef">Interactive Media</a>
+            </h5>
+<p id="section-3.1.1.1-1">Examples: VoIP, gaming, virtual desktop.<a href="#section-3.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1.1-2">Requirement:  Signal the flow needs low jitter and low delay.  However, the network can only provide
+a limited amount of low jitter/low delay to each host, maybe as few as one.  This requires signaling
+feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
+response, the user and the application will likely continue, occasionally re-attempting to get the
+desired quality of service from the network.<a href="#section-3.1.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.1.1-3">Todo: this section on cooperation needs editing.<a href="#section-3.1.1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="bulk-data-transfer">
+<section id="section-3.1.1.2">
+            <h5 id="name-bulk-data-transfer">
+<a href="#section-3.1.1.2" class="section-number selfRef">3.1.1.2. </a><a href="#name-bulk-data-transfer" class="section-name selfRef">Bulk Data Transfer</a>
+            </h5>
+<p id="section-3.1.1.2-1">Examples: backup/restore, software update, RSS feed update, email<a href="#section-3.1.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1.2-2">Requirement: Signal the flow as below best-effort.<a href="#section-3.1.1.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="priority-within-a-flow-intra-flow">
-<section id="section-3.3">
+<section id="section-3.2">
         <h3 id="name-priority-within-a-flow-intr">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-priority-within-a-flow-intr" class="section-name selfRef">Priority Within a Flow (Intra-Flow)</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-priority-within-a-flow-intr" class="section-name selfRef">Priority Within a Flow (Intra-Flow)</a>
         </h3>
-<p id="section-3.3-1">Interactive Audio/Video has long been using <span>[<a href="#RTP" class="cite xref">RTP</a>]</span> which
+<p id="section-3.2-1">Interactive Audio/Video has long been using <span>[<a href="#RTP" class="cite xref">RTP</a>]</span> which
 runs over UDP.  As described in <span><a href="https://rfc-editor.org/rfc/rfc7478#section-2.3.7.2" class="relref">Section 2.3.7.2</a> of [<a href="#RFC7478" class="cite xref">RFC7478</a>]</span>, there
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
@@ -1421,469 +1429,49 @@ eventually is likely to support unreliable transport (<span>[<a href="#RFC9221" 
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to
-the network.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">Many of these flows do not originate from a content provider's network.
+the network.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Many of these flows do not originate from a content provider's network.
 Thus, the flows originate from an IP address that is not known before
 connection establishment, so there needs to be a way for the client
 to authorize the network elements to honor the metadata of those
-packets.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+packets.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="key">
-<section id="section-3.4">
+<section id="section-3.3">
         <h3 id="name-key-establishment">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
         </h3>
-<p id="section-3.4-1">Various proposals have suggested establishing a key to validate
+<p id="section-3.3-1">Various proposals have suggested establishing a key to validate
 per-packet metadata or to decrypt per-packet metadata.  However, most
 proposals have not specified how this key would be established.  A
 signaling protocol from the receiving host to its ISP could establish
 such a key. The host can then convey the key to the sending host to
-use to integrity protect or encrypt the per-packet metadata.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+use to integrity protect or encrypt the per-packet metadata.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3.4-2.1">
-            <p id="section-3.4-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
+<li class="normal ulEmpty" id="section-3.3-2.1">
+            <p id="section-3.3-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
 needs to be carefully considered by the signaling protocol proposing such
-keying.<a href="#section-3.4-2.1.1" class="pilcrow">¶</a></p>
+keying.<a href="#section-3.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="metadata-versioncapability-exchange">
-<section id="section-3.5">
+<section id="section-3.4">
         <h3 id="name-metadata-version-capability">
-<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
         </h3>
-<p id="section-3.5-1">The sender has to convey metadata in a way that is understood by the
+<p id="section-3.4-1">The sender has to convey metadata in a way that is understood by the
 various network elements on the path -- each of which might be
 operated by different entities and have different capabilities.  For
 example, the Wi-Fi access point might be operated by an enterprise
 network, hotel, or home user, whereas the ISP's router is operated by
 the ISP.  Each of those might support different versions of the same
-metadata, or might need the metadata expressed in different ways.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">The signaling protocol would provide a way to learn the needs of those
+metadata, or might need the metadata expressed in different ways.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
-needs.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="real-world-use-cases">
-<section id="section-3.6">
-        <h3 id="name-real-world-use-cases">
-<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-real-world-use-cases" class="section-name selfRef">Real-world Use cases</a>
-        </h3>
-<div id="example-video-streaming">
-<section id="section-3.6.1">
-          <h4 id="name-video-streaming">
-<a href="#section-3.6.1" class="section-number selfRef">3.6.1. </a><a href="#name-video-streaming" class="section-name selfRef">Video Streaming</a>
-          </h4>
-<p id="section-3.6.1-1">Streaming video contains the occasional key frame ("i-frame")
-containing a full video frame.  These are necessary to rebuild
-receiver state after loss of delta frames.  The key frames are
-therefore more critical to deliver to the receiver than delta frames.<a href="#section-3.6.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.6.1-2">Streaming video also contains audio frames which can be encoded
-separately and thus can be signaled separately.  Audio is more
-critical than video for almost all applications, but its importance
-(relative to other packets in the flow) is still an application decision.  In the example below, the audio
-is more important than video (importance=high, PT=keep, RU=reliable), video key frames
-have middle importance (importance=low, PT=discard, RU=reliable), and both types
-of video delta frames (P-frame and B-frame) have least importance (importance=low, PT=discard, RU=unreliable).<a href="#section-3.6.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.6.1-3">Video Streaming Metadata:<a href="#section-3.6.1-3" class="pilcrow">¶</a></p>
-<span id="name-example-values-for-video-st"></span><div id="_table-video-streaming">
-<table class="center" id="table-1">
-            <caption>
-<a href="#table-1" class="selfRef">Table 1</a>:
-<a href="#name-example-values-for-video-st" class="selfRef">Example Values for Video Streaming Metadata</a>
-            </caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video I-frame (key frame)</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video delta P-frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video delta B-frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">audio</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-</section>
-</div>
-<div id="interactive-media">
-<section id="section-3.6.2">
-          <h4 id="name-interactive-media">
-<a href="#section-3.6.2" class="section-number selfRef">3.6.2. </a><a href="#name-interactive-media" class="section-name selfRef">Interactive Media</a>
-          </h4>
-<p id="section-3.6.2-1">Examples: VoIP, gaming.<a href="#section-3.6.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-2">Requirement:  Signal the flow needs low jitter and low delay. However, the network can only provide
-a limited amount of low jitter/low delay to each host, maybe as few as one. This requires signaling
-feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
-response, the user and the application will likely continue, occasionally re-attempting to get the
-desired quality of service from the network.<a href="#section-3.6.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-3">In many scenarios a game or VoIP application will want to signal different
-metadata for the same type of packet in each direction.  For example, for
-a game, video in the server-to-client direction might be more important
-than audio, whereas input devices (e.g., keystrokes) might be more important
-than audio.<a href="#section-3.6.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-4">Both gaming (video in both directions, audio in both directions, input
-devices from client to server) and interactive audio/video (VoIP,
-video conference) involves important traffic in both directions --
-thus is a slightly more complicated use-case than the previous
-example.  Additionally, most Internet service providers constrain
-upstream bandwidth so proper packet treatment is critical in the
-upstream direction.<a href="#section-3.6.2-4" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-5">Metadata:<a href="#section-3.6.2-5" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-6">Based on metadata types listed in the <span>[<a href="#I-D.draft-rwbr-sconepro-flow-metadata-latest" class="cite xref">I-D.draft-rwbr-sconepro-flow-metadata-latest</a>]</span>, the host to network metadata parameters for interactive media type will as given below.<a href="#section-3.6.2-6" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-7">Interactive A/V, downstream Metadata:<a href="#section-3.6.2-7" class="pilcrow">¶</a></p>
-<span id="name-example-values-for-interact"></span><div id="_table-interactive-av-downstream">
-<table class="center" id="table-2">
-            <caption>
-<a href="#table-2" class="selfRef">Table 2</a>:
-<a href="#name-example-values-for-interact" class="selfRef">Example Values for Interactive A/V, downstream</a>
-            </caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video key frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video delta frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">audio</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-<span id="name-example-values-for-interacti"></span><div id="_table-video-av-upstream">
-<table class="center" id="table-3">
-            <caption>
-<a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-example-values-for-interacti" class="selfRef">Example Values for Interactive A/V, upstream</a>
-            </caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video key frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video delta frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">audio</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-<p id="section-3.6.2-10">Many interactive audio/video applications also support sharing the presenter's
-screen, file, video, or pictures.  During this sharing the presenter's video
-is less important but the screen or picture is more important.  This change
-of imporance can be conveyed in metadata to the network, as in the table
-below:<a href="#section-3.6.2-10" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-11">Interactive A/V, upstream Metadata:<a href="#section-3.6.2-11" class="pilcrow">¶</a></p>
-<span id="name-example-values-for-interactiv"></span><div id="_table-video-av-sharing">
-<table class="center" id="table-4">
-            <caption>
-<a href="#table-4" class="selfRef">Table 4</a>:
-<a href="#name-example-values-for-interactiv" class="selfRef">Example Values for Interactive A/V with picture sharing, upstream</a>
-            </caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video key frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">video delta frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">audio</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">picture sharing</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-<p id="section-3.6.2-13">In many scenarios a game or VoIP application will want to signal different
-metadata for the same type of packet in each direction.  For example, for
-a game, video in the server-to-client direction might be more important
-than audio, whereas input devices (e.g., keystrokes) might be more important
-than audio.<a href="#section-3.6.2-13" class="pilcrow">¶</a></p>
-<p id="section-3.6.2-14">Todo: this section on cooperation needs editing.<a href="#section-3.6.2-14" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="bulk-data-transfer">
-<section id="section-3.6.3">
-          <h4 id="name-bulk-data-transfer">
-<a href="#section-3.6.3" class="section-number selfRef">3.6.3. </a><a href="#name-bulk-data-transfer" class="section-name selfRef">Bulk Data Transfer</a>
-          </h4>
-<p id="section-3.6.3-1">Examples: backup/restore, software update, RSS feed update, email, printing to a print server<a href="#section-3.6.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.6.3-2">Requirement: Signal the flow as below best-effort.<a href="#section-3.6.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.6.3-3">Metadata:<a href="#section-3.6.3-3" class="pilcrow">¶</a></p>
-<table class="center" id="table-5">
-            <caption><a href="#table-5" class="selfRef">Table 5</a></caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-                <th class="text-center" rowspan="1" colspan="1">Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">File copy</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">bulk</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Printing</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">bulk</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-            </tbody>
-          </table>
-</section>
-</div>
-<div id="mixed-traffic">
-<section id="section-3.6.4">
-          <h4 id="name-mixed-traffic">
-<a href="#section-3.6.4" class="section-number selfRef">3.6.4. </a><a href="#name-mixed-traffic" class="section-name selfRef">Mixed Traffic</a>
-          </h4>
-<p id="section-3.6.4-1">Examples: Desktop Virtualization, Office software in the cloud (editing local files, typing is interactive while save operation is bulk transfer)<a href="#section-3.6.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.6.4-2">Requirement: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance.<a href="#section-3.6.4-2" class="pilcrow">¶</a></p>
-<p id="section-3.6.4-3">Example packet metadata for Desktop Virtualization (like Citrix
-Virtual Apps and Desktops - CVAD) application.  This is shown in two
-tables, client-to-server traffic (<a href="#_table-desktop-virtualization-c2s" class="auto internal xref">Table 6</a>)
-and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class="auto internal xref">Table 7</a>).<a href="#section-3.6.4-3" class="pilcrow">¶</a></p>
-<p id="section-3.6.4-4">Remote Desktop Virtualization Metadata:<a href="#section-3.6.4-4" class="pilcrow">¶</a></p>
-<span id="name-example-values-for-remote-d"></span><div id="_table-desktop-virtualization-c2s">
-<table class="center" id="table-6">
-            <caption>
-<a href="#table-6" class="selfRef">Table 6</a>:
-<a href="#name-example-values-for-remote-d" class="selfRef">Example Values for Remote Desktop Virtualization Metadata, client to server</a>
-            </caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-                <th class="text-center" rowspan="1" colspan="1">Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">User typing</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Mouse click/End Position</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1">The start and endpoint of the pointer movement is vital to ensure user action is completed correctly. So, the endpoints have to be reliably transmitted with real-time priority. **</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Interactive audio</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">keep</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Authentication - Finger print, smart card</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Interactive video key frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">keep</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1">Video key frames form the base frames of a video upon which the next 'n' timeframe of video updates is applied on. These frames, are hence, critical and without them, the video would not be coherent until the next critical frame is received. Retransmits of these are harmful to the UX. ***</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Mouse position tracking</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1">When the pointer is moved from one point to another, the coordinates of the pointers between the two points can be lost without much of an impact to the UX as long as the start and endpoint reaches. This would ensure the user action is completed, even if the experience seems glitchy.</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Interactive video delta frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-<span id="name-example-values-for-remote-de"></span><div id="_table-desktop-virtualization-s2c">
-<table class="center" id="table-7">
-            <caption>
-<a href="#table-7" class="selfRef">Table 7</a>:
-<a href="#name-example-values-for-remote-de" class="selfRef">Example Values for Remote Desktop Virtualization Metadata, server to client</a>
-            </caption>
-<thead>
-              <tr>
-                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
-                <th class="text-center" rowspan="1" colspan="1">Importance</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
-                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
-                <th class="text-center" rowspan="1" colspan="1">Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Glyph critical</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">realtime</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1">The frames that form the base for the image is more critical and needs to be transmitted as reliably as possible. Retransmits of these are harmful to the UX.**</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Interactive (or streaming) audio</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">keep</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Haptic feedback</td>
-                <td class="text-center" rowspan="1" colspan="1">high</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1">Virtualizing haptic feedback is real-time and high importance although the feedback being delivered late is of no use. So dropping the packet altogether and not retransmitting it makes more sense</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Interactive (or streaming) video key frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">keep</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1">Video key frames form the base frames of a video upon which the next 'n' timeframe of video updates is applied on. These frames, are hence, critical and without them, the video would not be coherent until the next critical frame is received. Retransmits of these are harmful to the UX. ***</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">File copy</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">bulk</td>
-                <td class="text-center" rowspan="1" colspan="1">reliable</td>
-                <td class="text-center" rowspan="1" colspan="1"> </td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Interactive (or streaming) video predictive frame</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1">Video predictive frames can be lost, which would result in minor glitch but not compromise the user activity and video would still be coherent and useful. The reception of subsequent video key frame would mitigate the loss in quality caused by lost predictive frames.</td>
-              </tr>
-              <tr>
-                <td class="text-center" rowspan="1" colspan="1">Glyph smoothing</td>
-                <td class="text-center" rowspan="1" colspan="1">low</td>
-                <td class="text-center" rowspan="1" colspan="1">discard</td>
-                <td class="text-center" rowspan="1" colspan="1">Unreliable</td>
-                <td class="text-center" rowspan="1" colspan="1">The smoothing elements of the glyph can be lost and would still present a recognizable image, although with a lesser quality. Hence, these can be marked as loss tolerant as the user action is still completed with a small compromise to the UX. Moreover, with the reception of the next glyph critical frame would mitigate the loss in quality caused by lost glyph smoothing elements.</td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-<p id="section-3.6.4-7">*** A video key frame should be handled differently by the network
-depending on a streaming application versus a remote desktop
-application.  The video streaming application's primary and only
-nature of traffic is video and audio.  In contrast, a remote desktop
-application might be playing a video and its associated audio while at
-the same time the user is editing a document.  The user's keystrokes
-and those glyphs need to be prioritized over the video lest the user
-think their inputs are being ignored (and type the same characters
-again). Hence, the values are different even for the same nature of
-traffic but a different application.<a href="#section-3.6.4-7" class="pilcrow">¶</a></p>
-</section>
-</div>
+needs.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1901,7 +1489,7 @@ traffic but a different application.<a href="#section-3.6.4-7" class="pilcrow">�
       <h2 id="name-security-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-5-1">TODO Security.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">TODO Security<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1933,10 +1521,6 @@ traffic but a different application.<a href="#section-3.6.4-7" class="pilcrow">�
 <dt id="I-D.draft-kpugin-rush">[I-D.draft-kpugin-rush]</dt>
       <dd>
 <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.draft-rwbr-sconepro-flow-metadata-latest">[I-D.draft-rwbr-sconepro-flow-metadata-latest]</dt>
-      <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.draft-trammell-plus-spec">[I-D.draft-trammell-plus-spec]</dt>
       <dd>

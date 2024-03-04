@@ -83,15 +83,10 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Use Cases
      3.1.  Priority Between Flows (Inter-Flow)
-     3.2.  Abuse and Constraints
-     3.3.  Priority Within a Flow (Intra-Flow)
-     3.4.  Key Establishment
-     3.5.  Metadata Version/Capability Exchange
-     3.6.  Real-world Use cases
-       3.6.1.  Video Streaming
-       3.6.2.  Interactive Media
-       3.6.3.  Bulk Data Transfer
-       3.6.4.  Mixed Traffic
+       3.1.1.  Abuse and Constraints
+     3.2.  Priority Within a Flow (Intra-Flow)
+     3.3.  Key Establishment
+     3.4.  Metadata Version/Capability Exchange
    4.  Requirements Summary
    5.  Security Considerations
    6.  IANA Considerations
@@ -155,7 +150,7 @@ Table of Contents
    ([I-D.draft-cc-v6ops-wlcg-flow-label-marking], and Hop-by-Hop
    Options.  One mechanism suggested occasionally is to encrypt or
    integrity protect the metadata with a key; such a key could be
-   established with a signaling protocol, see Section 3.4.
+   established with a signaling protocol, see Section 3.3.
 
    There is consensus that applications can benefit by signaling the
    network ([IAB], [ATIS]).  This document provides use-cases to further
@@ -184,7 +179,7 @@ Table of Contents
    best accomodate the needs of the various applications (on a single
    host) and between hosts on a network.
 
-3.2.  Abuse and Constraints
+3.1.1.  Abuse and Constraints
 
    It is important that not every flow be prioritized; otherwise, the
    network devolves into the best-effort network that existed prior to
@@ -199,12 +194,29 @@ Table of Contents
    priorities to the ISP network.  The enterprise might prioritize
    certain users (e.g., IT staff, CEO), certain equipment (audio/video
    equipment in a conference room), or whatever its policies it might
-   want.  The ISP can choose to limit the prioritization to a specified
-   limit and choose to ignore metadata beyond the bandwidth.  This
-   available bandwdith can be signaled through Network-to-Host data
-   specified in [I-D.draft-rwbr-sconepro-flow-metadata-latest].
+   want.
 
-3.3.  Priority Within a Flow (Intra-Flow)
+3.1.1.1.  Interactive Media
+
+   Examples: VoIP, gaming, virtual desktop.
+
+   Requirement: Signal the flow needs low jitter and low delay.
+   However, the network can only provide a limited amount of low jitter/
+   low delay to each host, maybe as few as one.  This requires signaling
+   feedback indicating that low jitter and low delay flows are already
+   subscribed to other hosts.  In response, the user and the application
+   will likely continue, occasionally re-attempting to get the desired
+   quality of service from the network.
+
+   Todo: this section on cooperation needs editing.
+
+3.1.1.2.  Bulk Data Transfer
+
+   Examples: backup/restore, software update, RSS feed update, email
+
+   Requirement: Signal the flow as below best-effort.
+
+3.2.  Priority Within a Flow (Intra-Flow)
 
    Interactive Audio/Video has long been using [RTP] which runs over
    UDP.  As described in Section 2.3.7.2 of [RFC7478], there is value in
@@ -223,7 +235,7 @@ Table of Contents
    the client to authorize the network elements to honor the metadata of
    those packets.
 
-3.4.  Key Establishment
+3.3.  Key Establishment
 
    Various proposals have suggested establishing a key to validate per-
    packet metadata or to decrypt per-packet metadata.  However, most
@@ -236,7 +248,7 @@ Table of Contents
       metadata needs to be carefully considered by the signaling
       protocol proposing such keying.
 
-3.5.  Metadata Version/Capability Exchange
+3.4.  Metadata Version/Capability Exchange
 
    The sender has to convey metadata in a way that is understood by the
    various network elements on the path -- each of which might be
@@ -250,410 +262,13 @@ Table of Contents
    those networks, and provide metadata signaling satisfying most or all
    of their needs.
 
-3.6.  Real-world Use cases
-
-3.6.1.  Video Streaming
-
-   Streaming video contains the occasional key frame ("i-frame")
-   containing a full video frame.  These are necessary to rebuild
-   receiver state after loss of delta frames.  The key frames are
-   therefore more critical to deliver to the receiver than delta frames.
-
-   Streaming video also contains audio frames which can be encoded
-   separately and thus can be signaled separately.  Audio is more
-   critical than video for almost all applications, but its importance
-   (relative to other packets in the flow) is still an application
-   decision.  In the example below, the audio is more important than
-   video (importance=high, PT=keep, RU=reliable), video key frames have
-   middle importance (importance=low, PT=discard, RU=reliable), and both
-   types of video delta frames (P-frame and B-frame) have least
-   importance (importance=low, PT=discard, RU=unreliable).
-
-   Video Streaming Metadata:
-
-        +===============+============+==============+============+
-        |  Traffic type | Importance | PacketNature | PacketType |
-        +===============+============+==============+============+
-        | video I-frame |    low     |   realtime   |  reliable  |
-        |  (key frame)  |            |              |            |
-        +---------------+------------+--------------+------------+
-        |  video delta  |    low     |   discard    | unreliable |
-        |    P-frame    |            |              |            |
-        +---------------+------------+--------------+------------+
-        |  video delta  |    low     |   discard    | unreliable |
-        |    B-frame    |            |              |            |
-        +---------------+------------+--------------+------------+
-        |     audio     |    high    |   realtime   |  reliable  |
-        +---------------+------------+--------------+------------+
-
-           Table 1: Example Values for Video Streaming Metadata
-
-3.6.2.  Interactive Media
-
-   Examples: VoIP, gaming.
-
-   Requirement: Signal the flow needs low jitter and low delay.
-   However, the network can only provide a limited amount of low jitter/
-   low delay to each host, maybe as few as one.  This requires signaling
-   feedback indicating that low jitter and low delay flows are already
-   subscribed to other hosts.  In response, the user and the application
-   will likely continue, occasionally re-attempting to get the desired
-   quality of service from the network.
-
-   In many scenarios a game or VoIP application will want to signal
-   different metadata for the same type of packet in each direction.
-   For example, for a game, video in the server-to-client direction
-   might be more important than audio, whereas input devices (e.g.,
-   keystrokes) might be more important than audio.
-
-   Both gaming (video in both directions, audio in both directions,
-   input devices from client to server) and interactive audio/video
-   (VoIP, video conference) involves important traffic in both
-   directions -- thus is a slightly more complicated use-case than the
-   previous example.  Additionally, most Internet service providers
-   constrain upstream bandwidth so proper packet treatment is critical
-   in the upstream direction.
-
-   Metadata:
-
-   Based on metadata types listed in the
-   [I-D.draft-rwbr-sconepro-flow-metadata-latest], the host to network
-   metadata parameters for interactive media type will as given below.
-
-   Interactive A/V, downstream Metadata:
-
-      +===================+============+==============+============+
-      |    Traffic type   | Importance | PacketNature | PacketType |
-      +===================+============+==============+============+
-      |  video key frame  |    low     |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-      | video delta frame |    low     |   discard    | unreliable |
-      +-------------------+------------+--------------+------------+
-      |       audio       |    high    |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-
-         Table 2: Example Values for Interactive A/V, downstream
-
-      +===================+============+==============+============+
-      |    Traffic type   | Importance | PacketNature | PacketType |
-      +===================+============+==============+============+
-      |  video key frame  |    low     |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-      | video delta frame |    low     |   discard    | unreliable |
-      +-------------------+------------+--------------+------------+
-      |       audio       |    high    |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-
-          Table 3: Example Values for Interactive A/V, upstream
-
-   Many interactive audio/video applications also support sharing the
-   presenter's screen, file, video, or pictures.  During this sharing
-   the presenter's video is less important but the screen or picture is
-   more important.  This change of imporance can be conveyed in metadata
-   to the network, as in the table below:
-
-   Interactive A/V, upstream Metadata:
-
-      +===================+============+==============+============+
-      |    Traffic type   | Importance | PacketNature | PacketType |
-      +===================+============+==============+============+
-      |  video key frame  |    low     |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-      | video delta frame |    low     |   discard    | unreliable |
-      +-------------------+------------+--------------+------------+
-      |       audio       |    high    |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-      |  picture sharing  |    high    |   realtime   |  reliable  |
-      +-------------------+------------+--------------+------------+
-
-         Table 4: Example Values for Interactive A/V with picture
-                            sharing, upstream
-
-   In many scenarios a game or VoIP application will want to signal
-   different metadata for the same type of packet in each direction.
-   For example, for a game, video in the server-to-client direction
-   might be more important than audio, whereas input devices (e.g.,
-   keystrokes) might be more important than audio.
-
-   Todo: this section on cooperation needs editing.
-
-3.6.3.  Bulk Data Transfer
-
-   Examples: backup/restore, software update, RSS feed update, email,
-   printing to a print server
-
-   Requirement: Signal the flow as below best-effort.
-
-   Metadata:
-
-   +==============+============+==============+============+==========+
-   | Traffic type | Importance | PacketNature | PacketType | Comments |
-   +==============+============+==============+============+==========+
-   |  File copy   |    low     |     bulk     |  reliable  |          |
-   +--------------+------------+--------------+------------+----------+
-   |   Printing   |    high    |     bulk     |  reliable  |          |
-   +--------------+------------+--------------+------------+----------+
-
-                                 Table 5
-
-3.6.4.  Mixed Traffic
-
-   Examples: Desktop Virtualization, Office software in the cloud
-   (editing local files, typing is interactive while save operation is
-   bulk transfer)
-
-   Requirement: Signal flow will vary depending on the nature of the
-   packet.  With variety of traffic going through the session, some
-   packets can contain interactive traffic while the others contain bulk
-   transfer.  There can be combination of reliable and unreliable
-   traffic within the same session through multiple streams.  Host-to-
-   network signaling plays a vital role in effectively routing mixed
-   traffic for ideal user interactivity and network performance.
-
-   Example packet metadata for Desktop Virtualization (like Citrix
-   Virtual Apps and Desktops - CVAD) application.  This is shown in two
-   tables, client-to-server traffic (Table 6) and server-to-client
-   traffic (Table 7).
-
-   Remote Desktop Virtualization Metadata:
-
-   +================+==========+==============+==========+=============+
-   |  Traffic type  |Importance| PacketNature |PacketType|   Comments  |
-   +================+==========+==============+==========+=============+
-   |  User typing   |   high   |   realtime   | reliable |             |
-   +----------------+----------+--------------+----------+-------------+
-   |  Mouse click/  |   high   |   realtime   | reliable |  The start  |
-   |  End Position  |          |              |          | and endpoint|
-   |                |          |              |          |    of the   |
-   |                |          |              |          |   pointer   |
-   |                |          |              |          | movement is |
-   |                |          |              |          |   vital to  |
-   |                |          |              |          | ensure user |
-   |                |          |              |          |  action is  |
-   |                |          |              |          |  completed  |
-   |                |          |              |          |  correctly. |
-   |                |          |              |          |   So, the   |
-   |                |          |              |          |  endpoints  |
-   |                |          |              |          |  have to be |
-   |                |          |              |          |   reliably  |
-   |                |          |              |          | transmitted |
-   |                |          |              |          |  with real- |
-   |                |          |              |          |     time    |
-   |                |          |              |          | priority. **|
-   +----------------+----------+--------------+----------+-------------+
-   |  Interactive   |   high   |     keep     |unreliable|             |
-   |     audio      |          |              |          |             |
-   +----------------+----------+--------------+----------+-------------+
-   | Authentication |   low    |   realtime   | reliable |             |
-   |    - Finger    |          |              |          |             |
-   |  print, smart  |          |              |          |             |
-   |      card      |          |              |          |             |
-   +----------------+----------+--------------+----------+-------------+
-   |  Interactive   |   low    |     keep     |unreliable|  Video key  |
-   |   video key    |          |              |          | frames form |
-   |     frame      |          |              |          |   the base  |
-   |                |          |              |          | frames of a |
-   |                |          |              |          |  video upon |
-   |                |          |              |          |  which the  |
-   |                |          |              |          |   next 'n'  |
-   |                |          |              |          | timeframe of|
-   |                |          |              |          |    video    |
-   |                |          |              |          |  updates is |
-   |                |          |              |          | applied on. |
-   |                |          |              |          |    These    |
-   |                |          |              |          | frames, are |
-   |                |          |              |          |    hence,   |
-   |                |          |              |          | critical and|
-   |                |          |              |          |   without   |
-   |                |          |              |          |  them, the  |
-   |                |          |              |          | video would |
-   |                |          |              |          |    not be   |
-   |                |          |              |          |   coherent  |
-   |                |          |              |          |  until the  |
-   |                |          |              |          |     next    |
-   |                |          |              |          |   critical  |
-   |                |          |              |          |   frame is  |
-   |                |          |              |          |  received.  |
-   |                |          |              |          | Retransmits |
-   |                |          |              |          | of these are|
-   |                |          |              |          |  harmful to |
-   |                |          |              |          | the UX. *** |
-   +----------------+----------+--------------+----------+-------------+
-   | Mouse position |   low    |   discard    |unreliable|   When the  |
-   |    tracking    |          |              |          |  pointer is |
-   |                |          |              |          |  moved from |
-   |                |          |              |          | one point to|
-   |                |          |              |          | another, the|
-   |                |          |              |          | coordinates |
-   |                |          |              |          |    of the   |
-   |                |          |              |          |   pointers  |
-   |                |          |              |          | between the |
-   |                |          |              |          |  two points |
-   |                |          |              |          | can be lost |
-   |                |          |              |          | without much|
-   |                |          |              |          | of an impact|
-   |                |          |              |          | to the UX as|
-   |                |          |              |          | long as the |
-   |                |          |              |          |  start and  |
-   |                |          |              |          |   endpoint  |
-   |                |          |              |          |   reaches.  |
-   |                |          |              |          |  This would |
-   |                |          |              |          |  ensure the |
-   |                |          |              |          | user action |
-   |                |          |              |          |      is     |
-   |                |          |              |          |  completed, |
-   |                |          |              |          | even if the |
-   |                |          |              |          |  experience |
-   |                |          |              |          |    seems    |
-   |                |          |              |          |   glitchy.  |
-   +----------------+----------+--------------+----------+-------------+
-   |  Interactive   |   low    |   discard    |unreliable|             |
-   |  video delta   |          |              |          |             |
-   |     frame      |          |              |          |             |
-   +----------------+----------+--------------+----------+-------------+
-
-         Table 6: Example Values for Remote Desktop Virtualization
-                         Metadata, client to server
-
-   +===========+==========+==============+==========+==================+
-   |  Traffic  |Importance| PacketNature |PacketType|     Comments     |
-   |    type   |          |              |          |                  |
-   +===========+==========+==============+==========+==================+
-   |   Glyph   |   high   |   realtime   | reliable | The frames that  |
-   |  critical |          |              |          |  form the base   |
-   |           |          |              |          |  for the image   |
-   |           |          |              |          |     is more      |
-   |           |          |              |          |   critical and   |
-   |           |          |              |          |   needs to be    |
-   |           |          |              |          |  transmitted as  |
-   |           |          |              |          |   reliably as    |
-   |           |          |              |          |    possible.     |
-   |           |          |              |          |  Retransmits of  |
-   |           |          |              |          |    these are     |
-   |           |          |              |          |  harmful to the  |
-   |           |          |              |          |      UX.**       |
-   +-----------+----------+--------------+----------+------------------+
-   |Interactive|   high   |     keep     |unreliable|                  |
-   |    (or    |          |              |          |                  |
-   | streaming)|          |              |          |                  |
-   |   audio   |          |              |          |                  |
-   +-----------+----------+--------------+----------+------------------+
-   |   Haptic  |   high   |   discard    |unreliable|   Virtualizing   |
-   |  feedback |          |              |          | haptic feedback  |
-   |           |          |              |          |   is real-time   |
-   |           |          |              |          |     and high     |
-   |           |          |              |          |    importance    |
-   |           |          |              |          |   although the   |
-   |           |          |              |          |  feedback being  |
-   |           |          |              |          |  delivered late  |
-   |           |          |              |          |  is of no use.   |
-   |           |          |              |          | So dropping the  |
-   |           |          |              |          |      packet      |
-   |           |          |              |          |  altogether and  |
-   |           |          |              |          |       not        |
-   |           |          |              |          |  retransmitting  |
-   |           |          |              |          |  it makes more   |
-   |           |          |              |          |      sense       |
-   +-----------+----------+--------------+----------+------------------+
-   |Interactive|   low    |     keep     |unreliable|    Video key     |
-   |    (or    |          |              |          | frames form the  |
-   | streaming)|          |              |          |  base frames of  |
-   | video key |          |              |          |   a video upon   |
-   |   frame   |          |              |          |  which the next  |
-   |           |          |              |          |  'n' timeframe   |
-   |           |          |              |          |     of video     |
-   |           |          |              |          |    updates is    |
-   |           |          |              |          |   applied on.    |
-   |           |          |              |          |  These frames,   |
-   |           |          |              |          |    are hence,    |
-   |           |          |              |          |   critical and   |
-   |           |          |              |          |  without them,   |
-   |           |          |              |          | the video would  |
-   |           |          |              |          | not be coherent  |
-   |           |          |              |          |  until the next  |
-   |           |          |              |          |  critical frame  |
-   |           |          |              |          |   is received.   |
-   |           |          |              |          |  Retransmits of  |
-   |           |          |              |          |    these are     |
-   |           |          |              |          |  harmful to the  |
-   |           |          |              |          |     UX. ***      |
-   +-----------+----------+--------------+----------+------------------+
-   | File copy |   low    |     bulk     | reliable |                  |
-   +-----------+----------+--------------+----------+------------------+
-   |Interactive|   low    |   discard    |unreliable|      Video       |
-   |    (or    |          |              |          |    predictive    |
-   | streaming)|          |              |          |  frames can be   |
-   |   video   |          |              |          |   lost, which    |
-   | predictive|          |              |          | would result in  |
-   |   frame   |          |              |          |   minor glitch   |
-   |           |          |              |          |     but not      |
-   |           |          |              |          |  compromise the  |
-   |           |          |              |          |  user activity   |
-   |           |          |              |          | and video would  |
-   |           |          |              |          |     still be     |
-   |           |          |              |          |   coherent and   |
-   |           |          |              |          |   useful.  The   |
-   |           |          |              |          |   reception of   |
-   |           |          |              |          |    subsequent    |
-   |           |          |              |          | video key frame  |
-   |           |          |              |          |  would mitigate  |
-   |           |          |              |          |   the loss in    |
-   |           |          |              |          |  quality caused  |
-   |           |          |              |          |     by lost      |
-   |           |          |              |          |    predictive    |
-   |           |          |              |          |     frames.      |
-   +-----------+----------+--------------+----------+------------------+
-   |   Glyph   |   low    |   discard    |Unreliable|  The smoothing   |
-   | smoothing |          |              |          | elements of the  |
-   |           |          |              |          |   glyph can be   |
-   |           |          |              |          |  lost and would  |
-   |           |          |              |          | still present a  |
-   |           |          |              |          |   recognizable   |
-   |           |          |              |          | image, although  |
-   |           |          |              |          |  with a lesser   |
-   |           |          |              |          |     quality.     |
-   |           |          |              |          |   Hence, these   |
-   |           |          |              |          |  can be marked   |
-   |           |          |              |          |     as loss      |
-   |           |          |              |          | tolerant as the  |
-   |           |          |              |          |  user action is  |
-   |           |          |              |          | still completed  |
-   |           |          |              |          |   with a small   |
-   |           |          |              |          |  compromise to   |
-   |           |          |              |          |     the UX.      |
-   |           |          |              |          |  Moreover, with  |
-   |           |          |              |          |  the reception   |
-   |           |          |              |          |   of the next    |
-   |           |          |              |          |  glyph critical  |
-   |           |          |              |          |   frame would    |
-   |           |          |              |          |   mitigate the   |
-   |           |          |              |          | loss in quality  |
-   |           |          |              |          |  caused by lost  |
-   |           |          |              |          | glyph smoothing  |
-   |           |          |              |          |    elements.     |
-   +-----------+----------+--------------+----------+------------------+
-
-         Table 7: Example Values for Remote Desktop Virtualization
-                         Metadata, server to client
-
-   *** A video key frame should be handled differently by the network
-   depending on a streaming application versus a remote desktop
-   application.  The video streaming application's primary and only
-   nature of traffic is video and audio.  In contrast, a remote desktop
-   application might be playing a video and its associated audio while
-   at the same time the user is editing a document.  The user's
-   keystrokes and those glyphs need to be prioritized over the video
-   lest the user think their inputs are being ignored (and type the same
-   characters again).  Hence, the values are different even for the same
-   nature of traffic but a different application.
-
 4.  Requirements Summary
 
    TODO summary.
 
 5.  Security Considerations
 
-   TODO Security.
+   TODO Security
 
 6.  IANA Considerations
 
@@ -687,9 +302,6 @@ Table of Contents
               Progress, Internet-Draft, draft-kpugin-rush-02, 10 May
               2023, <https://datatracker.ietf.org/doc/html/draft-kpugin-
               rush-02>.
-
-   [I-D.draft-rwbr-sconepro-flow-metadata-latest]
-              "*** BROKEN REFERENCE ***".
 
    [I-D.draft-trammell-plus-spec]
               Trammell, B. and M. Kühlewind, "Path Layer UDP Substrate

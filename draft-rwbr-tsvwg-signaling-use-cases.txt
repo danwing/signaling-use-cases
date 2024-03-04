@@ -88,21 +88,25 @@ Table of Contents
    3.  Conventions and Definitions
    4.  Various Approaches for Collaborative Signaling
    5.  Use Cases
-     5.1.  Priority Between Flows (Inter-Flow) of The Same Host
-       5.1.1.  Abuse and Constraints
-     5.2.  Priority Within a Flow (Intra-Flow)
-     5.3.  Assisted Offload
-     5.4.  Key Establishment
-     5.5.  Metadata Version/Capability Exchange
-     5.6.  Detailed Use Cases
-       5.6.1.  Video Streaming
-       5.6.2.  Interactive Media
-       5.6.3.  Bulk Data Transfer
-       5.6.4.  Mixed Traffic
-   6.  Requirements Summary
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  Informative References
+     5.1.  Generic Cases
+       5.1.1.  Priority Between Flows (Inter-Flow) of The Same Host
+       5.1.2.  Priority Within a Flow (Intra-Flow)
+     5.2.  Detailed Use Cases
+       5.2.1.  Video Streaming
+       5.2.2.  Interactive Media
+       5.2.3.  Bulk Data Transfer
+       5.2.4.  Mixed Traffic
+       5.2.5.  Assisted Offload
+   6.  Operational Considerations
+     6.1.  Abuse and Constraints
+     6.2.  Key Establishment
+     6.3.  Metadata Version/Capability Exchange
+     6.4.  On the Use of Fast Path
+     6.5.  Impacts of Nested Congestion Controls
+   7.  Requirements Summary
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -193,7 +197,7 @@ Table of Contents
    the IPv6 Flow Label ([I-D.cc-v6ops-wlcg-flow-label-marking], and Hop-
    by-Hop Options.  One mechanism suggested occasionally is to encrypt
    or integrity protect the metadata with a key; such a key could be
-   established using a signaling protocol, see Section 5.4.
+   established using a signaling protocol, see Section 6.2.
 
    There is some consensus that applications can benefit by
    collaborative signaling the network ([IAB], [ATIS]).  This document
@@ -279,7 +283,9 @@ Table of Contents
 
 5.  Use Cases
 
-5.1.  Priority Between Flows (Inter-Flow) of The Same Host
+5.1.  Generic Cases
+
+5.1.1.  Priority Between Flows (Inter-Flow) of The Same Host
 
    Certain flows being received by a host (or by an application on a
    host) are less or more important than other flows of *the same host*.
@@ -290,25 +296,7 @@ Table of Contents
    to best accomodate the needs of the various applications (on a same
    host) and between hosts on a network.
 
-5.1.1.  Abuse and Constraints
-
-   It is important that not every flow be prioritized; otherwise, the
-   network devolves into the best-effort network that existed prior to
-   metadata signaling.  It is a requirement that mechanisms exist to
-   prevent this occurrence.
-
-   Such a mechanism might be simple, for example, a cellular network
-   might allow one flow from a subscriber to declare itself as
-   important; other flows with that subscriber are denied attempts to
-   prioritize themselves.  The mechanism might be more complex where
-   authentication and authorization is performed by an enterprise
-   network which, itself, decides which flows are important based on its
-   policy and only the enterprise network communicates flow priorities
-   to the ISP network.  The enterprise might prioritize certain users
-   (e.g., IT staff), certain equipment (audio/video equipment in a
-   conference room), or whatever its policies it might want.
-
-5.2.  Priority Within a Flow (Intra-Flow)
+5.1.2.  Priority Within a Flow (Intra-Flow)
 
    Interactive Audio/Video has long been using [RTP] which runs over
    UDP.  As described in Section 2.3.7.2 of [RFC7478], there is value in
@@ -327,51 +315,9 @@ Table of Contents
    the client to authorize the network elements to receive and hopefully
    to honor the metadata of those packets.
 
-5.3.  Assisted Offload
+5.2.  Detailed Use Cases
 
-   There are cases (crisis) where "normal" network resources cannot be
-   used at maximum and, thus, a network would seek to reduce or offload
-   some of the traffic during these events -- often called 'reactive
-   traffic policy'.  An example of such sue case is cellular networks
-   that are overly used (and radio resources exhausted) while
-   alternative network attachment networks are available to host.
-
-   Network-to-host signals are useful to put in place adequate traffic
-   distribution policies (e.g., prefer the use of alternate paths,
-   offload a network).
-
-5.4.  Key Establishment
-
-   Various proposals have suggested establishing a key to validate per-
-   packet metadata or to decrypt per-packet metadata.  However, most
-   proposals have not specified how this key would be established.  A
-   signaling protocol from the receiving host to its ISP could establish
-   such a key.  The host can then convey the key to the sending host to
-   use to integrity protect or encrypt the per-packet metadata.
-
-      Note: The CPU overhead of validating or decrypting such per-packet
-      metadata needs to be carefully considered (and further assessed
-      via experiments) by the signaling protocol proposing such keying.
-      Also, the required operational setup should be documented.
-
-5.5.  Metadata Version/Capability Exchange
-
-   The sender has to convey metadata in a way that is understood by the
-   various network elements on the path -- each of which might be
-   operated by different entities and have different capabilities.  For
-   example, the Wi-Fi access point might be operated by an enterprise
-   network, hotel, or home user, whereas the upstream router is operated
-   by the ISP.  Each of those might support different versions of the
-   same metadata, or might need the metadata expressed in different
-   ways.
-
-   The signaling protocol would provide a way to learn the needs of
-   those networks, and provide metadata signaling satisfying most or all
-   of their needs.
-
-5.6.  Detailed Use Cases
-
-5.6.1.  Video Streaming
+5.2.1.  Video Streaming
 
    Streaming video contains the occasional key frame ("i-frame")
    containing a full video frame.  These are necessary to rebuild
@@ -407,7 +353,7 @@ Table of Contents
 
            Table 1: Example Values for Video Streaming Metadata
 
-5.6.2.  Interactive Media
+5.2.2.  Interactive Media
 
    Examples: VoIP, gaming.
 
@@ -496,7 +442,7 @@ Table of Contents
 
    Todo: this section on cooperation needs editing.
 
-5.6.3.  Bulk Data Transfer
+5.2.3.  Bulk Data Transfer
 
    Examples: backup/restore, software update, RSS feed update, email,
    printing to a print server
@@ -515,7 +461,7 @@ Table of Contents
 
                                  Table 5
 
-5.6.4.  Mixed Traffic
+5.2.4.  Mixed Traffic
 
    Examples: Desktop Virtualization, Office software in the cloud
    (editing local files, typing is interactive while save operation is
@@ -766,19 +712,89 @@ Table of Contents
    characters again).  Hence, the values are different even for the same
    nature of traffic but a different application.
 
-6.  Requirements Summary
+5.2.5.  Assisted Offload
+
+   There are cases (crisis) where "normal" network resources cannot be
+   used at maximum and, thus, a network would seek to reduce or offload
+   some of the traffic during these events -- often called 'reactive
+   traffic policy'.  An example of such sue case is cellular networks
+   that are overly used (and radio resources exhausted) while
+   alternative network attachment networks are available to host.
+
+   Network-to-host signals are useful to put in place adequate traffic
+   distribution policies (e.g., prefer the use of alternate paths,
+   offload a network).
+
+6.  Operational Considerations
+
+6.1.  Abuse and Constraints
+
+   It is important that not every flow be prioritized; otherwise, the
+   network devolves into the best-effort network that existed prior to
+   metadata signaling.  It is a requirement that mechanisms exist to
+   prevent this occurrence.
+
+   Such a mechanism might be simple, for example, a cellular network
+   might allow one flow from a subscriber to declare itself as
+   important; other flows with that subscriber are denied attempts to
+   prioritize themselves.  The mechanism might be more complex where
+   authentication and authorization is performed by an enterprise
+   network which, itself, decides which flows are important based on its
+   policy and only the enterprise network communicates flow priorities
+   to the ISP network.  The enterprise might prioritize certain users
+   (e.g., IT staff), certain equipment (audio/video equipment in a
+   conference room), or whatever its policies it might want.
+
+6.2.  Key Establishment
+
+   Various proposals have suggested establishing a key to validate per-
+   packet metadata or to decrypt per-packet metadata.  However, most
+   proposals have not specified how this key would be established.  A
+   signaling protocol from the receiving host to its ISP could establish
+   such a key.  The host can then convey the key to the sending host to
+   use to integrity protect or encrypt the per-packet metadata.
+
+      Note: The CPU overhead of validating or decrypting such per-packet
+      metadata needs to be carefully considered (and further assessed
+      via experiments) by the signaling protocol proposing such keying.
+      Also, the required operational setup should be documented.
+
+6.3.  Metadata Version/Capability Exchange
+
+   The sender has to convey metadata in a way that is understood by the
+   various network elements on the path -- each of which might be
+   operated by different entities and have different capabilities.  For
+   example, the Wi-Fi access point might be operated by an enterprise
+   network, hotel, or home user, whereas the upstream router is operated
+   by the ISP.  Each of those might support different versions of the
+   same metadata, or might need the metadata expressed in different
+   ways.
+
+   The signaling protocol would provide a way to learn the needs of
+   those networks, and provide metadata signaling satisfying most or all
+   of their needs.
+
+6.4.  On the Use of Fast Path
+
+   TBC
+
+6.5.  Impacts of Nested Congestion Controls
+
+   TBC
+
+7.  Requirements Summary
 
    TODO summary.
 
-7.  Security Considerations
+8.  Security Considerations
 
    TODO Security
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    This document has no IANA actions.
 
-9.  Informative References
+10.  Informative References
 
    [ATIS]     "Content Classification for Traffic Optimization", 2023,
               <https://access.atis.org/higherlogic/ws/public/

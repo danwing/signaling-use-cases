@@ -136,9 +136,9 @@ The authorization problem exists with technologies as relatively
 simple as DiffServ and the problem persists with many other
 recently discussed metadata signaling mechanisms including
 embedding information in the UDP payload
-({{?I-D.draft-trammell-plus-spec}}), UDP options
-({{?I-D.draft-kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
-the IPv6 Flow Label ({{?I-D.draft-cc-v6ops-wlcg-flow-label-marking}},
+({{?I-D.trammell-plus-spec}}), UDP options
+({{?I-D.kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
+the IPv6 Flow Label ({{?I-D.cc-v6ops-wlcg-flow-label-marking}},
 and Hop-by-Hop Options.  One mechanism suggested occasionally is
 to encrypt or integrity protect the metadata with a key; such a key
 could be established with a signaling protocol, see {{key}}.
@@ -188,26 +188,6 @@ certain users (e.g., IT staff, CEO), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
 want.
 
-#### Interactive Media
-
-Examples: VoIP, gaming, virtual desktop.
-
-Requirement:  Signal the flow needs low jitter and low delay.  However, the network can only provide
-a limited amount of low jitter/low delay to each host, maybe as few as one.  This requires signaling
-feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
-response, the user and the application will likely continue, occasionally re-attempting to get the
-desired quality of service from the network.
-
-Todo: this section on cooperation needs editing.
-
-
-#### Bulk Data Transfer
-
-Examples: backup/restore, software update, RSS feed update, email
-
-Requirement: Signal the flow as below best-effort.
-
-
 ## Priority Within a Flow (Intra-Flow)
 
 Interactive Audio/Video has long been using {{?RTP=RFC3550}} which
@@ -215,7 +195,7 @@ runs over UDP.  As described in {{Section 2.3.7.2 of ?RFC7478}}, there
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
 eventually is likely to support unreliable transport ({{?RFC9221}},
-{{?I-D.draft-kpugin-rush}}).  With unreliable transport of video in
+{{?I-D.kpugin-rush}}).  With unreliable transport of video in
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to
@@ -254,7 +234,7 @@ The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
 needs.
 
-## Real-world Use cases
+## Detailed Use Cases
 
 ### Video Streaming {#example-video-streaming}
 
@@ -307,7 +287,7 @@ upstream direction.
 
 Metadata:
 
-Based on metadata types listed in the {{?I-D.draft-rwbr-sconepro-flow-metadata-latest}}, the host to network metadata parameters for interactive media type will as given below.
+Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata-}}, the host to network metadata parameters for interactive media type will as given below.
 
 Interactive A/V, downstream Metadata:
 

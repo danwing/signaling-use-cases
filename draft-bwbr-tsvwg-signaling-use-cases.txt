@@ -86,16 +86,17 @@ Table of Contents
    1.  Introduction
    2.  Scope & Running Experiments
    3.  Conventions and Definitions
-   4.  Use Cases
-     4.1.  Priority Between Flows (Inter-Flow)
-       4.1.1.  Abuse and Constraints
-     4.2.  Priority Within a Flow (Intra-Flow)
-     4.3.  Key Establishment
-     4.4.  Metadata Version/Capability Exchange
-   5.  Requirements Summary
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  Informative References
+   4.  Various Approaches for Collaborative Signaling
+   5.  Use Cases
+     5.1.  Priority Between Flows (Inter-Flow)
+       5.1.1.  Abuse and Constraints
+     5.2.  Priority Within a Flow (Intra-Flow)
+     5.3.  Key Establishment
+     5.4.  Metadata Version/Capability Exchange
+   6.  Requirements Summary
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -187,7 +188,7 @@ Table of Contents
    ([I-D.draft-cc-v6ops-wlcg-flow-label-marking], and Hop-by-Hop
    Options.  One mechanism suggested occasionally is to encrypt or
    integrity protect the metadata with a key; such a key could be
-   established using a signaling protocol, see Section 4.3.
+   established using a signaling protocol, see Section 5.3.
 
    There is some consensus that applications can benefit by
    collaborative signaling the network ([IAB], [ATIS]).  This document
@@ -216,11 +217,66 @@ Table of Contents
       very short to very long durations (e.g., varying wireless and
       mobile air interface conditions).
 
-4.  Use Cases
+4.  Various Approaches for Collaborative Signaling
 
-4.1.  Priority Between Flows (Inter-Flow)
+   Figure 1 depicts examples of approaches to establish channels to
+   convey and share metadata between hosts, networks, and servers.
 
-   Certain flows being received by an host or by an application are less
+   Metadata exchanges can occur in one single direction or both
+   directions of a flows.
+
+   (1)  Proxied Connection
+                          .--------------.                   +------+
+                         |                |                +-+----+ |
+   +------+              |   Network(s)   |              +-+----+ +-+
+   |Client+--------------)----------------(--------------+Server+-+
+   +---+--+              |                |              +---+--+
+       |                  '-------+------'                   |
+       |                          |                          |
+       +<===User Data+Metadata===>+<===User Data+Metadata===>+
+       |   Secure Connection 1    |   Secure Connection 2    |
+       |                          |                          |
+
+   (2)  Out-of-band Metadata Sharing
+                           .--------------.                  +------+
+                          |                |               +-+----+ |
+   +------+               |   Network(s)   |             +-+----+ +-+
+   |Client+---------------)----------------(-------------+Server+-+
+   +---+--+               |                |             +---+--+
+       |                   '-------+------'                  |
+       |                           |                         |
+       +<-----End-to-End Secure Connection + User Data------>+<---.
+       |                           |                         | GLUE|
+       |                           |                         | CXs |
+       +<-- Metadata (Optional) -->+<----- Metadata -------->+<---'
+       |    Secure Connection 1    |    Secure Connection 2  |
+       |                           |                         |
+
+   (3)  Client-centric Metadata Sharing
+                             .--------------.                  +------+
+                            |                |               +-+----+ |
+   +------+                 |   Network(s)   |             +-+----+ +-+
+   |Client+-----------------)----------------(-------------+Server+-+
+   +---+--+                 |                |             +---+--+
+       |                     '-------+------'                  |
+       |                             |                         |
+       +<--------- Metadata -------->+                         |
+       |        Secure Connection    |                         |
+       |                             |                         |
+       +<== End-to-End Secure Connection User Data+Metadata ==>+
+       |                             |                         |
+
+                  Figure 1: Candidate Signaling Approaches
+
+   The client-centric metadata sharing approach because it preserves
+   privacy and also takes advantage of clients having a full view on
+   their available network attachments.
+
+5.  Use Cases
+
+5.1.  Priority Between Flows (Inter-Flow)
+
+   Certain flows being received by a host or by an application are less
    or more important than other flows.  For example, a host downloading
    a software update is generally considered less important than another
    host doing interactive audio/video or gaming.  By signaling the
@@ -229,7 +285,7 @@ Table of Contents
    best accomodate the needs of the various applications (on a single
    host) and between hosts on a network.
 
-4.1.1.  Abuse and Constraints
+5.1.1.  Abuse and Constraints
 
    It is important that not every flow be prioritized; otherwise, the
    network devolves into the best-effort network that existed prior to
@@ -246,7 +302,7 @@ Table of Contents
    equipment in a conference room), or whatever its policies it might
    want.
 
-4.1.1.1.  Interactive Media
+5.1.1.1.  Interactive Media
 
    Examples: VoIP, gaming, virtual desktop.
 
@@ -260,13 +316,13 @@ Table of Contents
 
    Todo: this section on cooperation needs editing.
 
-4.1.1.2.  Bulk Data Transfer
+5.1.1.2.  Bulk Data Transfer
 
    Examples: backup/restore, software update, RSS feed update, email
 
    Requirement: Signal the flow as below best-effort.
 
-4.2.  Priority Within a Flow (Intra-Flow)
+5.2.  Priority Within a Flow (Intra-Flow)
 
    Interactive Audio/Video has long been using [RTP] which runs over
    UDP.  As described in Section 2.3.7.2 of [RFC7478], there is value in
@@ -285,7 +341,7 @@ Table of Contents
    the client to authorize the network elements to honor the metadata of
    those packets.
 
-4.3.  Key Establishment
+5.3.  Key Establishment
 
    Various proposals have suggested establishing a key to validate per-
    packet metadata or to decrypt per-packet metadata.  However, most
@@ -298,7 +354,7 @@ Table of Contents
       metadata needs to be carefully considered by the signaling
       protocol proposing such keying.
 
-4.4.  Metadata Version/Capability Exchange
+5.4.  Metadata Version/Capability Exchange
 
    The sender has to convey metadata in a way that is understood by the
    various network elements on the path -- each of which might be
@@ -312,19 +368,19 @@ Table of Contents
    those networks, and provide metadata signaling satisfying most or all
    of their needs.
 
-5.  Requirements Summary
+6.  Requirements Summary
 
    TODO summary.
 
-6.  Security Considerations
+7.  Security Considerations
 
    TODO Security
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-8.  Informative References
+9.  Informative References
 
    [ATIS]     "Content Classification for Traffic Optimization", 2023,
               <https://access.atis.org/higherlogic/ws/public/

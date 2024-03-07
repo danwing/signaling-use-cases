@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Rajagopalan, et al.</td>
-<td class="center">Expires 5 September 2024</td>
+<td class="center">Expires 8 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-rwbr-tsvwg-signaling-use-cases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-04" class="published">4 March 2024</time>
+<time datetime="2024-03-07" class="published">7 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-05">5 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-08">8 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1205,13 +1205,16 @@ a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">
                     <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-interactive-media" class="internal xref">Interactive Media</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-bulk-data-transfer" class="internal xref">Bulk Data Transfer</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-live-streaming-example-live" class="internal xref">Live Streaming (#example-live-straming)</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
-                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-mixed-traffic" class="internal xref">Mixed Traffic</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-bulk-data-transfer" class="internal xref">Bulk Data Transfer</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.5">
-                    <p id="section-toc.1-1.5.2.2.2.5.1"><a href="#section-5.2.5" class="auto internal xref">5.2.5</a>.  <a href="#name-assisted-offload" class="internal xref">Assisted Offload</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.5.1"><a href="#section-5.2.5" class="auto internal xref">5.2.5</a>.  <a href="#name-mixed-traffic" class="internal xref">Mixed Traffic</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.6">
+                    <p id="section-toc.1-1.5.2.2.2.6.1"><a href="#section-5.2.6" class="auto internal xref">5.2.6</a>.  <a href="#name-assisted-offload" class="internal xref">Assisted Offload</a></p>
 </li>
                 </ul>
 </li>
@@ -1929,16 +1932,98 @@ than audio.<a href="#section-5.2.2-13" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-14">Todo: this section on cooperation needs editing.<a href="#section-5.2.2-14" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="bulk-data-transfer">
+<div id="live-streaming-example-live-straming">
 <section id="section-5.2.3">
-          <h4 id="name-bulk-data-transfer">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-bulk-data-transfer" class="section-name selfRef">Bulk Data Transfer</a>
+          <h4 id="name-live-streaming-example-live">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-live-streaming-example-live" class="section-name selfRef">Live Streaming (#example-live-straming)</a>
           </h4>
-<p id="section-5.2.3-1">Examples: backup/restore, software update, RSS feed update, email, printing to a print server<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">Requirement: Signal the flow as below best-effort.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-3">Metadata:<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-1">Live streaming is differnet from video streaming given the focus is on reducing latency and keeping the streaming as close to the live feed. In this scenario, video might be more prioirty than audio in some cases (e.g., Super Bowl, Olympics or the World Cup) while audio has more priority (e.g., music concert). This also prioritizes latency (to a certain extent) over quality. Network-to-host information proves vital in selecting of the quality to minimize the latency. Signaling of metadat could reduce the latency and improve performance of the live streaming stated in <span>[<a href="#MOQ-PRIORITY" class="cite xref">MOQ-PRIORITY</a>]</span>.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">Metadata for live-streaming that prefers video over audio: (eg. Superbowl game coverage)<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<span id="name-example-values-for-live-str"></span><div id="_table-video-livestream">
 <table class="center" id="table-5">
-            <caption><a href="#table-5" class="selfRef">Table 5</a></caption>
+            <caption>
+<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#name-example-values-for-live-str" class="selfRef">Example Values for live streaming of video preferred event</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
+                <th class="text-center" rowspan="1" colspan="1">Importance</th>
+                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
+                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center" rowspan="1" colspan="1">video key frame</td>
+                <td class="text-center" rowspan="1" colspan="1">high</td>
+                <td class="text-center" rowspan="1" colspan="1">realtime</td>
+                <td class="text-center" rowspan="1" colspan="1">reliable</td>
+              </tr>
+              <tr>
+                <td class="text-center" rowspan="1" colspan="1">video delta frame</td>
+                <td class="text-center" rowspan="1" colspan="1">low</td>
+                <td class="text-center" rowspan="1" colspan="1">discard</td>
+                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
+              </tr>
+              <tr>
+                <td class="text-center" rowspan="1" colspan="1">audio</td>
+                <td class="text-center" rowspan="1" colspan="1">low</td>
+                <td class="text-center" rowspan="1" colspan="1">discard</td>
+                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
+<p id="section-5.2.3-4">Metadata for live-streaming that prefers audio over video: (eg. Music Concert)<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
+<span id="name-example-values-for-live-stre"></span><div id="_table-audio-livestream">
+<table class="center" id="table-6">
+            <caption>
+<a href="#table-6" class="selfRef">Table 6</a>:
+<a href="#name-example-values-for-live-stre" class="selfRef">Example Values for live streaming of audio preferred event</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
+                <th class="text-center" rowspan="1" colspan="1">Importance</th>
+                <th class="text-center" rowspan="1" colspan="1">PacketNature</th>
+                <th class="text-center" rowspan="1" colspan="1">PacketType</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center" rowspan="1" colspan="1">video key frame</td>
+                <td class="text-center" rowspan="1" colspan="1">low</td>
+                <td class="text-center" rowspan="1" colspan="1">realtime</td>
+                <td class="text-center" rowspan="1" colspan="1">reliable</td>
+              </tr>
+              <tr>
+                <td class="text-center" rowspan="1" colspan="1">video delta frame</td>
+                <td class="text-center" rowspan="1" colspan="1">low</td>
+                <td class="text-center" rowspan="1" colspan="1">discard</td>
+                <td class="text-center" rowspan="1" colspan="1">unreliable</td>
+              </tr>
+              <tr>
+                <td class="text-center" rowspan="1" colspan="1">audio</td>
+                <td class="text-center" rowspan="1" colspan="1">high</td>
+                <td class="text-center" rowspan="1" colspan="1">realtime</td>
+                <td class="text-center" rowspan="1" colspan="1">reliable</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
+</section>
+</div>
+<div id="bulk-data-transfer">
+<section id="section-5.2.4">
+          <h4 id="name-bulk-data-transfer">
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-bulk-data-transfer" class="section-name selfRef">Bulk Data Transfer</a>
+          </h4>
+<p id="section-5.2.4-1">Examples: backup/restore, software update, RSS feed update, email, printing to a print server<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">Requirement: Signal the flow as below best-effort.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-3">Metadata:<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
+<table class="center" id="table-7">
+            <caption><a href="#table-7" class="selfRef">Table 7</a></caption>
 <thead>
               <tr>
                 <th class="text-center" rowspan="1" colspan="1">Traffic type</th>
@@ -1968,22 +2053,22 @@ than audio.<a href="#section-5.2.2-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="mixed-traffic">
-<section id="section-5.2.4">
+<section id="section-5.2.5">
           <h4 id="name-mixed-traffic">
-<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-mixed-traffic" class="section-name selfRef">Mixed Traffic</a>
+<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-mixed-traffic" class="section-name selfRef">Mixed Traffic</a>
           </h4>
-<p id="section-5.2.4-1">Examples: Desktop Virtualization, Office software in the cloud (editing local files, typing is interactive while save operation is bulk transfer)<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-2">Requirement: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-3">Example packet metadata for Desktop Virtualization (like Citrix
+<p id="section-5.2.5-1">Examples: Desktop Virtualization, Office software in the cloud (editing local files, typing is interactive while save operation is bulk transfer)<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-2">Requirement: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance.<a href="#section-5.2.5-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-3">Example packet metadata for Desktop Virtualization (like Citrix
 Virtual Apps and Desktops - CVAD) application.  This is shown in two
-tables, client-to-server traffic (<a href="#_table-desktop-virtualization-c2s" class="auto internal xref">Table 6</a>)
-and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class="auto internal xref">Table 7</a>).<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-4">Remote Desktop Virtualization Metadata:<a href="#section-5.2.4-4" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-5">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>, the host to network metadata parameters for remote desktop virtualization type is given below.<a href="#section-5.2.4-5" class="pilcrow">¶</a></p>
+tables, client-to-server traffic (<a href="#_table-desktop-virtualization-c2s" class="auto internal xref">Table 8</a>)
+and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class="auto internal xref">Table 9</a>).<a href="#section-5.2.5-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-4">Remote Desktop Virtualization Metadata:<a href="#section-5.2.5-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-5">Based on metadata types listed in the <span>[<a href="#I-D.rwbr-sconepro-flow-metadata" class="cite xref">I-D.rwbr-sconepro-flow-metadata</a>]</span>, the host to network metadata parameters for remote desktop virtualization type is given below.<a href="#section-5.2.5-5" class="pilcrow">¶</a></p>
 <span id="name-example-values-for-remote-d"></span><div id="_table-desktop-virtualization-c2s">
-<table class="center" id="table-6">
+<table class="center" id="table-8">
             <caption>
-<a href="#table-6" class="selfRef">Table 6</a>:
+<a href="#table-8" class="selfRef">Table 8</a>:
 <a href="#name-example-values-for-remote-d" class="selfRef">Example Values for Remote Desktop Virtualization Metadata, client to server</a>
             </caption>
 <thead>
@@ -2049,9 +2134,9 @@ and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class
           </table>
 </div>
 <span id="name-example-values-for-remote-de"></span><div id="_table-desktop-virtualization-s2c">
-<table class="center" id="table-7">
+<table class="center" id="table-9">
             <caption>
-<a href="#table-7" class="selfRef">Table 7</a>:
+<a href="#table-9" class="selfRef">Table 9</a>:
 <a href="#name-example-values-for-remote-de" class="selfRef">Example Values for Remote Desktop Virtualization Metadata, server to client</a>
             </caption>
 <thead>
@@ -2116,7 +2201,7 @@ and server-to-client traffic (<a href="#_table-desktop-virtualization-s2c" class
             </tbody>
           </table>
 </div>
-<p id="section-5.2.4-8">*** A video key frame should be handled differently by the network
+<p id="section-5.2.5-8">*** A video key frame should be handled differently by the network
 depending on a streaming application versus a remote desktop
 application.  The video streaming application's primary and only
 nature of traffic is video and audio.  In contrast, a remote desktop
@@ -2125,23 +2210,23 @@ the same time the user is editing a document.  The user's keystrokes
 and those glyphs need to be prioritized over the video lest the user
 think their inputs are being ignored (and type the same characters
 again). Hence, the values are different even for the same nature of
-traffic but a different application.<a href="#section-5.2.4-8" class="pilcrow">¶</a></p>
+traffic but a different application.<a href="#section-5.2.5-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="assisted-offload">
-<section id="section-5.2.5">
+<section id="section-5.2.6">
           <h4 id="name-assisted-offload">
-<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-assisted-offload" class="section-name selfRef">Assisted Offload</a>
+<a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-assisted-offload" class="section-name selfRef">Assisted Offload</a>
           </h4>
-<p id="section-5.2.5-1">There are  cases (crisis) where "normal" network
+<p id="section-5.2.6-1">There are  cases (crisis) where "normal" network
 resources cannot be used at maximum and, thus, a network would seek to
 reduce or offload some of the traffic during these events -- often
 called 'reactive traffic policy'. An example of such sue case is cellular networks
 that are overly used (and radio resources exhausted) while alternative network
-attachment networks are available to host.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.5-2">Network-to-host signals are
+attachment networks are available to host.<a href="#section-5.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.6-2">Network-to-host signals are
 useful to put in place adequate traffic distribution policies (e.g.,
-prefer the use of alternate paths, offload a network).<a href="#section-5.2.5-2" class="pilcrow">¶</a></p>
+prefer the use of alternate paths, offload a network).<a href="#section-5.2.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2287,6 +2372,10 @@ needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <dt id="IAB">[IAB]</dt>
       <dd>
 <span class="refAuthor">Arkko, J.</span>, <span class="refAuthor">Hardie, T.</span>, <span class="refAuthor">Pauly, T.</span>, and <span class="refAuthor">M. Kühlewind</span>, <span class="refTitle">"Considerations on Application - Network Collaboration Using Path Signals"</span>, <span class="seriesInfo">RFC 9419</span>, <span class="seriesInfo">DOI 10.17487/RFC9419</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9419">https://www.rfc-editor.org/rfc/rfc9419</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MOQ-PRIORITY">[MOQ-PRIORITY]</dt>
+      <dd>
+<span class="refTitle">"Prioritization results - Media Over QUIC"</span>, <time datetime="2024" class="refDate">2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/meeting/117/materials/slides-117-moq-sessb-prioritization-results-00">https://datatracker.ietf.org/meeting/117/materials/slides-117-moq-sessb-prioritization-results-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7478">[RFC7478]</dt>
       <dd>

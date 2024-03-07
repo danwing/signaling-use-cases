@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 5 September 2024                                   M. Boucadair
+Expires: 8 September 2024                                   M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                            4 March 2024
+                                                            7 March 2024
 
 
      Signaling Use Cases for Collaborative Traffic Differentiation
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 September 2024.
+   This Internet-Draft will expire on 8 September 2024.
 
 Copyright Notice
 
@@ -94,9 +94,10 @@ Table of Contents
      5.2.  Detailed Use Cases
        5.2.1.  Video Streaming
        5.2.2.  Interactive Media
-       5.2.3.  Bulk Data Transfer
-       5.2.4.  Mixed Traffic
-       5.2.5.  Assisted Offload
+       5.2.3.  Live Streaming (#example-live-straming)
+       5.2.4.  Bulk Data Transfer
+       5.2.5.  Mixed Traffic
+       5.2.6.  Assisted Offload
    6.  Operational Considerations
      6.1.  Abuse and Constraints
      6.2.  Key Establishment
@@ -446,7 +447,51 @@ Table of Contents
 
    Todo: this section on cooperation needs editing.
 
-5.2.3.  Bulk Data Transfer
+5.2.3.  Live Streaming (#example-live-straming)
+
+   Live streaming is differnet from video streaming given the focus is
+   on reducing latency and keeping the streaming as close to the live
+   feed.  In this scenario, video might be more prioirty than audio in
+   some cases (e.g., Super Bowl, Olympics or the World Cup) while audio
+   has more priority (e.g., music concert).  This also prioritizes
+   latency (to a certain extent) over quality.  Network-to-host
+   information proves vital in selecting of the quality to minimize the
+   latency.  Signaling of metadat could reduce the latency and improve
+   performance of the live streaming stated in [MOQ-PRIORITY].
+
+   Metadata for live-streaming that prefers video over audio: (eg.
+   Superbowl game coverage)
+
+      +===================+============+==============+============+
+      |    Traffic type   | Importance | PacketNature | PacketType |
+      +===================+============+==============+============+
+      |  video key frame  |    high    |   realtime   |  reliable  |
+      +-------------------+------------+--------------+------------+
+      | video delta frame |    low     |   discard    | unreliable |
+      +-------------------+------------+--------------+------------+
+      |       audio       |    low     |   discard    | unreliable |
+      +-------------------+------------+--------------+------------+
+
+           Table 5: Example Values for live streaming of video
+                             preferred event
+
+   Metadata for live-streaming that prefers audio over video: (eg.
+   Music Concert)
+
+      +===================+============+==============+============+
+      |    Traffic type   | Importance | PacketNature | PacketType |
+      +===================+============+==============+============+
+      |  video key frame  |    low     |   realtime   |  reliable  |
+      +-------------------+------------+--------------+------------+
+      | video delta frame |    low     |   discard    | unreliable |
+      +-------------------+------------+--------------+------------+
+      |       audio       |    high    |   realtime   |  reliable  |
+      +-------------------+------------+--------------+------------+
+
+           Table 6: Example Values for live streaming of audio
+                             preferred event
+
+5.2.4.  Bulk Data Transfer
 
    Examples: backup/restore, software update, RSS feed update, email,
    printing to a print server
@@ -463,9 +508,9 @@ Table of Contents
    |   Printing   |    high    |     bulk     |  reliable  |          |
    +--------------+------------+--------------+------------+----------+
 
-                                 Table 5
+                                 Table 7
 
-5.2.4.  Mixed Traffic
+5.2.5.  Mixed Traffic
 
    Examples: Desktop Virtualization, Office software in the cloud
    (editing local files, typing is interactive while save operation is
@@ -481,8 +526,8 @@ Table of Contents
 
    Example packet metadata for Desktop Virtualization (like Citrix
    Virtual Apps and Desktops - CVAD) application.  This is shown in two
-   tables, client-to-server traffic (Table 6) and server-to-client
-   traffic (Table 7).
+   tables, client-to-server traffic (Table 8) and server-to-client
+   traffic (Table 9).
 
    Remote Desktop Virtualization Metadata:
 
@@ -585,7 +630,7 @@ Table of Contents
    |     frame      |          |              |          |             |
    +----------------+----------+--------------+----------+-------------+
 
-         Table 6: Example Values for Remote Desktop Virtualization
+         Table 8: Example Values for Remote Desktop Virtualization
                          Metadata, client to server
 
    +===========+==========+==============+==========+==================+
@@ -706,7 +751,7 @@ Table of Contents
    |           |          |              |          |    elements.     |
    +-----------+----------+--------------+----------+------------------+
 
-         Table 7: Example Values for Remote Desktop Virtualization
+         Table 9: Example Values for Remote Desktop Virtualization
                          Metadata, server to client
 
    *** A video key frame should be handled differently by the network
@@ -720,7 +765,7 @@ Table of Contents
    characters again).  Hence, the values are different even for the same
    nature of traffic but a different application.
 
-5.2.5.  Assisted Offload
+5.2.6.  Assisted Offload
 
    There are cases (crisis) where "normal" network resources cannot be
    used at maximum and, thus, a network would seek to reduce or offload
@@ -850,6 +895,11 @@ Table of Contents
               "Considerations on Application - Network Collaboration
               Using Path Signals", RFC 9419, DOI 10.17487/RFC9419, July
               2023, <https://www.rfc-editor.org/rfc/rfc9419>.
+
+   [MOQ-PRIORITY]
+              "Prioritization results - Media Over QUIC", 2024,
+              <https://datatracker.ietf.org/meeting/117/materials/
+              slides-117-moq-sessb-prioritization-results-00>.
 
    [RFC7478]  Holmberg, C., Hakansson, S., and G. Eriksson, "Web Real-
               Time Communication Use Cases and Requirements", RFC 7478,

@@ -65,6 +65,10 @@ informative:
     title: Content Classification for Traffic Optimization
     target: https://access.atis.org/higherlogic/ws/public/download/72240
     date: 2023
+  MOQ-PRIORITY:
+    title: Prioritization results - Media Over QUIC
+    target: https://datatracker.ietf.org/meeting/117/materials/slides-117-moq-sessb-prioritization-results-00
+    date: 2024
 
 
 --- abstract
@@ -374,6 +378,29 @@ than audio, whereas input devices (e.g., keystrokes) might be more important
 than audio.
 
 Todo: this section on cooperation needs editing.
+
+### Live Streaming {#example-live-straming}
+
+Live streaming is differnet from video streaming given the focus is on reducing latency and keeping the streaming as close to the live feed. In this scenario, video might be more prioirty than audio in some cases (e.g., Super Bowl, Olympics or the World Cup) while audio has more priority (e.g., music concert). This also prioritizes latency (to a certain extent) over quality. Network-to-host information proves vital in selecting of the quality to minimize the latency. Signaling of metadat could reduce the latency and improve performance of the live streaming stated in {{MOQ-PRIORITY}}.
+
+Metadata for live-streaming that prefers video over audio: (eg. Superbowl game coverage)
+
+| Traffic type      | Importance | PacketNature      | PacketType           |
+|:-----------------:|:----------:|:-----------------:|:--------------------:|
+| video key frame   | high        | realtime          | reliable             |
+| video delta frame | low        | discard           | unreliable           |
+| audio             | low       | discard          | unreliable             |
+{: #table-video-livestream title="Example Values for live streaming of video preferred event"}
+
+Metadata for live-streaming that prefers audio over video: (eg. Music Concert)
+
+| Traffic type      | Importance | PacketNature      | PacketType           |
+|:-----------------:|:----------:|:-----------------:|:--------------------:|
+| video key frame   | low        | realtime          | reliable             |
+| video delta frame | low        | discard           | unreliable           |
+| audio             | high       | realtime          | reliable             |
+{: #table-audio-livestream title="Example Values for live streaming of audio preferred event"}
+
 
 ### Bulk Data Transfer
 

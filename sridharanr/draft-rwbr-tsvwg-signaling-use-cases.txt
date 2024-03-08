@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 8 September 2024                                   M. Boucadair
+Expires: 9 September 2024                                   M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                            7 March 2024
+                                                            8 March 2024
 
 
      Signaling Use Cases for Collaborative Traffic Differentiation
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 September 2024.
+   This Internet-Draft will expire on 9 September 2024.
 
 Copyright Notice
 
@@ -94,7 +94,7 @@ Table of Contents
      5.2.  Detailed Use Cases
        5.2.1.  Video Streaming
        5.2.2.  Interactive Media
-       5.2.3.  Live Streaming (#example-live-straming)
+       5.2.3.  Live Streaming
        5.2.4.  Bulk Data Transfer
        5.2.5.  Mixed Traffic
        5.2.6.  Assisted Offload
@@ -447,7 +447,7 @@ Table of Contents
 
    Todo: this section on cooperation needs editing.
 
-5.2.3.  Live Streaming (#example-live-straming)
+5.2.3.  Live Streaming
 
    Live streaming is differnet from video streaming given the focus is
    on reducing latency and keeping the streaming as close to the live

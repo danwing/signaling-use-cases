@@ -381,25 +381,25 @@ Todo: this section on cooperation needs editing.
 
 ### Live Streaming {#example-live-straming}
 
-Live streaming is differnet from video streaming given the focus is on reducing latency and keeping the streaming as close to the live feed. In this scenario, video might be more prioirty than audio in some cases (e.g., Super Bowl, Olympics or the World Cup) while audio has more priority (e.g., music concert). This also prioritizes latency (to a certain extent) over quality. Network-to-host information proves vital in selecting of the quality to minimize the latency. Signaling of metadat could reduce the latency and improve performance of the live streaming stated in {{MOQ-PRIORITY}}.
+Live streaming is different from other forms of streaming (e.g., video). Specifically, the delivery of live streams have more constraints on reducing latency to keep the streaming as close to the live feed. In this scenario, video might be prioritized than audio in some cases (e.g., Super Bowl, Olympics, or the World Cup) while audio might be prioritized for other events (e.g., music concert). This also prioritizes latency (to a certain extent) over stream quality. Compared to heuristics, explicit network-to-host information is likely to provide deterministic behaviors to optimally select of the "quality" of the access to minimize the latency. An example of where such schemes can reduce the latency and improve performance of live streaming is discussed in {{MOQ-PRIORITY}}.
 
-Metadata for live-streaming that prefers video over audio: (eg. Superbowl game coverage)
+Metadata for live streaming that prefers video over audio: (e.g., Superbowl game coverage)
 
 | Traffic type      | Importance | PacketNature      | PacketType           |
 |:-----------------:|:----------:|:-----------------:|:--------------------:|
 | video key frame   | high        | realtime          | reliable             |
 | video delta frame | low        | discard           | unreliable           |
 | audio             | low       | discard          | unreliable             |
-{: #table-video-livestream title="Example Values for live streaming of video preferred event"}
+{: #table-video-livestream title="Example Values for Live Streaming of Video Preferred Event"}
 
-Metadata for live-streaming that prefers audio over video: (eg. Music Concert)
+Metadata for live streaming that prefers audio over video: (e.g., Music concerts)
 
 | Traffic type      | Importance | PacketNature      | PacketType           |
 |:-----------------:|:----------:|:-----------------:|:--------------------:|
 | video key frame   | low        | realtime          | reliable             |
 | video delta frame | low        | discard           | unreliable           |
 | audio             | high       | realtime          | reliable             |
-{: #table-audio-livestream title="Example Values for live streaming of audio preferred event"}
+{: #table-audio-livestream title="Example Values for Live Streaming of Audio Preferred Event"}
 
 
 ### Bulk Data Transfer

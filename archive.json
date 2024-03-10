@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-07T00:56:51.549398+00:00",
+  "timestamp": "2024-03-10T01:12:47.943717+00:00",
   "repo": "danwing/signaling-use-cases",
   "labels": [
     {
@@ -308,6 +308,190 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOLZbGd85pBpN1",
+      "title": "adding live streaming use-case",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/10",
+      "state": "OPEN",
+      "author": "sridharangirish91",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-07T23:00:16Z",
+      "updatedAt": "2024-03-09T00:27:44Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "sridharanr",
+      "headRefOid": "4da9e9255d51a8ee3589cbaa6ff9dc71b4eaf384",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85yrgL8",
+          "commit": {
+            "abbreviatedOid": "0fe84b6"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-08T04:24:32Z",
+          "updatedAt": "2024-03-08T04:24:32Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "I don't think the use case and requirements draft should about discuss about metadata attributes defined in another spec. ",
+              "createdAt": "2024-03-08T04:24:32Z",
+              "updatedAt": "2024-03-08T04:24:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85yrgR6",
+          "commit": {
+            "abbreviatedOid": "0fe84b6"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Metadata Tables",
+          "createdAt": "2024-03-08T04:25:07Z",
+          "updatedAt": "2024-03-08T04:25:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOLZbGd85ysZQa",
+          "commit": {
+            "abbreviatedOid": "0fe84b6"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks @sridharangirish91 ",
+          "createdAt": "2024-03-08T07:27:53Z",
+          "updatedAt": "2024-03-08T07:32:12Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nLive streaming is different from other forms of streaming (e.g., video). Specifically, the delivery of live streams have more constraints on reducing latency to keep the streaming as close to the live feed. In this scenario, video might be prioritized than audio in some cases (e.g., Super Bowl, Olympics, or the World Cup) while audio might be prioritized for other events (e.g., music concert). This also prioritizes latency (to a certain extent) over stream quality. Compared to heuristics, explicit network-to-host information is likely to provide deterministic behaviors to optimally select of the \"quality\" of the access to minimize the latency. An example of where such schemes can reduce the latency and improve performance of live streaming is discussed in {{MOQ-PRIORITY}}.\r\n```",
+              "createdAt": "2024-03-08T07:27:53Z",
+              "updatedAt": "2024-03-08T07:32:12Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nMetadata for live streaming that prefers video over audio: (e.g., Superbowl game coverage)\r\n```",
+              "createdAt": "2024-03-08T07:28:31Z",
+              "updatedAt": "2024-03-08T07:32:12Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\n{: #table-video-livestream title=\"Example Values for Live Streaming of Video Preferred Event\"}\r\n```",
+              "createdAt": "2024-03-08T07:28:52Z",
+              "updatedAt": "2024-03-08T07:32:12Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nMetadata for live streaming that prefers audio over video: (e.g., Music concerts)\r\n```",
+              "createdAt": "2024-03-08T07:29:09Z",
+              "updatedAt": "2024-03-08T07:32:12Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\n{: #table-audio-livestream title=\"Example Values for Live Streaming of Audio Preferred Event\"}\r\n```",
+              "createdAt": "2024-03-08T07:29:31Z",
+              "updatedAt": "2024-03-08T07:32:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85yxmbo",
+          "commit": {
+            "abbreviatedOid": "0fe84b6"
+          },
+          "author": "sridharangirish91",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-08T18:45:23Z",
+          "updatedAt": "2024-03-08T18:45:23Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "We are mentioning the same video key and delta frames in the below table Tiru. Just referencing Ali's presentation to bolster that claim. Do you think I'll remove the reference?",
+              "createdAt": "2024-03-08T18:45:23Z",
+              "updatedAt": "2024-03-08T18:45:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85yyI3w",
+          "commit": {
+            "abbreviatedOid": "4da9e92"
+          },
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Perhaps pull all the tables of Traffic-Type from this I-D, as it is redundant with the metadata document.  Rather, this document should justify why we need a signaling protocol (from client to ISP).",
+          "createdAt": "2024-03-08T19:58:45Z",
+          "updatedAt": "2024-03-08T19:59:33Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "To @tireddy2's point, I am of the mind to pull all the details of metadata specifics from this I-D.  This I-D is trying to concentrate on justification for the signaling protocol itself, not what it would (or could) contain.  Specifically, what *breaks* or *would be impossible* without a signaling protocol should be highlighted.  I realize the document is not perfect at highlighting those breakages/impossibilities quite yet.",
+              "createdAt": "2024-03-08T19:58:45Z",
+              "updatedAt": "2024-03-08T19:59:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85yzNXO",
+          "commit": {
+            "abbreviatedOid": "4da9e92"
+          },
+          "author": "sridharangirish91",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-09T00:09:09Z",
+          "updatedAt": "2024-03-09T00:09:10Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "I agree. My train of thought here: Are we planning to make the justification and then provide an example of how signaling would solve/help solve the problem that we are representing? I wonder if it will be clear enough if we just focus on the signaling without stating anything specific, given we are listing practical applications to bolster our claim for the need of signaling protocol. If we are doing that, then, might as well use the other draft as a reference of how the signaling is both extendable and protocol/career agnostic.",
+              "createdAt": "2024-03-09T00:09:09Z",
+              "updatedAt": "2024-03-09T00:09:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85yzPv0",
+          "commit": {
+            "abbreviatedOid": "0fe84b6"
+          },
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-09T00:27:44Z",
+          "updatedAt": "2024-03-09T00:27:44Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "The tables of which signals we would send fail to show how a separate signaling channel is useful -- as those metadata bits could be carried in IPID, UDP Options, IPv6 flow id, IPv6 hop-by-hop extensions, and similar.  That is, without a (separate) signaling protocol.\r\n",
+              "createdAt": "2024-03-09T00:27:44Z",
+              "updatedAt": "2024-03-09T00:27:44Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

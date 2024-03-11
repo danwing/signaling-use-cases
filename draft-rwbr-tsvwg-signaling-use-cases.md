@@ -1,6 +1,6 @@
 ---
-title: "Signaling Use Cases for Collaborative Traffic Differentiation"
-abbrev: "Collaborative Host/Network Signaling: Use Cases"
+title: "Host to Network Signaling Use Cases for Collaborative Traffic Differentiation"
+abbrev: "Host to Network Signaling: Use Cases"
 category: info
 
 docname: draft-rwbr-tsvwg-signaling-use-cases-latest

@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-10T01:12:47.943717+00:00",
+  "timestamp": "2024-03-12T01:08:08.587671+00:00",
   "repo": "danwing/signaling-use-cases",
   "labels": [
     {
@@ -321,7 +321,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-03-07T23:00:16Z",
-      "updatedAt": "2024-03-09T00:27:44Z",
+      "updatedAt": "2024-03-11T09:55:49Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
@@ -490,8 +490,80 @@
               "updatedAt": "2024-03-09T00:27:44Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85y4bTU",
+          "commit": {
+            "abbreviatedOid": "0fe84b6"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-11T09:55:48Z",
+          "updatedAt": "2024-03-11T09:55:49Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "> fail to show how a separate signaling channel is useful\r\n\r\nwhich I think is fine for the moment as I suspect that there is still an effort needed to motivate why sharing data is useful.\r\n\r\nPlease note also that we have this text in the draft:\r\n\r\n`This document does not intend to define any signaling protocol nor call whether a new signaling protocol, a new extension, one or more signaling protocols are needed.`",
+              "createdAt": "2024-03-11T09:55:49Z",
+              "updatedAt": "2024-03-11T09:55:49Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOLZbGd85pTWJv",
+      "title": "explain what harm (pain) occurs if signaling is not available",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/11",
+      "state": "OPEN",
+      "author": "danwing",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-11T20:54:13Z",
+      "updatedAt": "2024-03-11T20:54:13Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "pain",
+      "headRefOid": "f7d219a3fc3c07329da334aa66e4255f6287e0f5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOLZbGd85pT4EY",
+      "title": "adjust long title and short title (idnits was complaining about short title)",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/12",
+      "state": "OPEN",
+      "author": "danwing",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-11T22:20:57Z",
+      "updatedAt": "2024-03-11T22:20:57Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "title",
+      "headRefOid": "534b53d44b23eea362b78dfac9a44aad341d2357",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }

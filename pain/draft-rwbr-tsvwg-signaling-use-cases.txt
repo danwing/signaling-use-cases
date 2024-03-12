@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 12 September 2024                                  M. Boucadair
+Expires: 13 September 2024                                  M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                           11 March 2024
+                                                           12 March 2024
 
 
      Signaling Use Cases for Collaborative Traffic Differentiation
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2024.
+   This Internet-Draft will expire on 13 September 2024.
 
 Copyright Notice
 
@@ -296,12 +296,12 @@ Table of Contents
    to best accomodate the needs of the various applications (on a same
    host) and between hosts on a network.
 
-   Without a separate signaling protocol, remote peers are able to mark
-   packets that interfere with the desires of the receiving host --
-   making their flows more important than what the receiving host
-   considers more important.  This eventually causes all flows to be
-   marked as important, or -- more likely -- such priority markings to
-   be ignored.
+   Without a signaling in place between a receiving host and its
+   network, remote peers are able to mark packets that interfere with
+   the desires of the receiving host -- making their flows more
+   important than what the receiving host considers more important.
+   This eventually causes all flows to be marked as important, or --
+   more likely -- such priority markings to be ignored.
 
 5.1.2.  Priority Within a Flow (Intra-Flow)
 

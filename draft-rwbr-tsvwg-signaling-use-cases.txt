@@ -5,14 +5,15 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 5 September 2024                                   M. Boucadair
+Expires: 13 September 2024                                  M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                            4 March 2024
+                                                           12 March 2024
 
 
-     Signaling Use Cases for Collaborative Traffic Differentiation
+     Host to Network Signaling Use Cases for Collaborative Traffic
+                            Differentiation
               draft-rwbr-tsvwg-signaling-use-cases-latest
 
 Abstract
@@ -65,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 September 2024.
+   This Internet-Draft will expire on 13 September 2024.
 
 Copyright Notice
 

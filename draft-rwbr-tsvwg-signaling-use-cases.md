@@ -259,7 +259,7 @@ of flows to a network element, the network element can (de-)prioritize
 those flows to best accomodate the needs of the various applications (on a same host) and
 between hosts on a network.
 
-Without a separate signaling protocol, remote peers are able to mark packets that interfere with the
+Without a signaling in place between a receiving host and its network, remote peers are able to mark packets that interfere with the
 desires of the receiving host -- making their flows more important than what the receiving host
 considers more important. This eventually causes all flows to be marked as important, or -- more
 likely -- such priority markings to be ignored.

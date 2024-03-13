@@ -76,10 +76,11 @@ at the network (e.g., packet discard preference), the sender (e.g.,
 adaptive transmission or session migration), or through cooperation of both the host
 and the network.
 
-This document outlines a set of use-cases that highlight the need for a mechanism
-to share metadata about flows between a host and its network in order to enable different traffic treatment.
-Such a mechanism is typically implemented using a signaling protocol between the host and
-a set of trusted netwrok elements.
+This document lists uses-cases demonstrating the need for a mechanism
+to share metadata about flows between a receiving host and its network
+to enable different traffic treatment for packets sent to the
+host. Such a mechanism is typically implemented using a signaling
+protocol between the host and a set of trusted netwrok elements.
 
 --- middle
 
@@ -96,7 +97,10 @@ The simple network diagram below shows where such bandwidth and
 performance constraints usually exist with a "B" (for Bottleneck).
 Other network bottlenecks may be experienced in other segments not shown
 in the figure, such as interconnection links or the infrastructure that hosts the service (e.g.,
-flash crowds). A bottleneck may be limited in time, present or not regular patters, etc.
+flash crowds).  When a bottleneck exists temporarily, the network has no choice but
+to discard or delay packets -- which can harm certain flows.  In this
+paper, this is termed 'reactive policy'.
+
 
 ~~~~~ aasvg
 
@@ -122,53 +126,41 @@ that terminate a bandwidth constraining link (or located few hops next to that e
 with flow metadata. Such augmentation allows those network elements
 to make autonomous decisions to prioritize, delay, or drop packets,
 especially when performing reactive resource management. Absent such metadata,
-these network elements have no means to guide the enforcement of the reactive
-resource policy.
+these network elements have no guidance and treat packets indiscriminately.
 
 There are several challenges with this metadata augmentation:
 
-* for hosts: which data to share without privacy breach or lowering confidentiality.
+* for hosts:
+  * which data to share without privacy breach or lowering confidentiality.
+
 * for network elements:
+  * Which metadata to honor
+  * Tradeoff between the extra cost (including processing) versus benefits
+  * Operational impacts
 
-  + Deciding which metadata to trust
-  + Tradeoff between the extra cost (including processing) vs. expected benefits
-  + Impact on the network operations
+Configured cooperation between an ISP and content providers can allows
+metadata signals augmenting packets to be honored by the ISP.  This
+cooperation has historically involved examination of server IP
+address, TLS SNI, AS number, or heuristics to identify flows.
+However, this cooperation favors large Internet service providers and
+favors large content providers.  Smaller ISPs, small content
+providers, and new content providers are harmed.
 
+A more egalitarian approach provides the same benefit ot parties --
+large and small -- and also provide richer signaling to further
+improve user experience and metadata interoperability. This allows all
+parties to become part of the "Internet fast lane".
 
-The metadata signals from a content provider are more likely to be
-authentic (if adequate authorization/validation are in place) but the metadata signals from other hosts may be "wrong",
-undesired by the peer host, or maliciously contain improper metadata.
-Attempts to automate identification of content providers have included
-HTTP "Host" header inspection and TLS SNI inspection which are
-expected to fail as encrypted SNI and privacy-enhancing proxies
-become more prevalent. Another mechanism to authorize metadata
-signals from a content provider is to configure the ISP equipment
-with the content network's source IP addresses (or other labels that
-may be visible on the packets) and provide a differentiated service
-to the traffic that match these criteria. However, such an arrangement
-may have scalability issues. An approach to mitigate these issues is to limit
-the target contents networks and networks that would put in place these arrangements.
-Such limitations would benefit large players (large ISPs and large content network) and
-disadvantages small players (and new players).  A more egalitarian
-approach would provide the same benefit to all parties -- large and
-small -- and also provide richer signaling to further improve user
-experience and metadata interoperability. This would allow all parties
-to become part of the "Internet fast lane".
+Rather than relying on configured cooperation between ISPs and
+content providers, this paper shows use-cases where the client
+tells its ISP the importance of packets it is receiving.  This
+provides several benefits described in later sections.
 
-The authorization problem exists with technologies as relatively
-simple as DiffServ and the problem persists with many other
-recently discussed metadata signaling mechanisms, including
-embedding information in the UDP payload
-({{?I-D.trammell-plus-spec}}), UDP options
-({{?I-D.kaippallimalil-tsvwg-media-hdr-wireless}}), overloading
-the IPv6 Flow Label ({{?I-D.cc-v6ops-wlcg-flow-label-marking}},
-and Hop-by-Hop Options.  One mechanism suggested occasionally is
-to encrypt or integrity protect the metadata with a key; such a key
-could be established using a signaling protocol, see {{key}}.
-
-There is some consensus that applications can benefit by collaborative signaling
+There is already some consensus that applications can benefit by collaborative signaling
 the network ({{?IAB=RFC9419}}, {{ATIS}}).  This document provides
-use-cases to further detail the need of such signaling.
+use-cases to further detail the need of such signaling and highlights
+the value of the receiving host signaling to its network about flows
+being sent to the host.
 
 # Scope & Running Experiments
 

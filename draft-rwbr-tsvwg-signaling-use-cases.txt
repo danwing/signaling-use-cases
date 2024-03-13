@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 13 September 2024                                  M. Boucadair
+Expires: 14 September 2024                                  M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                           12 March 2024
+                                                           13 March 2024
 
 
      Host to Network Signaling Use Cases for Collaborative Traffic
@@ -27,11 +27,11 @@ Abstract
    session migration), or through cooperation of both the host and the
    network.
 
-   This document outlines a set of use-cases that highlight the need for
-   a mechanism to share metadata about flows between a host and its
-   network in order to enable different traffic treatment.  Such a
-   mechanism is typically implemented using a signaling protocol between
-   the host and a set of trusted netwrok elements.
+   This document lists uses-cases demonstrating the need for a mechanism
+   to share metadata about flows between a receiving host and its
+   network to enable different traffic treatment for packets sent to the
+   host.  Such a mechanism is typically implemented using a signaling
+   protocol between the host and a set of trusted netwrok elements.
 
 About This Document
 
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2024.
+   This Internet-Draft will expire on 14 September 2024.
 
 Copyright Notice
 
@@ -125,9 +125,10 @@ Table of Contents
    performance constraints usually exist with a "B" (for Bottleneck).
    Other network bottlenecks may be experienced in other segments not
    shown in the figure, such as interconnection links or the
-   infrastructure that hosts the service (e.g., flash crowds).  A
-   bottleneck may be limited in time, present or not regular patters,
-   etc.
+   infrastructure that hosts the service (e.g., flash crowds).  When a
+   bottleneck exists temporarily, the network has no choice but to
+   discard or delay packets -- which can harm certain flows.  In this
+   paper, this is termed 'reactive policy'.
 
               +------+  |                     |          |
    +----+     |WLAN  |  |  +------+  +------+ | +------+ | +----+
@@ -151,58 +152,47 @@ Table of Contents
    augmentation allows those network elements to make autonomous
    decisions to prioritize, delay, or drop packets, especially when
    performing reactive resource management.  Absent such metadata, these
-   network elements have no means to guide the enforcement of the
-   reactive resource policy.
+   network elements have no guidance and treat packets indiscriminately.
 
    There are several challenges with this metadata augmentation:
 
-   *  for hosts: which data to share without privacy breach or lowering
-      confidentiality.
+   *  for hosts:
+
+      -  which data to share without privacy breach or lowering
+         confidentiality.
 
    *  for network elements:
 
-      -  Deciding which metadata to trust
+      -  Which metadata to honor
 
-      -  Tradeoff between the extra cost (including processing) vs.
-         expected benefits
+      -  Tradeoff between the extra cost (including processing) versus
+         benefits
 
-      -  Impact on the network operations
+      -  Operational impacts
 
-   The metadata signals from a content provider are more likely to be
-   authentic (if adequate authorization/validation are in place) but the
-   metadata signals from other hosts may be "wrong", undesired by the
-   peer host, or maliciously contain improper metadata.  Attempts to
-   automate identification of content providers have included HTTP
-   "Host" header inspection and TLS SNI inspection which are expected to
-   fail as encrypted SNI and privacy-enhancing proxies become more
-   prevalent.  Another mechanism to authorize metadata signals from a
-   content provider is to configure the ISP equipment with the content
-   network's source IP addresses (or other labels that may be visible on
-   the packets) and provide a differentiated service to the traffic that
-   match these criteria.  However, such an arrangement may have
-   scalability issues.  An approach to mitigate these issues is to limit
-   the target contents networks and networks that would put in place
-   these arrangements.  Such limitations would benefit large players
-   (large ISPs and large content network) and disadvantages small
-   players (and new players).  A more egalitarian approach would provide
-   the same benefit to all parties -- large and small -- and also
-   provide richer signaling to further improve user experience and
-   metadata interoperability.  This would allow all parties to become
-   part of the "Internet fast lane".
+   Configured cooperation between an ISP and content providers can
+   allows metadata signals augmenting packets to be honored by the ISP.
+   This cooperation has historically involved examination of server IP
+   address, TLS SNI, AS number, or heuristics to identify flows.
+   However, this cooperation favors large Internet service providers and
+   favors large content providers.  Smaller ISPs, small content
+   providers, and new content providers are harmed.
 
-   The authorization problem exists with technologies as relatively
-   simple as DiffServ and the problem persists with many other recently
-   discussed metadata signaling mechanisms, including embedding
-   information in the UDP payload ([I-D.trammell-plus-spec]), UDP
-   options ([I-D.kaippallimalil-tsvwg-media-hdr-wireless]), overloading
-   the IPv6 Flow Label ([I-D.cc-v6ops-wlcg-flow-label-marking], and Hop-
-   by-Hop Options.  One mechanism suggested occasionally is to encrypt
-   or integrity protect the metadata with a key; such a key could be
-   established using a signaling protocol, see Section 6.2.
+   A more egalitarian approach provides the same benefit ot parties --
+   large and small -- and also provide richer signaling to further
+   improve user experience and metadata interoperability.  This allows
+   all parties to become part of the "Internet fast lane".
 
-   There is some consensus that applications can benefit by
+   Rather than relying on configured cooperation between ISPs and
+   content providers, this paper shows use-cases where the client tells
+   its ISP the importance of packets it is receiving.  This provides
+   several benefits described in later sections.
+
+   There is already some consensus that applications can benefit by
    collaborative signaling the network ([IAB], [ATIS]).  This document
-   provides use-cases to further detail the need of such signaling.
+   provides use-cases to further detail the need of such signaling and
+   highlights the value of the receiving host signaling to its network
+   about flows being sent to the host.
 
 2.  Scope & Running Experiments
 
@@ -809,22 +799,6 @@ Table of Contents
               <https://access.atis.org/higherlogic/ws/public/
               download/72240>.
 
-   [I-D.cc-v6ops-wlcg-flow-label-marking]
-              Carder, D. W., Chown, T., McKee, S., and M. Babik, "Use of
-              the IPv6 Flow Label for WLCG Packet Marking", Work in
-              Progress, Internet-Draft, draft-cc-v6ops-wlcg-flow-label-
-              marking-02, 10 July 2023,
-              <https://datatracker.ietf.org/doc/html/draft-cc-v6ops-
-              wlcg-flow-label-marking-02>.
-
-   [I-D.kaippallimalil-tsvwg-media-hdr-wireless]
-              Kaippallimalil, J., Gundavelli, S., and S. Dawkins, "Media
-              Handling Considerations for Wireless Networks", Work in
-              Progress, Internet-Draft, draft-kaippallimalil-tsvwg-
-              media-hdr-wireless-04, 14 February 2024,
-              <https://datatracker.ietf.org/doc/html/draft-
-              kaippallimalil-tsvwg-media-hdr-wireless-04>.
-
    [I-D.kpugin-rush]
               Pugin, K., Frindell, A., Ferret, J. C., and J. Weissman,
               "RUSH - Reliable (unreliable) streaming protocol", Work in
@@ -839,13 +813,6 @@ Table of Contents
               flow-metadata-00, 4 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-rwbr-
               sconepro-flow-metadata-00>.
-
-   [I-D.trammell-plus-spec]
-              Trammell, B. and M. Kühlewind, "Path Layer UDP Substrate
-              Specification", Work in Progress, Internet-Draft, draft-
-              trammell-plus-spec-01, 13 March 2017,
-              <https://datatracker.ietf.org/doc/html/draft-trammell-
-              plus-spec-01>.
 
    [IAB]      Arkko, J., Hardie, T., Pauly, T., and M. Kühlewind,
               "Considerations on Application - Network Collaboration

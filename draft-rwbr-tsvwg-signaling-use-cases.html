@@ -16,10 +16,11 @@ flow are more important without having to disclose the content of the packets be
 at the network (e.g., packet discard preference), the sender (e.g.,
 adaptive transmission or session migration), or through cooperation of both the host
 and the network. 
-       This document outlines a set of use-cases that highlight the need for a mechanism
-to share metadata about flows between a host and its network in order to enable different traffic treatment.
-Such a mechanism is typically implemented using a signaling protocol between the host and
-a set of trusted netwrok elements. 
+       This document lists uses-cases demonstrating the need for a mechanism
+to share metadata about flows between a receiving host and its network
+to enable different traffic treatment for packets sent to the
+host. Such a mechanism is typically implemented using a signaling
+protocol between the host and a set of trusted netwrok elements. 
     " name="description">
 <meta content="xml2rfc 3.20.0" name="generator">
 <meta content="user experience" name="keyword">
@@ -1051,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Rajagopalan, et al.</td>
-<td class="center">Expires 13 September 2024</td>
+<td class="center">Expires 14 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-rwbr-tsvwg-signaling-use-cases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-12" class="published">12 March 2024</time>
+<time datetime="2024-03-13" class="published">13 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-13">13 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-14">14 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1100,10 +1101,11 @@ flow are more important without having to disclose the content of the packets be
 at the network (e.g., packet discard preference), the sender (e.g.,
 adaptive transmission or session migration), or through cooperation of both the host
 and the network.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This document outlines a set of use-cases that highlight the need for a mechanism
-to share metadata about flows between a host and its network in order to enable different traffic treatment.
-Such a mechanism is typically implemented using a signaling protocol between the host and
-a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This document lists uses-cases demonstrating the need for a mechanism
+to share metadata about flows between a receiving host and its network
+to enable different traffic treatment for packets sent to the
+host. Such a mechanism is typically implemented using a signaling
+protocol between the host and a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1140,7 +1142,7 @@ a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1274,7 +1276,9 @@ is used (e.g., user's preferences).<a href="#section-1-1" class="pilcrow">¶</a>
 performance constraints usually exist with a "B" (for Bottleneck).
 Other network bottlenecks may be experienced in other segments not shown
 in the figure, such as interconnection links or the infrastructure that hosts the service (e.g.,
-flash crowds). A bottleneck may be limited in time, present or not regular patters, etc.<a href="#section-1-2" class="pilcrow">¶</a></p>
+flash crowds).  When a bottleneck exists temporarily, the network has no choice but
+to discard or delay packets -- which can harm certain flows.  In this
+paper, this is termed 'reactive policy'.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <div id="section-1-3">
         <div class="alignLeft art-svg artwork" id="section-1-3.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="144" width="520" viewBox="0 0 520 144" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -1349,60 +1353,52 @@ that terminate a bandwidth constraining link (or located few hops next to that e
 with flow metadata. Such augmentation allows those network elements
 to make autonomous decisions to prioritize, delay, or drop packets,
 especially when performing reactive resource management. Absent such metadata,
-these network elements have no means to guide the enforcement of the reactive
-resource policy.<a href="#section-1-6" class="pilcrow">¶</a></p>
+these network elements have no guidance and treat packets indiscriminately.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">There are several challenges with this metadata augmentation:<a href="#section-1-7" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-8.1">
-          <p id="section-1-8.1.1">for hosts: which data to share without privacy breach or lowering confidentiality.<a href="#section-1-8.1.1" class="pilcrow">¶</a></p>
+          <p id="section-1-8.1.1">for hosts:<a href="#section-1-8.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1-8.1.2.1">
+              <p id="section-1-8.1.2.1.1">which data to share without privacy breach or lowering confidentiality.<a href="#section-1-8.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </li>
         <li class="normal" id="section-1-8.2">
           <p id="section-1-8.2.1">for network elements:<a href="#section-1-8.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-8.2.2.1">
-              <p id="section-1-8.2.2.1.1">Deciding which metadata to trust<a href="#section-1-8.2.2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-1-8.2.2.1.1">Which metadata to honor<a href="#section-1-8.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-1-8.2.2.2">
-              <p id="section-1-8.2.2.2.1">Tradeoff between the extra cost (including processing) vs. expected benefits<a href="#section-1-8.2.2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-1-8.2.2.2.1">Tradeoff between the extra cost (including processing) versus benefits<a href="#section-1-8.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-1-8.2.2.3">
-              <p id="section-1-8.2.2.3.1">Impact on the network operations<a href="#section-1-8.2.2.3.1" class="pilcrow">¶</a></p>
+              <p id="section-1-8.2.2.3.1">Operational impacts<a href="#section-1-8.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
       </ul>
-<p id="section-1-9">The metadata signals from a content provider are more likely to be
-authentic (if adequate authorization/validation are in place) but the metadata signals from other hosts may be "wrong",
-undesired by the peer host, or maliciously contain improper metadata.
-Attempts to automate identification of content providers have included
-HTTP "Host" header inspection and TLS SNI inspection which are
-expected to fail as encrypted SNI and privacy-enhancing proxies
-become more prevalent. Another mechanism to authorize metadata
-signals from a content provider is to configure the ISP equipment
-with the content network's source IP addresses (or other labels that
-may be visible on the packets) and provide a differentiated service
-to the traffic that match these criteria. However, such an arrangement
-may have scalability issues. An approach to mitigate these issues is to limit
-the target contents networks and networks that would put in place these arrangements.
-Such limitations would benefit large players (large ISPs and large content network) and
-disadvantages small players (and new players).  A more egalitarian
-approach would provide the same benefit to all parties -- large and
-small -- and also provide richer signaling to further improve user
-experience and metadata interoperability. This would allow all parties
-to become part of the "Internet fast lane".<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">The authorization problem exists with technologies as relatively
-simple as DiffServ and the problem persists with many other
-recently discussed metadata signaling mechanisms, including
-embedding information in the UDP payload
-(<span>[<a href="#I-D.trammell-plus-spec" class="cite xref">I-D.trammell-plus-spec</a>]</span>), UDP options
-(<span>[<a href="#I-D.kaippallimalil-tsvwg-media-hdr-wireless" class="cite xref">I-D.kaippallimalil-tsvwg-media-hdr-wireless</a>]</span>), overloading
-the IPv6 Flow Label (<span>[<a href="#I-D.cc-v6ops-wlcg-flow-label-marking" class="cite xref">I-D.cc-v6ops-wlcg-flow-label-marking</a>]</span>,
-and Hop-by-Hop Options.  One mechanism suggested occasionally is
-to encrypt or integrity protect the metadata with a key; such a key
-could be established using a signaling protocol, see <a href="#key" class="auto internal xref">Section 6.2</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11">There is some consensus that applications can benefit by collaborative signaling
+<p id="section-1-9">Configured cooperation between an ISP and content providers can allows
+metadata signals augmenting packets to be honored by the ISP.  This
+cooperation has historically involved examination of server IP
+address, TLS SNI, AS number, or heuristics to identify flows.
+However, this cooperation favors large Internet service providers and
+favors large content providers.  Smaller ISPs, small content
+providers, and new content providers are harmed.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">A more egalitarian approach provides the same benefit ot parties --
+large and small -- and also provide richer signaling to further
+improve user experience and metadata interoperability. This allows all
+parties to become part of the "Internet fast lane".<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">Rather than relying on configured cooperation between ISPs and
+content providers, this paper shows use-cases where the client
+tells its ISP the importance of packets it is receiving.  This
+provides several benefits described in later sections.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">There is already some consensus that applications can benefit by collaborative signaling
 the network (<span>[<a href="#IAB" class="cite xref">IAB</a>]</span>, <span>[<a href="#ATIS" class="cite xref">ATIS</a>]</span>).  This document provides
-use-cases to further detail the need of such signaling.<a href="#section-1-11" class="pilcrow">¶</a></p>
+use-cases to further detail the need of such signaling and highlights
+the value of the receiving host signaling to its network about flows
+being sent to the host.<a href="#section-1-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="scope-running-experiments">
@@ -2264,14 +2260,6 @@ needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
       <dd>
 <span class="refTitle">"Content Classification for Traffic Optimization"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://access.atis.org/higherlogic/ws/public/download/72240">https://access.atis.org/higherlogic/ws/public/download/72240</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.cc-v6ops-wlcg-flow-label-marking">[I-D.cc-v6ops-wlcg-flow-label-marking]</dt>
-      <dd>
-<span class="refAuthor">Carder, D. W.</span>, <span class="refAuthor">Chown, T.</span>, <span class="refAuthor">McKee, S.</span>, and <span class="refAuthor">M. Babik</span>, <span class="refTitle">"Use of the IPv6 Flow Label for WLCG Packet Marking"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-cc-v6ops-wlcg-flow-label-marking-02</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-cc-v6ops-wlcg-flow-label-marking-02">https://datatracker.ietf.org/doc/html/draft-cc-v6ops-wlcg-flow-label-marking-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.kaippallimalil-tsvwg-media-hdr-wireless">[I-D.kaippallimalil-tsvwg-media-hdr-wireless]</dt>
-      <dd>
-<span class="refAuthor">Kaippallimalil, J.</span>, <span class="refAuthor">Gundavelli, S.</span>, and <span class="refAuthor">S. Dawkins</span>, <span class="refTitle">"Media Handling Considerations for Wireless Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kaippallimalil-tsvwg-media-hdr-wireless-04</span>, <time datetime="2024-02-14" class="refDate">14 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04">https://datatracker.ietf.org/doc/html/draft-kaippallimalil-tsvwg-media-hdr-wireless-04</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.kpugin-rush">[I-D.kpugin-rush]</dt>
       <dd>
 <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Frindell, A.</span>, <span class="refAuthor">Ferret, J. C.</span>, and <span class="refAuthor">J. Weissman</span>, <span class="refTitle">"RUSH - Reliable (unreliable) streaming protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-kpugin-rush-02</span>, <time datetime="2023-05-10" class="refDate">10 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02">https://datatracker.ietf.org/doc/html/draft-kpugin-rush-02</a>&gt;</span>. </dd>
@@ -2279,10 +2267,6 @@ needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <dt id="I-D.rwbr-sconepro-flow-metadata">[I-D.rwbr-sconepro-flow-metadata]</dt>
       <dd>
 <span class="refAuthor">Rajagopalan, S.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">T. Reddy.K</span>, <span class="refTitle">"Flow Metadata for Collaborative Host/Network Signaling"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rwbr-sconepro-flow-metadata-00</span>, <time datetime="2024-03-04" class="refDate">4 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00">https://datatracker.ietf.org/doc/html/draft-rwbr-sconepro-flow-metadata-00</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.trammell-plus-spec">[I-D.trammell-plus-spec]</dt>
-      <dd>
-<span class="refAuthor">Trammell, B.</span> and <span class="refAuthor">M. Kühlewind</span>, <span class="refTitle">"Path Layer UDP Substrate Specification"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-trammell-plus-spec-01</span>, <time datetime="2017-03-13" class="refDate">13 March 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01">https://datatracker.ietf.org/doc/html/draft-trammell-plus-spec-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IAB">[IAB]</dt>
       <dd>

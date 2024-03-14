@@ -250,6 +250,12 @@ of flows to a network element, the network element can (de-)prioritize
 those flows to best accomodate the needs of the various applications (on a same host) and
 between hosts on a network.
 
+Without a signaling in place between a receiving host and its network, remote peers are able to mark packets that interfere with the
+desires of the receiving host -- making their flows more important than what the receiving host
+considers more important. This eventually causes all flows to be marked as important, or -- more
+likely -- such priority markings to be ignored.
+
+
 ### Priority Within a Flow (Intra-Flow)
 
 Interactive Audio/Video has long been using {{?RTP=RFC3550}} which
@@ -268,6 +274,12 @@ Thus, the flows originate from an IP address that is not known before
 connection establishment, so there needs to be a way for the client
 to authorize the network elements to receive and hopefully to honor the metadata of those
 packets.
+
+Without a signaling in place between a receiving host and its network,
+remote peers are able to mark every packet of a flow
+as important, causing much the same problem as the previous use-case. Eventually, when all
+packets of every flow are marked as important, there is no differentiation between packets
+within a flow, rendering the network unable to improve reactive policy decisions.
 
 ## Detailed Use Cases
 

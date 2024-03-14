@@ -76,9 +76,9 @@ at the network (e.g., packet discard preference), the sender (e.g.,
 adaptive transmission or session migration), or through cooperation of both the host
 and the network.
 
-This document lists uses-cases demonstrating the need for a mechanism
+This document lists use cases demonstrating the need for a mechanism
 to share metadata about flows between a receiving host and its network
-to enable different traffic treatment for packets sent to the
+to enable differentiated traffic treatment for packets sent to the
 host. Such a mechanism is typically implemented using a signaling
 protocol between the host and a set of trusted netwrok elements.
 
@@ -98,8 +98,8 @@ performance constraints usually exist with a "B" (for Bottleneck).
 Other network bottlenecks may be experienced in other segments not shown
 in the figure, such as interconnection links or the infrastructure that hosts the service (e.g.,
 flash crowds).  When a bottleneck exists temporarily, the network has no choice but
-to discard or delay packets -- which can harm certain flows.  In this
-paper, this is termed 'reactive policy'.
+to discard or delay packets -- which can harm certain flows and thus lead to suboptimal perceived experience.  In this
+document, this is termed 'reactive policy'.
 
 
 ~~~~~ aasvg
@@ -138,27 +138,26 @@ There are several challenges with this metadata augmentation:
   * Tradeoff between the extra cost (including processing) versus benefits
   * Operational impacts
 
-Configured cooperation between an ISP and content providers can allows
+Configured cooperation between an ISP and content providers (via contractual agreements, typically) can allows
 metadata signals augmenting packets to be honored by the ISP.  This
 cooperation has historically involved examination of server IP
 address, TLS SNI, AS number, or heuristics to identify flows.
-However, this cooperation favors large Internet service providers and
-favors large content providers.  Smaller ISPs, small content
-providers, and new content providers are harmed.
+However, this cooperation might have scalability issues (e.g., ISPs to establish and maintain agreements with a large number of content providers), operational implications as the network configuration will rely on service-specific (e.g., risk of frozen or stale configuration), mismatch between the expected service level from users and the delivered one, etc.
+Moreover, smaller ISPs, small content providers, and new content providers are harmed.
 
-A more egalitarian approach provides the same benefit ot parties --
+A more egalitarian approach provides the same benefit to parties --
 large and small -- and also provide richer signaling to further
 improve user experience and metadata interoperability. This allows all
-parties to become part of the "Internet fast lane".
+parties to become part of the "Internet fast lane". Also, this approach improves the Internet for end users per {{?RFC8890}}.
 
 Rather than relying on configured cooperation between ISPs and
-content providers, this paper shows use-cases where the client
+content providers, this document shows use cases where the client
 tells its ISP the importance of packets it is receiving.  This
 provides several benefits described in later sections.
 
 There is already some consensus that applications can benefit by collaborative signaling
 the network ({{?IAB=RFC9419}}, {{ATIS}}).  This document provides
-use-cases to further detail the need of such signaling and highlights
+use cases to further detail the need of such signaling and highlights
 the value of the receiving host signaling to its network about flows
 being sent to the host.
 

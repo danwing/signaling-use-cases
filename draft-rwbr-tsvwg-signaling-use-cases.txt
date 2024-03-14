@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 14 September 2024                                  M. Boucadair
+Expires: 15 September 2024                                  M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                           13 March 2024
+                                                           14 March 2024
 
 
      Host to Network Signaling Use Cases for Collaborative Traffic
@@ -27,11 +27,12 @@ Abstract
    session migration), or through cooperation of both the host and the
    network.
 
-   This document lists uses-cases demonstrating the need for a mechanism
+   This document lists use cases demonstrating the need for a mechanism
    to share metadata about flows between a receiving host and its
-   network to enable different traffic treatment for packets sent to the
-   host.  Such a mechanism is typically implemented using a signaling
-   protocol between the host and a set of trusted netwrok elements.
+   network to enable differentiated traffic treatment for packets sent
+   to the host.  Such a mechanism is typically implemented using a
+   signaling protocol between the host and a set of trusted netwrok
+   elements.
 
 About This Document
 
@@ -66,7 +67,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 September 2024.
+   This Internet-Draft will expire on 15 September 2024.
 
 Copyright Notice
 
@@ -127,8 +128,9 @@ Table of Contents
    shown in the figure, such as interconnection links or the
    infrastructure that hosts the service (e.g., flash crowds).  When a
    bottleneck exists temporarily, the network has no choice but to
-   discard or delay packets -- which can harm certain flows.  In this
-   paper, this is termed 'reactive policy'.
+   discard or delay packets -- which can harm certain flows and thus
+   lead to suboptimal perceived experience.  In this document, this is
+   termed 'reactive policy'.
 
               +------+  |                     |          |
    +----+     |WLAN  |  |  +------+  +------+ | +------+ | +----+
@@ -170,27 +172,33 @@ Table of Contents
 
       -  Operational impacts
 
-   Configured cooperation between an ISP and content providers can
-   allows metadata signals augmenting packets to be honored by the ISP.
-   This cooperation has historically involved examination of server IP
-   address, TLS SNI, AS number, or heuristics to identify flows.
-   However, this cooperation favors large Internet service providers and
-   favors large content providers.  Smaller ISPs, small content
-   providers, and new content providers are harmed.
+   Configured cooperation between an ISP and content providers (via
+   contractual agreements, typically) can allows metadata signals
+   augmenting packets to be honored by the ISP.  This cooperation has
+   historically involved examination of server IP address, TLS SNI, AS
+   number, or heuristics to identify flows.  However, this cooperation
+   might have scalability issues (e.g., ISPs to establish and maintain
+   agreements with a large number of content providers), operational
+   implications as the network configuration will rely on service-
+   specific (e.g., risk of frozen or stale configuration), mismatch
+   between the expected service level from users and the delivered one,
+   etc.  Moreover, smaller ISPs, small content providers, and new
+   content providers are harmed.
 
-   A more egalitarian approach provides the same benefit ot parties --
+   A more egalitarian approach provides the same benefit to parties --
    large and small -- and also provide richer signaling to further
    improve user experience and metadata interoperability.  This allows
-   all parties to become part of the "Internet fast lane".
+   all parties to become part of the "Internet fast lane".  Also, this
+   approach improves the Internet for end users per [RFC8890].
 
    Rather than relying on configured cooperation between ISPs and
-   content providers, this paper shows use-cases where the client tells
-   its ISP the importance of packets it is receiving.  This provides
-   several benefits described in later sections.
+   content providers, this document shows use cases where the client
+   tells its ISP the importance of packets it is receiving.  This
+   provides several benefits described in later sections.
 
    There is already some consensus that applications can benefit by
    collaborative signaling the network ([IAB], [ATIS]).  This document
-   provides use-cases to further detail the need of such signaling and
+   provides use cases to further detail the need of such signaling and
    highlights the value of the receiving host signaling to its network
    about flows being sent to the host.
 
@@ -823,6 +831,10 @@ Table of Contents
               Time Communication Use Cases and Requirements", RFC 7478,
               DOI 10.17487/RFC7478, March 2015,
               <https://www.rfc-editor.org/rfc/rfc7478>.
+
+   [RFC8890]  Nottingham, M., "The Internet is for End Users", RFC 8890,
+              DOI 10.17487/RFC8890, August 2020,
+              <https://www.rfc-editor.org/rfc/rfc8890>.
 
    [RFC9221]  Pauly, T., Kinnear, E., and D. Schinazi, "An Unreliable
               Datagram Extension to QUIC", RFC 9221,

@@ -16,9 +16,9 @@ flow are more important without having to disclose the content of the packets be
 at the network (e.g., packet discard preference), the sender (e.g.,
 adaptive transmission or session migration), or through cooperation of both the host
 and the network. 
-       This document lists uses-cases demonstrating the need for a mechanism
+       This document lists use cases demonstrating the need for a mechanism
 to share metadata about flows between a receiving host and its network
-to enable different traffic treatment for packets sent to the
+to enable differentiated traffic treatment for packets sent to the
 host. Such a mechanism is typically implemented using a signaling
 protocol between the host and a set of trusted netwrok elements. 
     " name="description">
@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Rajagopalan, et al.</td>
-<td class="center">Expires 14 September 2024</td>
+<td class="center">Expires 15 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-rwbr-tsvwg-signaling-use-cases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-13" class="published">13 March 2024</time>
+<time datetime="2024-03-14" class="published">14 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-14">14 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-15">15 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1101,9 +1101,9 @@ flow are more important without having to disclose the content of the packets be
 at the network (e.g., packet discard preference), the sender (e.g.,
 adaptive transmission or session migration), or through cooperation of both the host
 and the network.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This document lists uses-cases demonstrating the need for a mechanism
+<p id="section-abstract-2">This document lists use cases demonstrating the need for a mechanism
 to share metadata about flows between a receiving host and its network
-to enable different traffic treatment for packets sent to the
+to enable differentiated traffic treatment for packets sent to the
 host. Such a mechanism is typically implemented using a signaling
 protocol between the host and a set of trusted netwrok elements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
@@ -1142,7 +1142,7 @@ protocol between the host and a set of trusted netwrok elements.<a href="#sectio
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1277,8 +1277,8 @@ performance constraints usually exist with a "B" (for Bottleneck).
 Other network bottlenecks may be experienced in other segments not shown
 in the figure, such as interconnection links or the infrastructure that hosts the service (e.g.,
 flash crowds).  When a bottleneck exists temporarily, the network has no choice but
-to discard or delay packets -- which can harm certain flows.  In this
-paper, this is termed 'reactive policy'.<a href="#section-1-2" class="pilcrow">¶</a></p>
+to discard or delay packets -- which can harm certain flows and thus lead to suboptimal perceived experience.  In this
+document, this is termed 'reactive policy'.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <div id="section-1-3">
         <div class="alignLeft art-svg artwork" id="section-1-3.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="144" width="520" viewBox="0 0 520 144" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -1379,24 +1379,23 @@ these network elements have no guidance and treat packets indiscriminately.<a hr
           </ul>
 </li>
       </ul>
-<p id="section-1-9">Configured cooperation between an ISP and content providers can allows
+<p id="section-1-9">Configured cooperation between an ISP and content providers (via contractual agreements, typically) can allows
 metadata signals augmenting packets to be honored by the ISP.  This
 cooperation has historically involved examination of server IP
 address, TLS SNI, AS number, or heuristics to identify flows.
-However, this cooperation favors large Internet service providers and
-favors large content providers.  Smaller ISPs, small content
-providers, and new content providers are harmed.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">A more egalitarian approach provides the same benefit ot parties --
+However, this cooperation might have scalability issues (e.g., ISPs to establish and maintain agreements with a large number of content providers), operational implications as the network configuration will rely on service-specific (e.g., risk of frozen or stale configuration), mismatch between the expected service level from users and the delivered one, etc.
+Moreover, smaller ISPs, small content providers, and new content providers are harmed.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">A more egalitarian approach provides the same benefit to parties --
 large and small -- and also provide richer signaling to further
 improve user experience and metadata interoperability. This allows all
-parties to become part of the "Internet fast lane".<a href="#section-1-10" class="pilcrow">¶</a></p>
+parties to become part of the "Internet fast lane". Also, this approach improves the Internet for end users per <span>[<a href="#RFC8890" class="cite xref">RFC8890</a>]</span>.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">Rather than relying on configured cooperation between ISPs and
-content providers, this paper shows use-cases where the client
+content providers, this document shows use cases where the client
 tells its ISP the importance of packets it is receiving.  This
 provides several benefits described in later sections.<a href="#section-1-11" class="pilcrow">¶</a></p>
 <p id="section-1-12">There is already some consensus that applications can benefit by collaborative signaling
 the network (<span>[<a href="#IAB" class="cite xref">IAB</a>]</span>, <span>[<a href="#ATIS" class="cite xref">ATIS</a>]</span>).  This document provides
-use-cases to further detail the need of such signaling and highlights
+use cases to further detail the need of such signaling and highlights
 the value of the receiving host signaling to its network about flows
 being sent to the host.<a href="#section-1-12" class="pilcrow">¶</a></p>
 </section>
@@ -2275,6 +2274,10 @@ needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <dt id="RFC7478">[RFC7478]</dt>
       <dd>
 <span class="refAuthor">Holmberg, C.</span>, <span class="refAuthor">Hakansson, S.</span>, and <span class="refAuthor">G. Eriksson</span>, <span class="refTitle">"Web Real-Time Communication Use Cases and Requirements"</span>, <span class="seriesInfo">RFC 7478</span>, <span class="seriesInfo">DOI 10.17487/RFC7478</span>, <time datetime="2015-03" class="refDate">March 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7478">https://www.rfc-editor.org/rfc/rfc7478</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8890">[RFC8890]</dt>
+      <dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"The Internet is for End Users"</span>, <span class="seriesInfo">RFC 8890</span>, <span class="seriesInfo">DOI 10.17487/RFC8890</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8890">https://www.rfc-editor.org/rfc/rfc8890</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9221">[RFC9221]</dt>
       <dd>

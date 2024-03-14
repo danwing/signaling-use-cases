@@ -1677,6 +1677,10 @@ than another host doing interactive audio/video or gaming.  By signaling the rel
 of flows to a network element, the network element can (de-)prioritize
 those flows to best accomodate the needs of the various applications (on a same host) and
 between hosts on a network.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Without a signaling in place between a receiving host and its network, remote peers are able to mark packets that interfere with the
+desires of the receiving host -- making their flows more important than what the receiving host
+considers more important. This eventually causes all flows to be marked as important, or -- more
+likely -- such priority markings to be ignored.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="priority-within-a-flow-intra-flow">
@@ -1699,6 +1703,11 @@ Thus, the flows originate from an IP address that is not known before
 connection establishment, so there needs to be a way for the client
 to authorize the network elements to receive and hopefully to honor the metadata of those
 packets.<a href="#section-5.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-3">Without a signaling in place between a receiving host and its network,
+remote peers are able to mark every packet of a flow
+as important, causing much the same problem as the previous use-case. Eventually, when all
+packets of every flow are marked as important, there is no differentiation between packets
+within a flow, rendering the network unable to improve reactive policy decisions.<a href="#section-5.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

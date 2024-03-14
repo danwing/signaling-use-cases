@@ -454,6 +454,14 @@ prefer the use of alternate paths, offload a network).
 
 # Operational Considerations
 
+## Policy Enfrocement
+
+Some metadata requires the network to share some hints with a host to adjust
+its behavior for some specific flows. However, that metadata may have a dependency on the service offering
+that is subscribed by a user. Let us consider the example of a bitrate for an optimized video delivery.
+**Such bitrate may not be computed system-wide** given that flows from users with distinct service offerings
+(and connectivity SLOs) may be serviced by the same network nodes.
+
 ## Abuse and Constraints
 
 It is important that not every flow be prioritized; otherwise, the
@@ -512,6 +520,11 @@ TBC
 # Requirements Summary
 
 TODO summary.
+
+* The activation of the collaborative signalling MUST NOT lower the perceived service
+  of flows during nominal conditions (i.e., when the network is not in a reactive policy mode).
+
+
 
 # Security Considerations
 

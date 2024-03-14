@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-12T01:08:08.587671+00:00",
+  "timestamp": "2024-03-14T01:08:33.807181+00:00",
   "repo": "danwing/signaling-use-cases",
   "labels": [
     {
@@ -525,39 +525,258 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-03-11T20:54:13Z",
-      "updatedAt": "2024-03-11T20:54:13Z",
+      "updatedAt": "2024-03-12T16:17:29Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
       "headRepository": "danwing/signaling-use-cases",
       "headRefName": "pain",
-      "headRefOid": "f7d219a3fc3c07329da334aa66e4255f6287e0f5",
+      "headRefOid": "077eb810eea0f572c321d7c8b989e272c12d2f3b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zC9is",
+          "commit": {
+            "abbreviatedOid": "f7d219a"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-03-12T05:49:47Z",
+          "updatedAt": "2024-03-12T05:53:55Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I'm more comfortable with the following:\r\n\r\n```suggestion\r\nWithout a signaling in place between a receiving host and its network, remote peers are able to mark packets that interfere with the\r\n```\r\n",
+              "createdAt": "2024-03-12T05:49:47Z",
+              "updatedAt": "2024-03-12T05:53:55Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "Idem as above. \r\n\r\n\"separate\" is not important here as far as the signal is provided.\r\n\r\nThe value of having \"separate\" is to factorize the same signaling independent of the application, transport protocol, etc. ",
+              "createdAt": "2024-03-12T05:53:49Z",
+              "updatedAt": "2024-03-12T05:53:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85zIRVG",
+          "commit": {
+            "abbreviatedOid": "077eb81"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-12T16:17:29Z",
+          "updatedAt": "2024-03-12T16:17:29Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 12,
       "id": "PR_kwDOLZbGd85pT4EY",
       "title": "adjust long title and short title (idnits was complaining about short title)",
       "url": "https://github.com/danwing/signaling-use-cases/pull/12",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "danwing",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-03-11T22:20:57Z",
-      "updatedAt": "2024-03-11T22:20:57Z",
+      "updatedAt": "2024-03-12T16:11:22Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
       "headRepository": "danwing/signaling-use-cases",
       "headRefName": "title",
       "headRefOid": "534b53d44b23eea362b78dfac9a44aad341d2357",
+      "closedAt": "2024-03-12T16:11:21Z",
+      "mergedAt": "2024-03-12T16:11:21Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "a12e981a60bab83d6bec2d591cda6da391fd9805"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zC6EE",
+          "commit": {
+            "abbreviatedOid": "534b53d"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-12T05:36:53Z",
+          "updatedAt": "2024-03-12T05:36:53Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOLZbGd85pdAoW",
+      "title": "tweak abstract and intro",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/13",
+      "state": "MERGED",
+      "author": "danwing",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-13T02:59:31Z",
+      "updatedAt": "2024-03-14T00:52:32Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "a12e981a60bab83d6bec2d591cda6da391fd9805",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "updated_abstract_intro",
+      "headRefOid": "6a2c5bcd0b89a5e88070e830d0233a17656eb57a",
+      "closedAt": "2024-03-13T15:20:21Z",
+      "mergedAt": "2024-03-13T15:20:21Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "cfe20aa50b314b7a70197affd989d44e36a61bab"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Is it normal that none of the proposed changes are implemented? ",
+          "createdAt": "2024-03-13T16:11:15Z",
+          "updatedAt": "2024-03-13T16:11:15Z"
+        },
+        {
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "body": "I\u2019ll take a look. I did a bulk commit for first time maybe I did that wrong.\u00a0-dOn Mar 13, 2024, at 9:11\u202fAM, Med ***@***.***> wrote:\ufeff\r\nIs it normal that none of the proposed changes are implemented?\r\n\r\n\u2014Reply to this email directly, view it on GitHub, or unsubscribe.You are receiving this because you modified the open/close state.Message ID: ***@***.***>",
+          "createdAt": "2024-03-14T00:52:31Z",
+          "updatedAt": "2024-03-14T00:52:31Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zOr4j",
+          "commit": {
+            "abbreviatedOid": "6a2c5bc"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-03-13T06:06:50Z",
+          "updatedAt": "2024-03-13T06:37:01Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\nto enable differentiated traffic treatment for packets sent to the\r\n```",
+              "createdAt": "2024-03-13T06:06:50Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nThis document lists uses cases demonstrating the need for a mechanism\r\n```",
+              "createdAt": "2024-03-13T06:07:53Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\r\ndocument, this is termed 'reactive policy'.\r\n```",
+              "createdAt": "2024-03-13T06:08:29Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nto discard or delay packets -- which can harm certain flows and thus lead to suboptimal perceived experience.  In this\r\n```",
+              "createdAt": "2024-03-13T06:10:15Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 85,
+              "body": "```suggestion\r\nConfigured cooperation between an ISP and content providers (via contractual agreements, typically) can allow\r\n```",
+              "createdAt": "2024-03-13T06:15:07Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 93,
+              "body": "```suggestion\r\nA more egalitarian approach provides the same benefit to parties --\r\n```",
+              "createdAt": "2024-03-13T06:18:56Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "```suggestion\r\ncontent providers, this document shows use cases where the client\r\n```",
+              "createdAt": "2024-03-13T06:19:25Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 106,
+              "body": "```suggestion\r\nuse cases to further detail the need of such signaling and highlights\r\n```",
+              "createdAt": "2024-03-13T06:19:49Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 89,
+              "body": "```suggestion\r\nHowever, this cooperation might have scalability issues (e.g., ISPs to establish and maintain agreements with a large number of content providers), operational implications as the network configuration will rely on service-specific (e.g., risk of frozen or stale configuration), mismatch between the expected service level from users and the delivered one, etc. \r\n```",
+              "createdAt": "2024-03-13T06:31:02Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 90,
+              "body": "```suggestion\r\nMoreover, smaller ISPs, small content\r\n```",
+              "createdAt": "2024-03-13T06:31:33Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            },
+            {
+              "originalPosition": 96,
+              "body": "```suggestion\r\nparties to become part of the \"Internet fast lane\". Also, this approach improves the Internet for end users per {{?RFC8890}}.\r\n```",
+              "createdAt": "2024-03-13T06:36:20Z",
+              "updatedAt": "2024-03-13T06:37:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85zTeAg",
+          "commit": {
+            "abbreviatedOid": "6a2c5bc"
+          },
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "Thanks, Med!",
+          "createdAt": "2024-03-13T15:18:43Z",
+          "updatedAt": "2024-03-13T15:18:43Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOLZbGd85pdwrU",
+      "title": "add a requirement + an operational cons",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/14",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-13T06:48:39Z",
+      "updatedAt": "2024-03-13T15:23:51Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "a12e981a60bab83d6bec2d591cda6da391fd9805",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "boucadair-patch-8",
+      "headRefOid": "ea1398e08685387b7847a0bc611acc715572e78e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,

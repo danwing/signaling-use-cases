@@ -1223,19 +1223,22 @@ protocol between the host and a set of trusted netwrok elements.<a href="#sectio
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-policy-enfrocement" class="internal xref">Policy Enfrocement</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
-                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-on-the-use-of-fast-path" class="internal xref">On the Use of Fast Path</a></p>
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
-                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-impacts-of-nested-congestio" class="internal xref">Impacts of Nested Congestion Controls</a></p>
+                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-on-the-use-of-fast-path" class="internal xref">On the Use of Fast Path</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
+                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-impacts-of-nested-congestio" class="internal xref">Impacts of Nested Congestion Controls</a></p>
 </li>
             </ul>
 </li>
@@ -2157,16 +2160,28 @@ prefer the use of alternate paths, offload a network).<a href="#section-5.2.5-2"
       <h2 id="name-operational-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
-<div id="abuse-and-constraints">
+<div id="policy-enfrocement">
 <section id="section-6.1">
-        <h3 id="name-abuse-and-constraints">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-abuse-and-constraints" class="section-name selfRef">Abuse and Constraints</a>
+        <h3 id="name-policy-enfrocement">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-policy-enfrocement" class="section-name selfRef">Policy Enfrocement</a>
         </h3>
-<p id="section-6.1-1">It is important that not every flow be prioritized; otherwise, the
+<p id="section-6.1-1">Some metadata requires the network to share some hints with a host to adjust
+its behavior for some specific flows. However, that metadata may have a dependency on the service offering
+that is subscribed by a user. Let us consider the example of a bitrate for an optimized video delivery.
+<strong>Such bitrate may not be computed system-wide</strong> given that flows from users with distinct service offerings
+(and connectivity SLOs) may be serviced by the same network nodes.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="abuse-and-constraints">
+<section id="section-6.2">
+        <h3 id="name-abuse-and-constraints">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-abuse-and-constraints" class="section-name selfRef">Abuse and Constraints</a>
+        </h3>
+<p id="section-6.2-1">It is important that not every flow be prioritized; otherwise, the
 network devolves into the best-effort network that existed prior to
 metadata signaling. It is a requirement that mechanisms exist to
-prevent this occurrence.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">Such a mechanism might be simple, for example, a
+prevent this occurrence.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">Such a mechanism might be simple, for example, a
 cellular network might allow one flow from a subscriber to declare
 itself as important; other flows with that subscriber are denied
 attempts to prioritize themselves.  The mechanism might be more
@@ -2176,60 +2191,60 @@ based on its policy and only the enterprise network communicates flow
 priorities to the ISP network.  The enterprise might prioritize
 certain users (e.g., IT staff), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
-want.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+want.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="key">
-<section id="section-6.2">
+<section id="section-6.3">
         <h3 id="name-key-establishment">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
         </h3>
-<p id="section-6.2-1">Various proposals have suggested establishing a key to validate
+<p id="section-6.3-1">Various proposals have suggested establishing a key to validate
 per-packet metadata or to decrypt per-packet metadata.  However, most
 proposals have not specified how this key would be established. A
 signaling protocol from the receiving host to its ISP could establish
 such a key. The host can then convey the key to the sending host to
-use to integrity protect or encrypt the per-packet metadata.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+use to integrity protect or encrypt the per-packet metadata.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-6.2-2.1">
-            <p id="section-6.2-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
+<li class="normal ulEmpty" id="section-6.3-2.1">
+            <p id="section-6.3-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
 needs to be carefully considered (and further assessed via experiments) by the signaling protocol proposing such
-keying. Also, the required operational setup should be documented.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
+keying. Also, the required operational setup should be documented.<a href="#section-6.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="metadata-versioncapability-exchange">
-<section id="section-6.3">
+<section id="section-6.4">
         <h3 id="name-metadata-version-capability">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
         </h3>
-<p id="section-6.3-1">The sender has to convey metadata in a way that is understood by the
+<p id="section-6.4-1">The sender has to convey metadata in a way that is understood by the
 various network elements on the path -- each of which might be
 operated by different entities and have different capabilities.  For
 example, the Wi-Fi access point might be operated by an enterprise
 network, hotel, or home user, whereas the upstream router is operated by
 the ISP.  Each of those might support different versions of the same
-metadata, or might need the metadata expressed in different ways.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.3-2">The signaling protocol would provide a way to learn the needs of those
+metadata, or might need the metadata expressed in different ways.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4-2">The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
-needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+needs.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="on-the-use-of-fast-path">
-<section id="section-6.4">
+<section id="section-6.5">
         <h3 id="name-on-the-use-of-fast-path">
-<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-on-the-use-of-fast-path" class="section-name selfRef">On the Use of Fast Path</a>
+<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-on-the-use-of-fast-path" class="section-name selfRef">On the Use of Fast Path</a>
         </h3>
-<p id="section-6.4-1">TBC<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.5-1">TBC<a href="#section-6.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="impacts-of-nested-congestion-controls">
-<section id="section-6.5">
+<section id="section-6.6">
         <h3 id="name-impacts-of-nested-congestio">
-<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-impacts-of-nested-congestio" class="section-name selfRef">Impacts of Nested Congestion Controls</a>
+<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-impacts-of-nested-congestio" class="section-name selfRef">Impacts of Nested Congestion Controls</a>
         </h3>
-<p id="section-6.5-1">TBC<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.6-1">TBC<a href="#section-6.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2240,6 +2255,12 @@ needs.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-requirements-summary" class="section-name selfRef">Requirements Summary</a>
       </h2>
 <p id="section-7-1">TODO summary.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-2.1">
+          <p id="section-7-2.1.1">The activation of the collaborative signalling MUST NOT lower the perceived service
+of flows during nominal conditions (i.e., when the network is not in a reactive policy mode).<a href="#section-7-2.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="security-considerations">

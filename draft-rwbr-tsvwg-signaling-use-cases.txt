@@ -100,11 +100,12 @@ Table of Contents
        5.2.4.  Mixed Traffic
        5.2.5.  Assisted Offload
    6.  Operational Considerations
-     6.1.  Abuse and Constraints
-     6.2.  Key Establishment
-     6.3.  Metadata Version/Capability Exchange
-     6.4.  On the Use of Fast Path
-     6.5.  Impacts of Nested Congestion Controls
+     6.1.  Policy Enfrocement
+     6.2.  Abuse and Constraints
+     6.3.  Key Establishment
+     6.4.  Metadata Version/Capability Exchange
+     6.5.  On the Use of Fast Path
+     6.6.  Impacts of Nested Congestion Controls
    7.  Requirements Summary
    8.  Security Considerations
    9.  IANA Considerations
@@ -748,7 +749,17 @@ Table of Contents
 
 6.  Operational Considerations
 
-6.1.  Abuse and Constraints
+6.1.  Policy Enfrocement
+
+   Some metadata requires the network to share some hints with a host to
+   adjust its behavior for some specific flows.  However, that metadata
+   may have a dependency on the service offering that is subscribed by a
+   user.  Let us consider the example of a bitrate for an optimized
+   video delivery. *Such bitrate may not be computed system-wide* given
+   that flows from users with distinct service offerings (and
+   connectivity SLOs) may be serviced by the same network nodes.
+
+6.2.  Abuse and Constraints
 
    It is important that not every flow be prioritized; otherwise, the
    network devolves into the best-effort network that existed prior to
@@ -766,7 +777,7 @@ Table of Contents
    (e.g., IT staff), certain equipment (audio/video equipment in a
    conference room), or whatever its policies it might want.
 
-6.2.  Key Establishment
+6.3.  Key Establishment
 
    Various proposals have suggested establishing a key to validate per-
    packet metadata or to decrypt per-packet metadata.  However, most
@@ -780,7 +791,7 @@ Table of Contents
       via experiments) by the signaling protocol proposing such keying.
       Also, the required operational setup should be documented.
 
-6.3.  Metadata Version/Capability Exchange
+6.4.  Metadata Version/Capability Exchange
 
    The sender has to convey metadata in a way that is understood by the
    various network elements on the path -- each of which might be
@@ -795,17 +806,21 @@ Table of Contents
    those networks, and provide metadata signaling satisfying most or all
    of their needs.
 
-6.4.  On the Use of Fast Path
+6.5.  On the Use of Fast Path
 
    TBC
 
-6.5.  Impacts of Nested Congestion Controls
+6.6.  Impacts of Nested Congestion Controls
 
    TBC
 
 7.  Requirements Summary
 
    TODO summary.
+
+   *  The activation of the collaborative signalling MUST NOT lower the
+      perceived service of flows during nominal conditions (i.e., when
+      the network is not in a reactive policy mode).
 
 8.  Security Considerations
 

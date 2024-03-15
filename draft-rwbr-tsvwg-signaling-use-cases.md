@@ -464,7 +464,7 @@ that is subscribed by a user. Let us consider the example of a bitrate for an op
 
 ## Redundant Functions & Classification Complications
 
-If distinct channels are used to share the metadata between a host and a network, 
+If distinct channels are used to share the metadata between a host and a network,
 a network that engages in the collaborative signaling approach will require
 sophisticated features to classify flows and decide which channel is used to share
 metadata so that it can consume that information. Likewise, the network will

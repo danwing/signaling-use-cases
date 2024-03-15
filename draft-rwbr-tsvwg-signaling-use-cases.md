@@ -238,7 +238,7 @@ Metadata exchanges can occur in one single direction or both directions of a flo
 The client-centric metadata sharing approach because it preserves privacy and also
 takes advantage of clients having a full view on their available network attachments.
 Without client involvement some use-cases cannot be solved, as detailed below
-in {{generic-cases}}. 
+in {{generic-cases}}.
 
 > Note: some use cases may require seeking for users preference or receiving these preferences. Such matters are
 out of scope.

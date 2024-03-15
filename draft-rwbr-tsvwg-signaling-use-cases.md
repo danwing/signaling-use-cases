@@ -493,4 +493,4 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to Hang Shi for the rewview and comments.
+Thanks to Hang Shi for the review and comments.

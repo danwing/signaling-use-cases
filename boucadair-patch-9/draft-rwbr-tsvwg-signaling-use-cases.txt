@@ -102,11 +102,12 @@ Table of Contents
    6.  Operational Considerations
      6.1.  Policy Enfrocement
      6.2.  Metadata Scope
-     6.3.  Abuse and Constraints
-     6.4.  Key Establishment
-     6.5.  Metadata Version/Capability Exchange
-     6.6.  On the Use of Fast Path
-     6.7.  Impacts of Nested Congestion Controls
+     6.3.  Application Intereference
+     6.4.  Abuse and Constraints
+     6.5.  Key Establishment
+     6.6.  Metadata Version/Capability Exchange
+     6.7.  On the Use of Fast Path
+     6.8.  Impacts of Nested Congestion Controls
    7.  Requirements Summary
    8.  Security Considerations
    9.  IANA Considerations
@@ -774,8 +775,9 @@ Table of Contents
 
       It is out of the scope of this document to discuss setups (e.g.,
       3GPP PDU Sessions) where network attachments with GBR (Guaranteed
-      Bit Rate) for specific flows is setup. ## Application
-      Intereference
+      Bit Rate) for specific flows is provided.
+
+6.3.  Application Intereference
 
    Applications that have access to a resource-quota information may
    adopt an aggressive behavior (compared to those that don't have
@@ -786,7 +788,7 @@ Table of Contents
    running behind the same CPE, with each of them running a video
    application.
 
-6.3.  Abuse and Constraints
+6.4.  Abuse and Constraints
 
    It is important that not every flow be prioritized; otherwise, the
    network devolves into the best-effort network that existed prior to
@@ -804,7 +806,7 @@ Table of Contents
    (e.g., IT staff), certain equipment (audio/video equipment in a
    conference room), or whatever its policies it might want.
 
-6.4.  Key Establishment
+6.5.  Key Establishment
 
    Various proposals have suggested establishing a key to validate per-
    packet metadata or to decrypt per-packet metadata.  However, most
@@ -818,7 +820,7 @@ Table of Contents
       via experiments) by the signaling protocol proposing such keying.
       Also, the required operational setup should be documented.
 
-6.5.  Metadata Version/Capability Exchange
+6.6.  Metadata Version/Capability Exchange
 
    The sender has to convey metadata in a way that is understood by the
    various network elements on the path -- each of which might be
@@ -833,11 +835,11 @@ Table of Contents
    those networks, and provide metadata signaling satisfying most or all
    of their needs.
 
-6.6.  On the Use of Fast Path
+6.7.  On the Use of Fast Path
 
    TBC
 
-6.7.  Impacts of Nested Congestion Controls
+6.8.  Impacts of Nested Congestion Controls
 
    TBC
 

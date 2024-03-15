@@ -238,7 +238,10 @@ Metadata exchanges can occur in one single direction or both directions of a flo
 The client-centric metadata sharing approach because it preserves privacy and also
 takes advantage of clients having a full view on their available network attachments.
 Without client involvement some use-cases cannot be solved, as detailed below
-in {{generic-cases}}.
+in {{generic-cases}}. 
+
+> Note: some use cases may require seeking for users preference or receiving these preferences. Such matters are
+out of scope.
 
 
 
@@ -311,15 +314,15 @@ Signal the flow needs least delay between server and client. Network can provide
 Problems:
 
 1.  All packets prioritized the same irrespective of user preferences/needs:
-    a.  A client based change in priority of a certain type of data is not possible that. Eg. A hearing challenged user can choose video over audio while the priority is different for a regular user.
-    b.  Dynamic changes to priority based on user activity is not possible today. Eg. Audio packets having same priority when user mutes the audio, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.
-2.  In loss prone network or during a reactive event, retransmissions cause immense delay. Network, not able to distinguish between reliable and loss tolerant data or the critical data within flows(i-frames, p-frames and audio packets), can have challenges in efficiently handling/routing data.
+    a.  A client based change in priority of a certain type of data is not possible. For example, a hearing challenged user can choose video over audio while the priority is different for other users.
+    b.  Dynamic changes to priority based on user activity is not possible today. For example, audio packets having the same priority when a user mutes the audio locally, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.
+2.  In loss-prone networks or during a reactive policy events, retransmissions cause immense delay. Networks, not able to distinguish between reliable and loss-tolerant data or the critical data within a flow (i-frames, p-frames, and audio packets), can have challenges in efficiently handling/forwarding data.
 
 Solution:
 
 1.  Client to ISP (Host-to-network) signaling can help with conveying user needs.
 
-    a. The server (content provider) achieves best scalability by sending a single stream with the same per-packet metadata. The client, on the other hand, signaling the ISP to treat certain packets with a different priority over the others, can help solve the issue. Eg. For video streaming, if the metadata just said "audio" (0x00), "video i-frame" (0x01) "video p-frame" (0x02), the client could have the signaling protocol tell the router which one was most important. Some users could prioritize video over audio and vice versa.
+    a. The server (content provider) achieves best scalability by sending a single stream with the same per-packet metadata. The client, on the other hand, signaling the ISP to treat certain packets with a different priority over the others, can help solve the issue. For example, for video streaming, if the metadata just said "audio" (0x00), "video i-frame" (0x01) "video p-frame" (0x02), the client could have the signaling protocol tell an upstream router which one was most important. Some users could prioritize video over audio and vice versa.
 
     b. Clients occasionally change the importance of receiving certain streams, such as muting video or audio, but still need to receive some frames to populate their playout jitter buffer. In such cases, the client can signal the ISP to (de-)prioritize certain types of traffic during the duration of that event. The per-packet metadata from the server would remain the same while the ISP treats certain per-packet metadata differently. These signals can be propagated to the server (in the form of a network to host signals) for improved efficiency, but this is out of the scope of this document.
 2.  Server to ISP (Host-to-network) per packet metadata can help in informing the network about the nature of traffic.
@@ -394,10 +397,10 @@ traffic but a different application.
 There are  cases (crisis) where "normal" network
 resources cannot be used at maximum and, thus, a network would seek to
 reduce or offload some of the traffic during these events -- often
-called 'reactive traffic policy'. An example of such sue case is cellular networks
+called 'reactive traffic policy'. An example of such use case is cellular networks
 that are overly used (and radio resources exhausted) such as a large
 collection of people (e.g., parade, sporting event), or such as a partial
-radio network outage (e.g., tower power outage).  During such an condition, an alternative network
+radio network outage (e.g., tower power outage).  During such a condition, an alternative network
 attachment may be available to the host (e.g., Wi-Fi).
 
 Network-to-host signals are

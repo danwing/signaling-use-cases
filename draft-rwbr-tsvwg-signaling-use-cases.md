@@ -243,8 +243,14 @@ in {{generic-cases}}.
 > Note: some use cases may require seeking for users preference or receiving these preferences. Such matters are
 out of scope.
 
+# Signaling Avoidance
 
+Leveraging previous experience ({{?RFC9049}}), the signaling protocol does *not* need:
 
+  * application identity
+  * application cause (or 'reason') to signal metadata
+  * server identity
+  * client-to-server encrypted payload inspection by network elements
 
 # Use Cases
 

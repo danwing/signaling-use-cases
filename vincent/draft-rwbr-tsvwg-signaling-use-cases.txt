@@ -311,8 +311,8 @@ Table of Contents
    differentiating between voice, video and data.  Today's video
    streaming is exclusively over TCP but will migrate to QUIC and
    eventually is likely to support unreliable transport ([RFC9221],
-   [I-D.draft-ietf-moq-transport]).  With unreliable transport of video
-   in RTP or QUIC, it is beneficial to differentiate the important video
+   [I-D.ietf-moq-transport]).  With unreliable transport of video in RTP
+   or QUIC, it is beneficial to differentiate the important video
    keyframes from other video frames.  Other applications such as gaming
    and remote desktop also benefit from differentiating their packets to
    the network.
@@ -585,7 +585,7 @@ Table of Contents
               <https://access.atis.org/higherlogic/ws/public/
               download/72240>.
 
-   [I-D.draft-ietf-moq-transport]
+   [I-D.ietf-moq-transport]
               Curley, L., Pugin, K., Nandakumar, S., Vasiliev, V., and
               I. Swett, "Media over QUIC Transport", Work in Progress,
               Internet-Draft, draft-ietf-moq-transport-03, 4 March 2024,

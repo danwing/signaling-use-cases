@@ -102,7 +102,7 @@ Table of Contents
    6.  Operational Considerations
      6.1.  Policy Enfrocement
      6.2.  Metadata Scope
-     6.3.  Application Intereference
+     6.3.  Applications Interference
      6.4.  Abuse and Constraints
      6.5.  Key Establishment
      6.6.  Metadata Version/Capability Exchange
@@ -777,7 +777,7 @@ Table of Contents
       3GPP PDU Sessions) where network attachments with GBR (Guaranteed
       Bit Rate) for specific flows is provided.
 
-6.3.  Application Intereference
+6.3.  Applications Interference
 
    Applications that have access to a resource-quota information may
    adopt an aggressive behavior (compared to those that don't have

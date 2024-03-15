@@ -618,7 +618,7 @@ Table of Contents
 
 Acknowledgments
 
-   Thanks to Hang Shi for the rewview and comments.
+   Thanks to Hang Shi for the review and comments.
 
 Authors' Addresses
 

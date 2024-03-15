@@ -268,7 +268,7 @@ runs over UDP.  As described in {{Section 2.3.7.2 of ?RFC7478}}, there
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
 eventually is likely to support unreliable transport ({{?RFC9221}},
-{{?I-D.draft-ietf-moq-transport}}).  With unreliable transport of video in
+{{?I-D.ietf-moq-transport}}).  With unreliable transport of video in
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to

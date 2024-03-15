@@ -290,7 +290,7 @@ within a flow, rendering the network unable to improve reactive policy decisions
 
 ## Detailed Use Cases
 
-### Video Streaming {#example-video-streaming}
+### Media Streaming {#example-media-streaming}
 
 Streaming video contains the occasional key frame ("i-frame")
 containing a full video frame.  These are necessary to rebuild
@@ -300,16 +300,37 @@ therefore more critical to deliver to the receiver than delta frames.
 Streaming video also contains audio frames which can be encoded
 separately and thus can be signaled separately.  Audio is more
 critical than video for almost all applications, but its importance
-(relative to other packets in the flow) is still an application decision.  In the example below, the audio
-is more important than video (importance=high, PT=keep, RU=reliable), video key frames
-have middle importance (importance=low, PT=discard, RU=reliable), and both types
-of video delta frames (P-frame and B-frame) have least importance (importance=low, PT=discard, RU=unreliable).
+(relative to other packets in the flow) is still an application decision.
+
+Examples: Super bowl, On-Demand Streaming
+
+Requirement:
+
+Signal the flow needs least delay between server and client. Network can provide minimal delay information to the host. Feedback from the network and the client, based on user preference, is required for more efficient streaming. This is required for incorporating special needs based on application/user capabilities and to prioritize traffic during reactive events.
+
+Problems:
+
+1.  All packets prioritized the same irrespective of user preferences/needs:
+    a.  A client based change in priority of a certain type of data is not possible that. Eg. A hearing challenged user can choose video over audio while the priority is different for a regular user.
+    b.  Dynamic changes to priority based on user activity is not possible today. Eg. Audio packets having same priority when user mutes the audio, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.
+2.  In loss prone network or during a reactive event, retransmissions cause immense delay. Network, not able to distinguish between reliable and loss tolerant data or the critical data within flows(i-frames, p-frames and audio packets), can have challenges in efficiently handling/routing data.
+
+Solution:
+
+1.  Client to ISP (Host-to-network) signaling can help with conveying user needs.
+
+    a. The server (content provider) achieves best scalability by sending a single stream with the same per-packet metadata. The client, on the other hand, signaling the ISP to treat certain packets with a different priority over the others, can help solve the issue. Eg. For video streaming, if the metadata just said "audio" (0x00), "video i-frame" (0x01) "video p-frame" (0x02), the client could have the signaling protocol tell the router which one was most important. Some users could prioritize video over audio and vice versa.
+
+    b. Clients occasionally change the importance of receiving certain streams, such as muting video or audio, but still need to receive some frames to populate their playout jitter buffer. In such cases, the client can signal the ISP to (de-)prioritize certain types of traffic during the duration of that event. The per-packet metadata from the server would remain the same while the ISP treats certain per-packet metadata differently. These signals can be propagated to the server (in the form of a network to host signals) for improved efficiency, but this is out of the scope of this document.
+2.  Server to ISP (Host-to-network) per packet metadata can help in informing the network about the nature of traffic.
 
 ### Interactive Media
 
 Examples: VoIP, gaming.
 
-Requirement:  Signal the flow needs low jitter and low delay. However, the network can only provide
+Requirement:
+
+Signal the flow needs low jitter and low delay. However, the network can only provide
 a limited amount of low jitter/low delay to each host, maybe as few as one. This requires signaling
 feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
 response, the user and the application will likely continue, occasionally re-attempting to get the

@@ -470,7 +470,7 @@ delivered as part of an Internet connectivity service. However, the network has 
 
 > It is out of the scope of this document to discuss setups (e.g., 3GPP PDU Sessions) where network attachments with GBR (Guaranteed Bit Rate) for specific flows is provided.
 
-## Application Intereference
+## Applications Interference
 
 Applications that have access to a resource-quota information may adopt an aggressive behavior (compared to those that don't have access) if they assumed that a resource-quota like metadata
 is for the application, not for the host that runs the applications.

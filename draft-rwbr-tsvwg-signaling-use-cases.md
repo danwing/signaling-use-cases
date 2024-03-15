@@ -417,6 +417,17 @@ that is subscribed by a user. Let us consider the example of a bitrate for an op
 **Such bitrate may not be computed system-wide** given that flows from users with distinct service offerings
 (and connectivity SLOs) may be serviced by the same network nodes.
 
+
+## Redundant Functions & Classification Complications
+
+If distinct channels are used to share the metadata between a host and a network,
+a network that engages in the collaborative signaling approach will require
+sophisticated features to classify flows and decide which channel is used to share
+metadata so that it can consume that information. Likewise, the network will
+require to implement redundant functions; for each signaling interface.
+
+As such, application- and protocol-specific signaling channels are suboptimal.
+
 ## Metadata Scope
 
 An operational challenge for sharing resource-quota like metadata (e.g., maximum bitrate)
@@ -431,6 +442,7 @@ Applications that have access to a resource-quota information may adopt an aggre
 is for the application, not for the host that runs the applications.
 
 This is challenging for home networks where multiple hosts may be running behind the same CPE, with each of them running a video application.
+
 
 ## Abuse and Constraints
 

@@ -77,10 +77,10 @@ adaptive transmission or session migration), or through cooperation of both the 
 and the network.
 
 This document lists use cases demonstrating the need for a mechanism
-to share metadata about flows between a receiving host and its network
+to share metadata about flows between a receiving host and its networks
 to enable differentiated traffic treatment for packets sent to the
 host. Such a mechanism is typically implemented using a signaling
-protocol between the host and a set of trusted netwrok elements.
+protocol between the host and a set of network elements.
 
 --- middle
 
@@ -118,7 +118,7 @@ adequate dimensioning and upgrades. However, such upgrades may not
 be always immediately possible or economically justified.
 
 Complementary mitigations are thus needed to soften these complications
-by introducing some collaboration between hosts and networks to adjust
+by introducing some collaboration between a host and its networks to adjust
 their behaviors.
 
 For traffic sent in either direction, the network network elements
@@ -148,7 +148,8 @@ Moreover, smaller ISPs, small content providers, and new content providers are h
 A more egalitarian approach provides the same benefit to parties --
 large and small -- and also provide richer signaling to further
 improve user experience and metadata interoperability. This allows all
-parties to become part of the "Internet fast lane". Also, this approach improves the Internet for end users per {{?RFC8890}}.
+parties, big and small, to request the network differentiate a flow,
+improving the Internet for end users per {{?RFC8890}}.
 
 Rather than relying on configured cooperation between ISPs and
 content providers, this document shows use cases where the client
@@ -168,7 +169,7 @@ nor call whether a new signaling protocol, a new extension, one or more
 signaling protocols are needed.
 
 However, this document provides a reference to digest the intended
-benefits for enabling collaborating between hosts and networks. These
+benefits for enabling collaborating of a host and its networks. These
 benefits are yet to be backed up with more evidence. Some experimental
 work would be reasonable to be endorsed by the IETF to solicit more
 feedback and collect assess the benefits under various setups.
@@ -186,7 +187,7 @@ interface conditions).
 # Various Approaches for Collaborative Signaling
 
 {{design-approaches}} depicts examples of approaches to establish channels to convey
-and share metadata between hosts, networks, and servers.
+and share metadata between a host, its networks, and the servers.
 
 Metadata exchanges can occur in one single direction or both directions of a flows.
 
@@ -236,10 +237,18 @@ Metadata exchanges can occur in one single direction or both directions of a flo
 
 The client-centric metadata sharing approach because it preserves privacy and also
 takes advantage of clients having a full view on their available network attachments.
+Without client involvement some use-cases cannot be solved, as detailed below
+in {{generic-cases}}.
+
+> Note: some use cases may require seeking for users preference or receiving these preferences. Such matters are
+out of scope.
+
+
+
 
 # Use Cases
 
-## Generic Cases
+## Generic Cases {#generic-cases}
 
 ### Priority Between Flows (Inter-Flow) of The Same Host
 
@@ -247,8 +256,7 @@ Certain flows being received by a host (or by an application on a host) are less
 flows of **the same host**.  For example, a host downloading a software update is generally considered less important
 than another host doing interactive audio/video or gaming.  By signaling the relative importance
 of flows to a network element, the network element can (de-)prioritize
-those flows to best accomodate the needs of the various applications (on a same host) and
-between hosts on a network.
+those flows to best accommodate the needs of the various applications on a same host.
 
 Without a signaling in place between a receiving host and its network, remote peers are able to mark packets that interfere with the
 desires of the receiving host -- making their flows more important than what the receiving host
@@ -263,13 +271,15 @@ runs over UDP.  As described in {{Section 2.3.7.2 of ?RFC7478}}, there
 is value in differentiating between voice, video and data.  Today's
 video streaming is exclusively over TCP but will migrate to QUIC and
 eventually is likely to support unreliable transport ({{?RFC9221}},
-{{?I-D.kpugin-rush}}).  With unreliable transport of video in
+{{?I-D.ietf-moq-transport}}).  With unreliable transport of video in
 RTP or QUIC, it is beneficial to differentiate the important video
 keyframes from other video frames.  Other applications such as gaming
 and remote desktop also benefit from differentiating their packets to
 the network.
 
-Many of these flows do not originate from a content provider's network.
+Many of these flows do not originate from a content provider's network --
+rather, they originate from a peer (e.g., VoIP, interactive video,
+peer-to-peer gaming, Remote Desktop).
 Thus, the flows originate from an IP address that is not known before
 connection establishment, so there needs to be a way for the client
 to authorize the network elements to receive and hopefully to honor the metadata of those
@@ -283,7 +293,7 @@ within a flow, rendering the network unable to improve reactive policy decisions
 
 ## Detailed Use Cases
 
-### Video Streaming {#example-video-streaming}
+### Media Streaming {#example-media-streaming}
 
 Streaming video contains the occasional key frame ("i-frame")
 containing a full video frame.  These are necessary to rebuild
@@ -293,28 +303,37 @@ therefore more critical to deliver to the receiver than delta frames.
 Streaming video also contains audio frames which can be encoded
 separately and thus can be signaled separately.  Audio is more
 critical than video for almost all applications, but its importance
-(relative to other packets in the flow) is still an application decision.  In the example below, the audio
-is more important than video (importance=high, PT=keep, RU=reliable), video key frames
-have middle importance (importance=low, PT=discard, RU=reliable), and both types
-of video delta frames (P-frame and B-frame) have least importance (importance=low, PT=discard, RU=unreliable).
+(relative to other packets in the flow) is still an application decision.
 
-Video Streaming Metadata:
+Examples: Super bowl, On-Demand Streaming
 
-Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata}}, the host to network metadata parameters for video streaming type is given below.
+Requirement:
 
-| Traffic type                             | Importance | PacketNature      | PacketType           |
-|:----------------------------------------:|:----------:|:-----------------:|:--------------------:|
-| video I-frame (key frame)                | low        | realtime          | reliable             |
-| video delta P-frame                      | low        | discard           | unreliable           |
-| video delta B-frame                      | low        | discard           | unreliable           |
-| audio                                    | high       | realtime          | reliable             |
-{: #table-video-streaming title="Example Values for Video Streaming Metadata"}
+Signal the flow needs least delay between server and client. Network can provide minimal delay information to the host. Feedback from the network and the client, based on user preference, is required for more efficient streaming. This is required for incorporating special needs based on application/user capabilities and to prioritize traffic during reactive events.
+
+Problems:
+
+1.  All packets prioritized the same irrespective of user preferences/needs:
+    a.  A client based change in priority of a certain type of data is not possible. For example, a hearing challenged user can choose video over audio while the priority is different for other users.
+    b.  Dynamic changes to priority based on user activity is not possible today. For example, audio packets having the same priority when a user mutes the audio locally, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.
+2.  In loss-prone networks or during a reactive policy events, retransmissions cause immense delay. Networks, not able to distinguish between reliable and loss-tolerant data or the critical data within a flow (i-frames, p-frames, and audio packets), can have challenges in efficiently handling/forwarding data.
+
+Solution:
+
+1.  Client to ISP (Host-to-network) signaling can help with conveying user needs.
+
+    a. The server (content provider) achieves best scalability by sending a single stream with the same per-packet metadata. The client, on the other hand, signaling the ISP to treat certain packets with a different priority over the others, can help solve the issue. For example, for video streaming, if the metadata just said "audio" (0x00), "video i-frame" (0x01) "video p-frame" (0x02), the client could have the signaling protocol tell an upstream router which one was most important. Some users could prioritize video over audio and vice versa.
+
+    b. Clients occasionally change the importance of receiving certain streams, such as muting video or audio, but still need to receive some frames to populate their playout jitter buffer. In such cases, the client can signal the ISP to (de-)prioritize certain types of traffic during the duration of that event. The per-packet metadata from the server would remain the same while the ISP treats certain per-packet metadata differently. These signals can be propagated to the server (in the form of a network to host signals) for improved efficiency, but this is out of the scope of this document.
+2.  Server to ISP (Host-to-network) per packet metadata can help in informing the network about the nature of traffic.
 
 ### Interactive Media
 
 Examples: VoIP, gaming.
 
-Requirement:  Signal the flow needs low jitter and low delay. However, the network can only provide
+Requirement:
+
+Signal the flow needs low jitter and low delay. However, the network can only provide
 a limited amount of low jitter/low delay to each host, maybe as few as one. This requires signaling
 feedback indicating that low jitter and low delay flows are already subscribed to other hosts. In
 response, the user and the application will likely continue, occasionally re-attempting to get the
@@ -334,41 +353,11 @@ example.  Additionally, most Internet service providers constrain
 upstream bandwidth so proper packet treatment is critical in the
 upstream direction.
 
-Metadata:
-
-Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata}}, the host to network metadata parameters for interactive media type is given below.
-
-Interactive A/V, downstream Metadata:
-
-| Traffic type      | Importance | PacketNature      | PacketType           |
-|:-----------------:|:----------:|:-----------------:|:--------------------:|
-| video key frame   | low        | realtime          | reliable             |
-| video delta frame | low        | discard           | unreliable           |
-| audio             | high       | realtime          | reliable             |
-{: #table-interactive-av-downstream title="Example Values for Interactive A/V, downstream"}
-
-| Traffic type      | Importance | PacketNature      | PacketType           |
-|:-----------------:|:----------:|:-----------------:|:--------------------:|
-| video key frame   | low        | realtime          | reliable             |
-| video delta frame | low        | discard           | unreliable           |
-| audio             | high       | realtime          | reliable             |
-{: #table-video-av-upstream title="Example Values for Interactive A/V, upstream"}
-
 Many interactive audio/video applications also support sharing the presenter's
 screen, file, video, or pictures.  During this sharing the presenter's video
 is less important but the screen or picture is more important.  This change
-of imporance can be conveyed in metadata to the network, as in the table
-below:
-
-Interactive A/V, upstream Metadata:
-
-| Traffic type      | Importance | PacketNature      | PacketType           |
-|:-----------------:|:----------:|:-----------------:|:--------------------:|
-| video key frame   | low        | realtime          | reliable             |
-| video delta frame | low        | discard           | unreliable           |
-| audio             | high       | realtime          | reliable             |
-| picture sharing   | high       | realtime          | reliable             |
-{: #table-video-av-sharing title="Example Values for Interactive A/V with picture sharing, upstream"}
+of importance can be conveyed in metadata to the network, by signaling
+from the client to the network element(s).
 
 In many scenarios a game or VoIP application will want to signal different
 metadata for the same type of packet in each direction.  For example, for
@@ -376,7 +365,7 @@ a game, video in the server-to-client direction might be more important
 than audio, whereas input devices (e.g., keystrokes) might be more important
 than audio.
 
-Todo: this section on cooperation needs editing.
+> Todo: this section on cooperation needs editing.
 
 ### Bulk Data Transfer
 
@@ -384,12 +373,6 @@ Examples: backup/restore, software update, RSS feed update, email, printing to a
 
 Requirement: Signal the flow as below best-effort.
 
-Metadata:
-
-| Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
-|:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|
-| File copy                  | low        | bulk            | reliable            |           |
-| Printing                   | high       | bulk            | reliable            |           |
 
 ### Mixed Traffic
 
@@ -397,36 +380,6 @@ Examples: Desktop Virtualization, Office software in the cloud (editing local fi
 
 Requirement: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance.
 
-Example packet metadata for Desktop Virtualization (like Citrix
-Virtual Apps and Desktops - CVAD) application.  This is shown in two
-tables, client-to-server traffic ({{table-desktop-virtualization-c2s}})
-and server-to-client traffic ({{table-desktop-virtualization-s2c}}).
-
-Remote Desktop Virtualization Metadata:
-
-Based on metadata types listed in the {{?I-D.rwbr-sconepro-flow-metadata}}, the host to network metadata parameters for remote desktop virtualization type is given below.
-
-| Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
-|:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|
-| User typing                | high       | realtime        | reliable            |           |
-| Mouse click/End Position   | high       | realtime        | reliable            | The start and endpoint of the pointer movement is vital to ensure user action is completed correctly. So, the endpoints have to be reliably transmitted with real-time priority. **|
-| Interactive audio          | high       | keep            | unreliable          |   |
-| Authentication - Finger print, smart card | low | realtime | reliable |  |
-| Interactive video key frame            | low        | keep            | unreliable          | Video key frames form the base frames of a video upon which the next 'n' timeframe of video updates is applied on. These frames, are hence, critical and without them, the video would not be coherent until the next critical frame is received. Retransmits of these are harmful to the UX. ***|
-| Mouse position tracking    | low        | discard         | unreliable          | When the pointer is moved from one point to another, the coordinates of the pointers between the two points can be lost without much of an impact to the UX as long as the start and endpoint reaches. This would ensure the user action is completed, even if the experience seems glitchy. |
-| Interactive video delta frame           | low        | discard            | unreliable          |   |
-{: #table-desktop-virtualization-c2s title="Example Values for Remote Desktop Virtualization Metadata, client to server"}
-
-| Traffic type               | Importance | PacketNature    | PacketType          | Comments  |
-|:--------------------------:|:----------:|:---------------:|:-------------------:|:---------:|
-| Glyph critical             | high       | realtime        | reliable          | The frames that form the base for the image is more critical and needs to be transmitted as reliably as possible. Retransmits of these are harmful to the UX.**|
-| Interactive (or streaming) audio   | high       | keep            | unreliable          |   |
-| Haptic feedback            | high       | discard         | unreliable          | Virtualizing haptic feedback is real-time and high importance although the feedback being delivered late is of no use. So dropping the packet altogether and not retransmitting it makes more sense |
-| Interactive (or streaming) video key frame            | low        | keep            | unreliable          | Video key frames form the base frames of a video upon which the next 'n' timeframe of video updates is applied on. These frames, are hence, critical and without them, the video would not be coherent until the next critical frame is received. Retransmits of these are harmful to the UX. ***|
-| File copy                  | low        | bulk            | reliable            |   |
-| Interactive (or streaming) video predictive frame     | low        | discard         | unreliable          | Video predictive frames can be lost, which would result in minor glitch but not compromise the user activity and video would still be coherent and useful. The reception of subsequent video key frame would mitigate the loss in quality caused by lost predictive frames. |
-| Glyph smoothing            | low        | discard         | Unreliable          | The smoothing elements of the glyph can be lost and would still present a recognizable image, although with a lesser quality. Hence, these can be marked as loss tolerant as the user action is still completed with a small compromise to the UX. Moreover, with the reception of the next glyph critical frame would mitigate the loss in quality caused by lost glyph smoothing elements. |
-{: #table-desktop-virtualization-s2c title="Example Values for Remote Desktop Virtualization Metadata, server to client"}
 
 *** A video key frame should be handled differently by the network
 depending on a streaming application versus a remote desktop
@@ -444,9 +397,11 @@ traffic but a different application.
 There are  cases (crisis) where "normal" network
 resources cannot be used at maximum and, thus, a network would seek to
 reduce or offload some of the traffic during these events -- often
-called 'reactive traffic policy'. An example of such sue case is cellular networks
-that are overly used (and radio resources exhausted) while alternative network
-attachment networks are available to host.
+called 'reactive traffic policy'. An example of such use case is cellular networks
+that are overly used (and radio resources exhausted) such as a large
+collection of people (e.g., parade, sporting event), or such as a partial
+radio network outage (e.g., tower power outage).  During such a condition, an alternative network
+attachment may be available to the host (e.g., Wi-Fi).
 
 Network-to-host signals are
 useful to put in place adequate traffic distribution policies (e.g.,
@@ -454,7 +409,7 @@ prefer the use of alternate paths, offload a network).
 
 # Operational Considerations
 
-## Policy Enfrocement
+## Policy Enforcement
 
 Some metadata requires the network to share some hints with a host to adjust
 its behavior for some specific flows. However, that metadata may have a dependency on the service offering
@@ -541,4 +496,4 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+Thanks to Hang Shi for the review and comments.

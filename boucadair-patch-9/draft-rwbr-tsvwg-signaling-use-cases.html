@@ -1229,22 +1229,19 @@ protocol between the host and a set of trusted netwrok elements.<a href="#sectio
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-metadata-scope" class="internal xref">Metadata Scope</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-application-intereference" class="internal xref">Application Intereference</a></p>
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
-                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-abuse-and-constraints" class="internal xref">Abuse and Constraints</a></p>
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
-                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-key-establishment" class="internal xref">Key Establishment</a></p>
+                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
-                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-metadata-version-capability" class="internal xref">Metadata Version/Capability Exchange</a></p>
+                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-on-the-use-of-fast-path" class="internal xref">On the Use of Fast Path</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.7">
-                <p id="section-toc.1-1.6.2.7.1"><a href="#section-6.7" class="auto internal xref">6.7</a>.  <a href="#name-on-the-use-of-fast-path" class="internal xref">On the Use of Fast Path</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.8">
-                <p id="section-toc.1-1.6.2.8.1"><a href="#section-6.8" class="auto internal xref">6.8</a>.  <a href="#name-impacts-of-nested-congestio" class="internal xref">Impacts of Nested Congestion Controls</a></p>
+                <p id="section-toc.1-1.6.2.7.1"><a href="#section-6.7" class="auto internal xref">6.7</a>.  <a href="#name-impacts-of-nested-congestio" class="internal xref">Impacts of Nested Congestion Controls</a></p>
 </li>
             </ul>
 </li>
@@ -2186,28 +2183,27 @@ that is subscribed by a user. Let us consider the example of a bitrate for an op
 <p id="section-6.2-1">An operational challenge for sharing resource-quota like metadata (e.g., maximum bitrate)
 is that the network is generally not entitled to allocate quota per-application, per-flow, per-stream, etc. that
 delivered as part of an Internet connectivity service. However, the network has a visibility about the overall network attachment (e.g., inbound/outbound bandwidth discussed in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>). As such,  hints about resource-like metadata is bound by default to the overall network attachment, not specific to a given application or flow.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="application-intereference">
-<section id="section-6.3">
-        <h3 id="name-application-intereference">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-application-intereference" class="section-name selfRef">Application Intereference</a>
-        </h3>
-<p id="section-6.3-1">Applications that have access to a resource-quota information may adopt an aggressive behavior (compared to those that don't have access) if they assumed that a resource-quota like metadata
-is for the application, not for the host that runs the applications.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.3-2">This is challenging for home networks where multiple hosts may be running behind the same CPE, with each of them running a video application.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-6.2-2.1">
+            <p id="section-6.2-2.1.1">It is out of the scope of this document to discuss setups (e.g., 3GPP PDU Sessions) where network attachments with GBR (Guaranteed Bit Rate) for specific flows is setup.
+## Application Intereference<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-6.2-3">Applications that have access to a resource-quota information may adopt an aggressive behavior (compared to those that don't have access) if they assumed that a resource-quota like metadata
+is for the application, not for the host that runs the applications.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">This is challenging for home networks where multiple hosts may be running behind the same CPE, with each of them running a video application.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="abuse-and-constraints">
-<section id="section-6.4">
+<section id="section-6.3">
         <h3 id="name-abuse-and-constraints">
-<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-abuse-and-constraints" class="section-name selfRef">Abuse and Constraints</a>
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-abuse-and-constraints" class="section-name selfRef">Abuse and Constraints</a>
         </h3>
-<p id="section-6.4-1">It is important that not every flow be prioritized; otherwise, the
+<p id="section-6.3-1">It is important that not every flow be prioritized; otherwise, the
 network devolves into the best-effort network that existed prior to
 metadata signaling. It is a requirement that mechanisms exist to
-prevent this occurrence.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.4-2">Such a mechanism might be simple, for example, a
+prevent this occurrence.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-2">Such a mechanism might be simple, for example, a
 cellular network might allow one flow from a subscriber to declare
 itself as important; other flows with that subscriber are denied
 attempts to prioritize themselves.  The mechanism might be more
@@ -2217,60 +2213,60 @@ based on its policy and only the enterprise network communicates flow
 priorities to the ISP network.  The enterprise might prioritize
 certain users (e.g., IT staff), certain equipment (audio/video
 equipment in a conference room), or whatever its policies it might
-want.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
+want.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="key">
-<section id="section-6.5">
+<section id="section-6.4">
         <h3 id="name-key-establishment">
-<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-key-establishment" class="section-name selfRef">Key Establishment</a>
         </h3>
-<p id="section-6.5-1">Various proposals have suggested establishing a key to validate
+<p id="section-6.4-1">Various proposals have suggested establishing a key to validate
 per-packet metadata or to decrypt per-packet metadata.  However, most
 proposals have not specified how this key would be established. A
 signaling protocol from the receiving host to its ISP could establish
 such a key. The host can then convey the key to the sending host to
-use to integrity protect or encrypt the per-packet metadata.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+use to integrity protect or encrypt the per-packet metadata.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-6.5-2.1">
-            <p id="section-6.5-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
+<li class="normal ulEmpty" id="section-6.4-2.1">
+            <p id="section-6.4-2.1.1">Note: The CPU overhead of validating or decrypting such per-packet metadata
 needs to be carefully considered (and further assessed via experiments) by the signaling protocol proposing such
-keying. Also, the required operational setup should be documented.<a href="#section-6.5-2.1.1" class="pilcrow">¶</a></p>
+keying. Also, the required operational setup should be documented.<a href="#section-6.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="metadata-versioncapability-exchange">
-<section id="section-6.6">
+<section id="section-6.5">
         <h3 id="name-metadata-version-capability">
-<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
+<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-metadata-version-capability" class="section-name selfRef">Metadata Version/Capability Exchange</a>
         </h3>
-<p id="section-6.6-1">The sender has to convey metadata in a way that is understood by the
+<p id="section-6.5-1">The sender has to convey metadata in a way that is understood by the
 various network elements on the path -- each of which might be
 operated by different entities and have different capabilities.  For
 example, the Wi-Fi access point might be operated by an enterprise
 network, hotel, or home user, whereas the upstream router is operated by
 the ISP.  Each of those might support different versions of the same
-metadata, or might need the metadata expressed in different ways.<a href="#section-6.6-1" class="pilcrow">¶</a></p>
-<p id="section-6.6-2">The signaling protocol would provide a way to learn the needs of those
+metadata, or might need the metadata expressed in different ways.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.5-2">The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
-needs.<a href="#section-6.6-2" class="pilcrow">¶</a></p>
+needs.<a href="#section-6.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="on-the-use-of-fast-path">
-<section id="section-6.7">
+<section id="section-6.6">
         <h3 id="name-on-the-use-of-fast-path">
-<a href="#section-6.7" class="section-number selfRef">6.7. </a><a href="#name-on-the-use-of-fast-path" class="section-name selfRef">On the Use of Fast Path</a>
+<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-on-the-use-of-fast-path" class="section-name selfRef">On the Use of Fast Path</a>
         </h3>
-<p id="section-6.7-1">TBC<a href="#section-6.7-1" class="pilcrow">¶</a></p>
+<p id="section-6.6-1">TBC<a href="#section-6.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="impacts-of-nested-congestion-controls">
-<section id="section-6.8">
+<section id="section-6.7">
         <h3 id="name-impacts-of-nested-congestio">
-<a href="#section-6.8" class="section-number selfRef">6.8. </a><a href="#name-impacts-of-nested-congestio" class="section-name selfRef">Impacts of Nested Congestion Controls</a>
+<a href="#section-6.7" class="section-number selfRef">6.7. </a><a href="#name-impacts-of-nested-congestio" class="section-name selfRef">Impacts of Nested Congestion Controls</a>
         </h3>
-<p id="section-6.8-1">TBC<a href="#section-6.8-1" class="pilcrow">¶</a></p>
+<p id="section-6.7-1">TBC<a href="#section-6.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

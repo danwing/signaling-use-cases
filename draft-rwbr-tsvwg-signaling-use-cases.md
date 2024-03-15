@@ -462,6 +462,19 @@ that is subscribed by a user. Let us consider the example of a bitrate for an op
 **Such bitrate may not be computed system-wide** given that flows from users with distinct service offerings
 (and connectivity SLOs) may be serviced by the same network nodes.
 
+## Metadata Scope
+
+An operational challenge for sharing resource-quota like metadata (e.g., maximum bitrate)
+is that the network is generally not entitled to allocate quota per-application, per-flow, per-stream, etc. that
+delivered as part of an Internet connectivity service. However, the network has a visibility about the overall network attachment (e.g., inbound/outbound bandwidth discussed in {{?I-D.ietf-opsawg-teas-attachment-circuit}}). As such,  hints about resource-like metadata is bound by default to the overall network attachment, not specific to a given application or flow.
+
+## Application Intereference
+
+Applications that have access to a resource-quota information may adopt an aggressive behavior (compared to those that don't have access) if they assumed that a resource-quota like metadata
+is for the application, not for the host that runs the applications.
+
+This is challenging for home networks where multiple hosts may be running behind the same CPE, with each of them running a video application.
+
 ## Abuse and Constraints
 
 It is important that not every flow be prioritized; otherwise, the

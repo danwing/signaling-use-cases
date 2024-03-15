@@ -468,6 +468,7 @@ An operational challenge for sharing resource-quota like metadata (e.g., maximum
 is that the network is generally not entitled to allocate quota per-application, per-flow, per-stream, etc. that
 delivered as part of an Internet connectivity service. However, the network has a visibility about the overall network attachment (e.g., inbound/outbound bandwidth discussed in {{?I-D.ietf-opsawg-teas-attachment-circuit}}). As such,  hints about resource-like metadata is bound by default to the overall network attachment, not specific to a given application or flow.
 
+> It is out of the scope of this document to discuss setups (e.g., 3GPP PDU Sessions) where network attachments with GBR (Guaranteed Bit Rate) for specific flows is setup.
 ## Application Intereference
 
 Applications that have access to a resource-quota information may adopt an aggressive behavior (compared to those that don't have access) if they assumed that a resource-quota like metadata

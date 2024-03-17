@@ -215,7 +215,7 @@ Metadata exchanges can occur in one single direction or both directions of a flo
     +<-----End-to-End Secure Connection + User Data------>+<---.
     |                           |                         | GLUE|
     |                           |                         | CXs |
-    +<-- Metadata (Optional) -->+<----- Metadata -------->+<---'
+    +<-- Metadata (Optional) -->+<- Metadata (Optional) ->+<---'
     |    Secure Connection 1    |    Secure Connection 2  |
     |                           |                         |
 
@@ -378,8 +378,6 @@ A game or VoIP application may want to signal different metadata for the same ty
 
 2. User Inactivity signal: When the user is inactive during an interactive session such as gaming (activity can be detected automatically or can be a simple user signal of Away-from-Keyboard (AFK)), the client can signal to the ISP to deprioritize the packets to the extent that the client receives some data to populate their playout jitter buffer.
 
-> Todo: this section on cooperation needs editing.
-
 ### Bulk Data Transfer
 
 Examples: backup/restore, software update, RSS feed update, email, printing to a print server, file copy
@@ -399,7 +397,6 @@ Solution:
 Examples: Desktop Virtualization
 
 Requirement:
-
 : Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively forwarding mixed traffic for better user interactivity and network performance. ```
 
 Mixed traffic has a large variety of applications with unique cases. For the purpose of use case, Desktop Virtualization is considered below.
@@ -501,7 +498,7 @@ The signaling protocol would provide a way to learn the needs of those
 networks, and provide metadata signaling satisfying most or all of their
 needs.
 
-## On the Use of Fast Path
+## Forwarding Processing: Slow Path vs. Fast Path
 
 TBC
 

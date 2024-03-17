@@ -394,7 +394,7 @@ Examples: Desktop Virtualization
 
 Requirement:
 
-Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance. Client-to-network signaling enables, complements and simplifies Host-to-network signaling as discussed below.
+: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively forwarding mixed traffic for better user interactivity and network performance. ```
 
 Mixed traffic has a large variety of applications with unique cases. For the purpose of use case, Desktop Virtualization is considered below.
 

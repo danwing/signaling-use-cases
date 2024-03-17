@@ -368,7 +368,7 @@ Solutions:
 
 A game or VoIP application may want to signal different metadata for the same type of packet in each direction.  For example, for a game, video in the server-to-client direction might be more important than audio, whereas input devices (e.g., keystrokes) might be more important than audio. Each user can have varied preferences for the same type of data originating from the server. Determination of such preferences is outside of the scope of this document.
 
-1. Video in a VoIP call: One user can choose to keep the video and screen-sharing equally distributed on the screen while another user can minimize or reduce the size of the video. Based on the size/preferece of the video window, video packets can be prioritized accordingly relative to screen-shared content. This preference can be propagated to the server as Network-to-host signaling for more efficient transmission but that is out of the scope of this document.
+1. Video in a media session: One user can choose to keep the video and screen-sharing equally distributed on the screen while another user can minimize or reduce the size of the video. Based on the size/preference of the video window, video packets can be prioritized accordingly relative to screen-shared content. This preference can be propagated to the server as network-to-host signaling for more efficient transmission but that is out of the scope of this document.
 
 2. User Inactivity signal: When the user is inactive during an interactive session such as gaming (activity can be detected automatically or a can be simple user signal of Away-from-Keyboard (AFK)), the client can signal the ISP to deprioritize the packets to the extent that the client receives some data to populate their playout jitter buffer.
 

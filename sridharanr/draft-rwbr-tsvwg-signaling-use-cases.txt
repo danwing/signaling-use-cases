@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 17 September 2024                                  M. Boucadair
+Expires: 18 September 2024                                  M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                           16 March 2024
+                                                           17 March 2024
 
 
      Host to Network Signaling Use Cases for Collaborative Traffic
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 September 2024.
+   This Internet-Draft will expire on 18 September 2024.
 
 Copyright Notice
 
@@ -415,23 +415,30 @@ Table of Contents
 
 5.2.2.  Interactive Media
 
-   Examples: VoIP, gaming.
+   Examples: VoIP (peer-to-peer (P2P), group conferencing), gaming.
 
    Requirement:
 
-   Signal the flow needs low jitter and low delay.  However, the network
-   can only provide a limited amount of low jitter/low delay to each
-   host, maybe as few as one.  This requires signaling feedback
-   indicating that low jitter and low delay flows are already subscribed
-   to other hosts.  In response, the user and the application will
-   likely continue, occasionally re-attempting to get the desired
-   quality of service from the network.
+   The flow needs low jitter and low delay.  However, the network can
+   only provide a limited amount of low jitter/low delay to each host,
+   maybe as few as one.  This requires signaling feedback indicating
+   that low jitter and low delay flows are already subscribed to other
+   hosts.  In response, the user and the application will likely
+   continue, occasionally re-attempting to get the desired quality of
+   service from the network.
 
    In many scenarios a game or VoIP application will want to signal
    different metadata for the same type of packet in each direction.
    For example, for a game, video in the server-to-client direction
    might be more important than audio, whereas input devices (e.g.,
    keystrokes) might be more important than audio.
+
+   Many interactive audio/video applications also support sharing the
+   presenter's screen, file, video, or pictures.  During this sharing
+   the presenter's video is less important but the screen or picture is
+   more important.  This change of importance can be conveyed in
+   metadata to the network, by signaling from the client to the network
+   element(s).
 
    Both gaming (video in both directions, audio in both directions,
    input devices from client to server) and interactive audio/video
@@ -441,52 +448,157 @@ Table of Contents
    constrain upstream bandwidth so proper packet treatment is critical
    in the upstream direction.
 
-   Many interactive audio/video applications also support sharing the
-   presenter's screen, file, video, or pictures.  During this sharing
-   the presenter's video is less important but the screen or picture is
-   more important.  This change of importance can be conveyed in
-   metadata to the network, by signaling from the client to the network
-   element(s).
+   Examples: VoIP, online gaming.
+
+   Problems:
+
+   1.  Peer-to-peer communication often involves direct connection(s)
+       without involvement of an intermediary server (or one of the
+       peers take the role of a server in some gaming cases).  The
+       signaling (like DSCP) from these IP addresses are often ignored
+       as these IP addresses are not in the ISPs' list of recognized
+       servers.  It is the same fate for servers that are not in the
+       ISPs' list of recognized servers in an online gaming or a
+       conference scenario
+
+   2.  Each peer part of the network will have different preferences and
+       it is difficult for the application to modify metadata for each
+       peer based on the preference.
+
+   Solutions:
+
+   1.  Client-to-network signal indicating ISP to honor the honoring
+       signaling data of a particular flow enables any data,
+       irrespective of whether the sending server is part of the list of
+       IP addresses or not.  This enables client(user)-driven processing
+       of metadata and client driven authorization of the IP addresses
+       apart from the ISPs' list of recognized IP addresses.
+
+   2.  Client-to-network signaling also helps the ISP treat the same
+       metadata differently for different flows based on the user
+       preference.  The per-packet metadata from the server would remain
+       the same, simplifying signaling implementation on the server and
+       making it more scalable.
+
+5.2.2.1.  Examples of same type of metadata with different preferences:
 
    In many scenarios a game or VoIP application will want to signal
    different metadata for the same type of packet in each direction.
    For example, for a game, video in the server-to-client direction
    might be more important than audio, whereas input devices (e.g.,
-   keystrokes) might be more important than audio.
+   keystrokes) might be more important than audio.  Each user can have
+   varied preferences for the same type of data originating from the
+   server.  This can be either explicitly chosen by the user or derived
+   from the user activity.  Determination of such preferences is outside
+   of the scope of this document.
+
+   1.  Video in a VoIP call: One user can choose to keep the video and
+       screen-sharing equally distributed on the screen while another
+       user can minimize or reduce the size of the video.  Based on the
+       size/preferece of the video window, video packets can be
+       prioritized accordingly relative to screen-shared content.  This
+       preference can be propagated to the server as Network-to-host
+       signaling for more efficient transmission but that is out of the
+       scope of this document.
+
+   2.  User Inactivity signal: When the user is inactive during an
+       interactive session such as gaming (activity can be detected
+       automatically or a can be simple user signal of Away-from-
+       Keyboard (AFK)), the client can signal the ISP to deprioritize
+       the packets to the extent that the client receives some data to
+       populate their playout jitter buffer.
 
       Todo: this section on cooperation needs editing.
 
 5.2.3.  Bulk Data Transfer
 
    Examples: backup/restore, software update, RSS feed update, email,
-   printing to a print server
+   printing to a print server, file copy
 
    Requirement: Signal the flow as below best-effort.
 
+   Problem:
+
+   1.  Bulk data is generally not interactive and can take the path of
+       greater latency.  It is treated as non-time sensitive operation.
+       Although some bulk transfers (like saving a file in the middle of
+       editing) that cannot be minimized, where the user will have to
+       wait till it is completed to further use the device, should be
+       given realtime importance.  Bulk data such as printing a file
+       while editing can be parallelized and need not have realtime
+       priority.  Similarly, backing up of data can be parallelized
+       while restoring of data cannot be parallelized based on the
+       application.
+
+   Solution:
+
+   1.  Client-to-network signaling can solve this by identifying and
+       signaling the flow's priority appropriately for ISP to handle the
+       packets accordingly.
+
 5.2.4.  Mixed Traffic
 
-   Examples: Desktop Virtualization, Office software in the cloud
-   (editing local files, typing is interactive while save operation is
-   bulk transfer)
+   Examples: Desktop Virtualization
 
-   Requirement: Signal flow will vary depending on the nature of the
-   packet.  With variety of traffic going through the session, some
-   packets can contain interactive traffic while the others contain bulk
-   transfer.  There can be combination of reliable and unreliable
-   traffic within the same session through multiple streams.  Host-to-
-   network signaling plays a vital role in effectively routing mixed
-   traffic for ideal user interactivity and network performance.
+   Requirement:
 
-   *** A video key frame should be handled differently by the network
-   depending on a streaming application versus a remote desktop
-   application.  The video streaming application's primary and only
-   nature of traffic is video and audio.  In contrast, a remote desktop
-   application might be playing a video and its associated audio while
-   at the same time the user is editing a document.  The user's
-   keystrokes and those glyphs need to be prioritized over the video
-   lest the user think their inputs are being ignored (and type the same
-   characters again).  Hence, the values are different even for the same
-   nature of traffic but a different application.
+   Signal flow will vary depending on the nature of the packet.  With
+   variety of traffic going through the session, some packets can
+   contain interactive traffic while the others contain bulk transfer.
+   There can be combination of reliable and unreliable traffic within
+   the same session through multiple streams.  Host-to-network signaling
+   plays a vital role in effectively routing mixed traffic for ideal
+   user interactivity and network performance.  Client-to-network
+   signaling enables, complements and simplifies Host-to-network
+   signaling as discussed below.
+
+   Mixed traffic has a large variety of applications with unique cases.
+   For the purpose of use case, Desktop Virtualization is considered
+   below.
+
+   Problems:
+
+   1.  In remote desktop use case, a server can host multiple
+       connections with varying type of traffic to it.  These servers
+       are often in a database, exposed to the internet through some
+       sort of a gateway-proxy and the signaling (like DSCP bits) from
+       these servers are often ignored by the ISPs.
+
+   2.  A video key frame should be handled differently by the network
+       depending on a streaming application versus a remote desktop
+       application.  The video streaming application's primary and only
+       nature of traffic is video and audio.  In contrast, a remote
+       desktop application might be playing a video and its associated
+       audio while at the same time the user is editing a document.  The
+       user's keystrokes and those glyphs need to be prioritized over
+       the video lest the user think their inputs are being ignored (and
+       type the same characters again).
+
+   3.  With multiple applications running in the same virtualized
+       environment, video streaming having same priority as graphics
+       updates while the user is playing a video in the background while
+       typing a document in the foreground can cause interactivity
+       issues.
+
+   Solution:
+
+   1.  Client-to-network signal indicating ISP to honor the honoring
+       signaling data of a particular flow enables enables the servers,
+       that are not even directly visible to the ISPs, to benefit from
+       signaling.  This enables client(user)-driven processing of
+       metadata and client driven authorization of the IP addresses
+       apart from the ISPs' list of recognized IP addresses.
+
+   2.  Client signaling can reduce/eliminate the resource intensive
+       responsibility of identifying such scenarios and modifying the
+       metadata accordingly.  The per-packet metadata from the server
+       would remain the same, simplifying signaling implementation on
+       the server and making it more scalable.
+
+   3.  Client signaling based on user activity can improve user
+       experience.  Signaling the ISP to treat the same metadata
+       differently based on the user activity can help improve/resolve
+       this, while keeping the per packet metadata the same.
 
 5.2.5.  Assisted Offload
 

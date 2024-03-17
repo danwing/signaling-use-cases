@@ -370,7 +370,7 @@ A game or VoIP application may want to signal different metadata for the same ty
 
 1. Video in a media session: One user can choose to keep the video and screen-sharing equally distributed on the screen while another user can minimize or reduce the size of the video. Based on the size/preference of the video window, video packets can be prioritized accordingly relative to screen-shared content. This preference can be propagated to the server as network-to-host signaling for more efficient transmission but that is out of the scope of this document.
 
-2. User Inactivity signal: When the user is inactive during an interactive session such as gaming (activity can be detected automatically or a can be simple user signal of Away-from-Keyboard (AFK)), the client can signal the ISP to deprioritize the packets to the extent that the client receives some data to populate their playout jitter buffer.
+2. User Inactivity signal: When the user is inactive during an interactive session such as gaming (activity can be detected automatically or can be a simple user signal of Away-from-Keyboard (AFK)), the client can signal to the ISP to deprioritize the packets to the extent that the client receives some data to populate their playout jitter buffer.
 
 > Todo: this section on cooperation needs editing.
 

@@ -1852,7 +1852,7 @@ upstream direction.<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-3">Problem:<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.2.3-4">
 <li id="section-5.2.3-4.1">
-              <p id="section-5.2.3-4.1.1">Bulk data is generally not interactive and can take the path of greater latency. It is treated as non-time sensitive operation. Although some bulk transfers (like saving a file in the middle of editing) that cannot be minimized, where the user will have to wait till it is completed to further use the device, should be given realtime importance. Bulk data such as printing a file while editing can be parallelized and need not have realtime priority. Similarly, backing up of data can be parallelized while restoring of data cannot be parallelized based on the application.<a href="#section-5.2.3-4.1.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.3-4.1.1">Bulk data is generally not interactive and can be forwarded of over paths of greater latency. It is treated as non-time sensitive operation. Although some bulk transfers (like saving a file in the middle of editing) that cannot be minimized, where the user will have to wait till it is completed to further use the device, should be given real-time importance. Bulk data such as printing a file while editing can be parallelized and need not have real-time priority. Similarly, backing up of data can be parallelized while restoring of data cannot be parallelized based on the application.<a href="#section-5.2.3-4.1.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
 <p id="section-5.2.3-5">Solution:<a href="#section-5.2.3-5" class="pilcrow">¶</a></p>

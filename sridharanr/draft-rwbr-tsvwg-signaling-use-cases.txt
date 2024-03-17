@@ -504,8 +504,8 @@ Table of Contents
 
    2.  User Inactivity signal: When the user is inactive during an
        interactive session such as gaming (activity can be detected
-       automatically or a can be simple user signal of Away-from-
-       Keyboard (AFK)), the client can signal the ISP to deprioritize
+       automatically or can be a simple user signal of Away-from-
+       Keyboard (AFK)), the client can signal to the ISP to deprioritize
        the packets to the extent that the client receives some data to
        populate their playout jitter buffer.
 

@@ -416,7 +416,7 @@ again).
 
 Solution:
 
-1. Client-to-network signal indicating ISP to honor the honoring signaling data of a particular flow enables enables the servers, that are not even directly visible to the ISPs, to benefit from signaling. This enables client(user)-driven processing of metadata and client driven authorization of the IP addresses apart from the ISPs' list of recognized IP addresses.
+1. Client-to-network signal indicating ISP to honor the signaling data of a particular flow enables the servers, that are not even directly visible to the ISPs, to benefit from signaling. This enables client(user)-driven processing of metadata and client driven authorization of the IP addresses apart from the ISPs' list of recognized IP addresses.
 
 2. Client signaling can reduce/eliminate the resource intensive responsibility of identifying such scenarios and modifying the metadata accordingly. The per-packet metadata from the server would remain the same, simplifying signaling implementation on the server and making it more scalable.
 

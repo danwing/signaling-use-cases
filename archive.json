@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-14T01:08:33.807181+00:00",
+  "timestamp": "2024-03-17T01:13:05.408390+00:00",
   "repo": "danwing/signaling-use-cases",
   "labels": [
     {
@@ -49,7 +49,46 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 20,
+      "id": "I_kwDOLZbGd86ChWBX",
+      "title": "Confused about client vs server",
+      "url": "https://github.com/danwing/signaling-use-cases/issues/20",
+      "state": "OPEN",
+      "author": "VMatrix1900",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "> Without a signaling in place between a receiving host and its network, remote peers are able to mark every packet of a flow as important, causing much the same problem as the previous use-case. Eventually, when all packets of every flow are marked as important, there is no differentiation between packets within a flow, rendering the network unable to improve reactive policy decisions. \r\n\r\nI am confused about the difference of receiving host versus remote peers. Normally their protocol stack are controlled by same entity right? Especially now the transport stack is running in the user space(thinking HTTP over QUIC). The text here seems to imply that the receiving host is more trust worthy than the remote peers. What prevents the remote peers commands receiving host to mark every packet as important?",
+      "createdAt": "2024-03-16T05:02:21Z",
+      "updatedAt": "2024-03-16T15:12:05Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "body": "Nothing in the world can prevent illegitimate packet marking. No matter who controls the remote transport stack or the remote application.  (They are not necessarily coded or operated by the same entity; consider web browser playing a DRM-encumbered movie from Netflix; Netflix didn\u2019t code Firefox.  Similarly, visiting TikTok.com on Chrome is two separate entities, and participating in a video Zoom conference using Chrome is two separate entities writing the client and the server as well).\r\n\r\nIf the sending host is mis-marking packets, and the receiving host cares about that mis-marking (*), the receiving host can rescind the authorization it had provided to the network. But this is all only within a flow \u2014 because we know we can\u2019t control between flows \u2014 so the harm of such mis-marking is only to that one flow, anyway. \r\n\r\n* mis-marking might cost real money to the receiving host (network might expect/demand it, else $$), or maybe the receiving host wants to allow the network to have a (useful) reactive policy and expects/wants some packets to be identified as \u201cplease discard if necessary\u201d.  ",
+          "createdAt": "2024-03-16T05:27:49Z",
+          "updatedAt": "2024-03-16T05:27:49Z"
+        },
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "NONE",
+          "body": "So one possible business model would be charging user fast lane fee. Then server mark packets with high priority and network assign the packets to the fast lane. Then there is a client side agent checking if the packet is marked reasonably. The agent needs to act in the interest of the user instead of the application because it is the user who pays the bill. The best place for such an agent is browser/OS transport library.",
+          "createdAt": "2024-03-16T07:52:49Z",
+          "updatedAt": "2024-03-16T07:52:49Z"
+        },
+        {
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "body": "That seems difficult to incrementally deploy.",
+          "createdAt": "2024-03-16T15:12:04Z",
+          "updatedAt": "2024-03-16T15:12:04Z"
+        }
+      ]
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -314,25 +353,33 @@
       "id": "PR_kwDOLZbGd85pBpN1",
       "title": "adding live streaming use-case",
       "url": "https://github.com/danwing/signaling-use-cases/pull/10",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sridharangirish91",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-03-07T23:00:16Z",
-      "updatedAt": "2024-03-11T09:55:49Z",
+      "updatedAt": "2024-03-14T23:07:40Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
       "headRepository": "danwing/signaling-use-cases",
       "headRefName": "sridharanr",
       "headRefOid": "4da9e9255d51a8ee3589cbaa6ff9dc71b4eaf384",
-      "closedAt": null,
+      "closedAt": "2024-03-14T23:07:09Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "sridharangirish91",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Working on another doc to focus more on signaling usecase.",
+          "createdAt": "2024-03-14T23:07:39Z",
+          "updatedAt": "2024-03-14T23:07:39Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOLZbGd85yrgL8",
@@ -518,24 +565,26 @@
       "id": "PR_kwDOLZbGd85pTWJv",
       "title": "explain what harm (pain) occurs if signaling is not available",
       "url": "https://github.com/danwing/signaling-use-cases/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "danwing",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-03-11T20:54:13Z",
-      "updatedAt": "2024-03-12T16:17:29Z",
+      "updatedAt": "2024-03-14T23:37:11Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "70c7166dcf6a3438f9f878cc5ac0587550148026",
       "headRepository": "danwing/signaling-use-cases",
       "headRefName": "pain",
       "headRefOid": "077eb810eea0f572c321d7c8b989e272c12d2f3b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-03-14T23:37:10Z",
+      "mergedAt": "2024-03-14T23:37:10Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "4a0a19810c889ff7aaf398c0f6d5c7507a0cfa5c"
+      },
       "comments": [],
       "reviews": [
         {
@@ -763,26 +812,365 @@
       "id": "PR_kwDOLZbGd85pdwrU",
       "title": "add a requirement + an operational cons",
       "url": "https://github.com/danwing/signaling-use-cases/pull/14",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-03-13T06:48:39Z",
-      "updatedAt": "2024-03-13T15:23:51Z",
+      "updatedAt": "2024-03-14T23:37:35Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "a12e981a60bab83d6bec2d591cda6da391fd9805",
       "headRepository": "danwing/signaling-use-cases",
       "headRefName": "boucadair-patch-8",
       "headRefOid": "ea1398e08685387b7847a0bc611acc715572e78e",
+      "closedAt": "2024-03-14T23:37:35Z",
+      "mergedAt": "2024-03-14T23:37:35Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "1367257da397373e11b7c3039c14960dc642b31c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOLZbGd85pkepa",
+      "title": "incorporate Med's suggestions that I goffed on previous commit",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/15",
+      "state": "MERGED",
+      "author": "danwing",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-14T01:22:32Z",
+      "updatedAt": "2024-03-14T23:36:49Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "cfe20aa50b314b7a70197affd989d44e36a61bab",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "med_changes",
+      "headRefOid": "0c66663b25634d6133b517d6faeeb8106539b299",
+      "closedAt": "2024-03-14T23:36:49Z",
+      "mergedAt": "2024-03-14T23:36:49Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "ac89fb885b9a3610169cdd3c88a333c87e095d8d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zYYQI",
+          "commit": {
+            "abbreviatedOid": "0c66663"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-14T06:17:11Z",
+          "updatedAt": "2024-03-14T06:17:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOLZbGd85psOfS",
+      "title": "incorporate Hang's suggestions, and also remove all Metadata tables, focus use cases on signaling",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/16",
+      "state": "MERGED",
+      "author": "danwing",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-15T00:05:01Z",
+      "updatedAt": "2024-03-15T18:35:41Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "1367257da397373e11b7c3039c14960dc642b31c",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "vincent",
+      "headRefOid": "e02022d1806bc72a9f3c9645abffc3197a027dea",
+      "closedAt": "2024-03-15T18:35:41Z",
+      "mergedAt": "2024-03-15T18:35:41Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "17a023941919122cd6fb27458f6f155d39296764"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zhVUw",
+          "commit": {
+            "abbreviatedOid": "d233dbc"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-15T04:56:43Z",
+          "updatedAt": "2024-03-15T04:56:43Z",
+          "comments": [
+            {
+              "originalPosition": 82,
+              "body": "```suggestion\r\n{{?I-D.ietf-moq-transport}}).  With unreliable transport of video in\r\n```",
+              "createdAt": "2024-03-15T04:56:43Z",
+              "updatedAt": "2024-03-15T04:56:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85zh0ZG",
+          "commit": {
+            "abbreviatedOid": "bb3008c"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-15T07:11:33Z",
+          "updatedAt": "2024-03-15T07:11:33Z",
+          "comments": [
+            {
+              "originalPosition": 220,
+              "body": "replace \"sue\" with \"such\"",
+              "createdAt": "2024-03-15T07:11:33Z",
+              "updatedAt": "2024-03-15T07:11:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85zh0pS",
+          "commit": {
+            "abbreviatedOid": "d3f4b04"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Changes look good to me.",
+          "createdAt": "2024-03-15T07:12:27Z",
+          "updatedAt": "2024-03-15T07:12:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOLZbGd85zkxGR",
+          "commit": {
+            "abbreviatedOid": "d3f4b04"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Some changes from the the airport",
+          "createdAt": "2024-03-15T13:54:37Z",
+          "updatedAt": "2024-03-15T14:03:41Z",
+          "comments": [
+            {
+              "originalPosition": 123,
+              "body": "```suggestion\r\n    a.  A client based change in priority of a certain type of data is not possible. For example, a hearing challenged user can choose video over audio while the priority is different for other users.\r\n```",
+              "createdAt": "2024-03-15T13:54:38Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 123,
+              "body": "to be more inclusive.",
+              "createdAt": "2024-03-15T13:55:07Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 124,
+              "body": "```suggestion\r\n    b.  Dynamic changes to priority based on user activity is not possible today. For example, audio packets having the same priority when a user mutes the audio locally, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.\r\n```",
+              "createdAt": "2024-03-15T13:56:41Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 125,
+              "body": "```suggestion\r\n2.  In loss-prone networks or during a reactive policy events, retransmissions cause immense delay. Networks, not able to distinguish between reliable and loss-tolerant data or the critical data within a flow (i-frames, p-frames, and audio packets), can have challenges in efficiently handling/forwarding data.\r\n```",
+              "createdAt": "2024-03-15T13:58:03Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 133,
+              "body": "```suggestion\r\n    a. The server (content provider) achieves best scalability by sending a single stream with the same per-packet metadata. The client, on the other hand, signaling the ISP to treat certain packets with a different priority over the others, can help solve the issue. For example, for video streaming, if the metadata just said \"audio\" (0x00), \"video i-frame\" (0x01) \"video p-frame\" (0x02), the client could have the signaling protocol tell an upstream router which one was most important. Some users could prioritize video over audio and vice versa.\r\n```",
+              "createdAt": "2024-03-15T13:59:22Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 262,
+              "body": "```suggestion\r\ncalled 'reactive traffic policy'. An example of such use case is cellular networks\r\n```",
+              "createdAt": "2024-03-15T14:00:42Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 267,
+              "body": "```suggestion\r\nradio network outage (e.g., tower power outage).  During such a condition, an alternative network\r\n```",
+              "createdAt": "2024-03-15T14:01:12Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            },
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\r\nin {{generic-cases}}. \r\n\r\n> Note: some use cases may require seeking for users preference or receiving these preferences. Such matters are\r\nout of scope.\r\n```",
+              "createdAt": "2024-03-15T14:03:16Z",
+              "updatedAt": "2024-03-15T14:03:41Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOLZbGd85pvft0",
+      "title": "scope and competition",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/17",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-15T12:44:52Z",
+      "updatedAt": "2024-03-15T18:40:24Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "1367257da397373e11b7c3039c14960dc642b31c",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "boucadair-patch-9",
+      "headRefOid": "2a87a3136801f9d498defba9d7ec5f3d36cbc460",
+      "closedAt": "2024-03-15T18:40:24Z",
+      "mergedAt": "2024-03-15T18:40:24Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "ddf5ebe1fa3392f9e83eb0aaa169e4aea1494894"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zktXd",
+          "commit": {
+            "abbreviatedOid": "448bdc8"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-15T13:48:24Z",
+          "updatedAt": "2024-03-15T13:48:24Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n\r\n> It is out of the scope of this document to discuss setups (e.g., 3GPP PDU Sessions) where network attachments with GBR (Guaranteed Bit Rate) for specific flows is setup.\r\n```",
+              "createdAt": "2024-03-15T13:48:24Z",
+              "updatedAt": "2024-03-15T13:48:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOLZbGd85zomTb",
+          "commit": {
+            "abbreviatedOid": "2a87a31"
+          },
+          "author": "danwing",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-15T18:38:48Z",
+          "updatedAt": "2024-03-15T18:38:48Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOLZbGd85pvrJd",
+      "title": "separate sig rather that multiple application/protocol channels",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/18",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-15T13:13:02Z",
+      "updatedAt": "2024-03-15T18:43:08Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "ddf5ebe1fa3392f9e83eb0aaa169e4aea1494894",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "boucadair-patch-10",
+      "headRefOid": "f7fff20202729be7b8fcaa6476e5d3575152aa87",
+      "closedAt": "2024-03-15T18:43:08Z",
+      "mergedAt": "2024-03-15T18:43:08Z",
+      "mergedBy": "danwing",
+      "mergeCommit": {
+        "oid": "05b6fdc961222af58e42e9bfc5c3e7e799d85337"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zkrHV",
+          "commit": {
+            "abbreviatedOid": "84ec4c4"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-15T13:44:16Z",
+          "updatedAt": "2024-03-15T13:44:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nIf distinct channels are used to share the metadata between a host and a network,\r\n```",
+              "createdAt": "2024-03-15T13:44:16Z",
+              "updatedAt": "2024-03-15T13:44:17Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOLZbGd85py4JB",
+      "title": "avoiding design aspects",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/19",
+      "state": "OPEN",
+      "author": "danwing",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-15T20:15:23Z",
+      "updatedAt": "2024-03-16T22:19:56Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "05b6fdc961222af58e42e9bfc5c3e7e799d85337",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "avoid",
+      "headRefOid": "64eddf453990770f55a2b4a167002d8fca81ee30",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85ztnoP",
+          "commit": {
+            "abbreviatedOid": "64eddf4"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-16T22:19:56Z",
+          "updatedAt": "2024-03-16T22:19:56Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }

@@ -386,7 +386,7 @@ Problem:
 
 Solution:
 
-1. Client-to-network signaling can solve this by identifying and signaling the flow's priority appropriately for ISP to handle the packets accordingly.
+1. Client-to-network signaling can enhance the user experience by identifying and signaling the flow's priority appropriately for the ISP to handle the packets accordingly.
 
 ### Mixed Traffic
 

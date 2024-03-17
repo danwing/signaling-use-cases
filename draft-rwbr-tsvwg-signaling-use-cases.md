@@ -366,7 +366,7 @@ Solutions:
 
 #### Examples of Same Type of Metadata with Different Preferences
 
-In many scenarios a game or VoIP application will want to signal different metadata for the same type of packet in each direction.  For example, for a game, video in the server-to-client direction might be more important than audio, whereas input devices (e.g., keystrokes) might be more important than audio. Each user can have varied preferences for the same type of data originating from the server. This can be either explicitly chosen by the user or derived from the user activity. Determination of such preferences is outside of the scope of this document.
+A game or VoIP application may want to signal different metadata for the same type of packet in each direction.  For example, for a game, video in the server-to-client direction might be more important than audio, whereas input devices (e.g., keystrokes) might be more important than audio. Each user can have varied preferences for the same type of data originating from the server. Determination of such preferences is outside of the scope of this document.
 
 1. Video in a VoIP call: One user can choose to keep the video and screen-sharing equally distributed on the screen while another user can minimize or reduce the size of the video. Based on the size/preferece of the video window, video packets can be prioritized accordingly relative to screen-shared content. This preference can be propagated to the server as Network-to-host signaling for more efficient transmission but that is out of the scope of this document.
 

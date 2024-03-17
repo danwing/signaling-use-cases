@@ -364,7 +364,7 @@ Solutions:
 2. Client-to-network signaling also helps the ISP treat the same metadata differently for different flows based on the user preference. The per-packet metadata from the server would remain the same, simplifying signaling implementation on the server and making it more scalable.
 
 
-#### Examples of same type of metadata with different preferences:
+#### Examples of Same Type of Metadata with Different Preferences
 
 In many scenarios a game or VoIP application will want to signal different metadata for the same type of packet in each direction.  For example, for a game, video in the server-to-client direction might be more important than audio, whereas input devices (e.g., keystrokes) might be more important than audio. Each user can have varied preferences for the same type of data originating from the server. This can be either explicitly chosen by the user or derived from the user activity. Determination of such preferences is outside of the scope of this document.
 

@@ -107,7 +107,7 @@ Table of Contents
      7.5.  Abuse and Constraints
      7.6.  Key Establishment
      7.7.  Metadata Version/Capability Exchange
-     7.8.  On the Use of Fast Path
+     7.8.  Forwarding Processing: Slow Path vs. Fast Path
      7.9.  Impacts of Nested Congestion Controls
    8.  Requirements Summary
    9.  Security Considerations
@@ -261,7 +261,7 @@ Table of Contents
        +<-----End-to-End Secure Connection + User Data------>+<---.
        |                           |                         | GLUE|
        |                           |                         | CXs |
-       +<-- Metadata (Optional) -->+<----- Metadata -------->+<---'
+       +<-- Metadata (Optional) -->+<- Metadata (Optional) ->+<---'
        |    Secure Connection 1    |    Secure Connection 2  |
        |                           |                         |
 
@@ -523,8 +523,6 @@ Table of Contents
        the packets to the extent that the client receives some data to
        populate their playout jitter buffer.
 
-      Todo: this section on cooperation needs editing.
-
 6.2.3.  Bulk Data Transfer
 
    Examples: backup/restore, software update, RSS feed update, email,
@@ -726,7 +724,7 @@ Table of Contents
    those networks, and provide metadata signaling satisfying most or all
    of their needs.
 
-7.8.  On the Use of Fast Path
+7.8.  Forwarding Processing: Slow Path vs. Fast Path
 
    TBC
 

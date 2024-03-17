@@ -1869,16 +1869,21 @@ upstream direction.<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
 <a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-mixed-traffic" class="section-name selfRef">Mixed Traffic</a>
           </h4>
 <p id="section-5.2.4-1">Examples: Desktop Virtualization<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-2">Requirement:<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-3">Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively routing mixed traffic for ideal user interactivity and network performance. Client-to-network signaling enables, complements and simplifies Host-to-network signaling as discussed below.<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-4">Mixed traffic has a large variety of applications with unique cases. For the purpose of use case, Desktop Virtualization is considered below.<a href="#section-5.2.4-4" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-5">Problems:<a href="#section-5.2.4-5" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.2.4-6">
-<li id="section-5.2.4-6.1">
-              <p id="section-5.2.4-6.1.1">In remote desktop use case, a server can host multiple connections with varying type of traffic to it. These servers are often in a database, exposed to the internet through some sort of a gateway-proxy and the signaling (like DSCP bits) from these servers are often ignored by the ISPs.<a href="#section-5.2.4-6.1.1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2.4-2">
+            <dt id="section-5.2.4-2.1">Requirement:</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.4-2.2">
+              <p id="section-5.2.4-2.2.1">Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively forwarding mixed traffic for better user interactivity and network performance. ```<a href="#section-5.2.4-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-5.2.4-3">Mixed traffic has a large variety of applications with unique cases. For the purpose of use case, Desktop Virtualization is considered below.<a href="#section-5.2.4-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-4">Problems:<a href="#section-5.2.4-4" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.2.4-5">
+<li id="section-5.2.4-5.1">
+              <p id="section-5.2.4-5.1.1">In remote desktop use case, a server can host multiple connections with varying type of traffic to it. These servers are often in a database, exposed to the internet through some sort of a gateway-proxy and the signaling (like DSCP bits) from these servers are often ignored by the ISPs.<a href="#section-5.2.4-5.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-6.2">
-              <p id="section-5.2.4-6.2.1">A video key frame should be handled differently by the network
+            <li id="section-5.2.4-5.2">
+              <p id="section-5.2.4-5.2.1">A video key frame should be handled differently by the network
 depending on a streaming application versus a remote desktop
 application.  The video streaming application's primary and only
 nature of traffic is video and audio.  In contrast, a remote desktop
@@ -1886,22 +1891,22 @@ application might be playing a video and its associated audio while at
 the same time the user is editing a document. The user's keystrokes
 and those glyphs need to be prioritized over the video lest the user
 think their inputs are being ignored (and type the same characters
-again).<a href="#section-5.2.4-6.2.1" class="pilcrow">¶</a></p>
+again).<a href="#section-5.2.4-5.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-6.3">
-              <p id="section-5.2.4-6.3.1">With multiple applications running in the same virtualized environment, video streaming having same priority as graphics updates while the user is playing a video in the background while typing a document in the foreground can cause interactivity issues.<a href="#section-5.2.4-6.3.1" class="pilcrow">¶</a></p>
+            <li id="section-5.2.4-5.3">
+              <p id="section-5.2.4-5.3.1">With multiple applications running in the same virtualized environment, video streaming having same priority as graphics updates while the user is playing a video in the background while typing a document in the foreground can cause interactivity issues.<a href="#section-5.2.4-5.3.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
-<p id="section-5.2.4-7">Solution:<a href="#section-5.2.4-7" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.2.4-8">
-<li id="section-5.2.4-8.1">
-              <p id="section-5.2.4-8.1.1">Client-to-network signal indicating ISP to honor the honoring signaling data of a particular flow enables enables the servers, that are not even directly visible to the ISPs, to benefit from signaling. This enables client(user)-driven processing of metadata and client driven authorization of the IP addresses apart from the ISPs' list of recognized IP addresses.<a href="#section-5.2.4-8.1.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-6">Solution:<a href="#section-5.2.4-6" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.2.4-7">
+<li id="section-5.2.4-7.1">
+              <p id="section-5.2.4-7.1.1">Client-to-network signal indicating ISP to honor the signaling data of a particular flow enables the servers, that are not even directly visible to the ISPs, to benefit from signaling. This enables client(user)-driven processing of metadata and client driven authorization of the IP addresses apart from the ISPs' list of recognized IP addresses.<a href="#section-5.2.4-7.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-8.2">
-              <p id="section-5.2.4-8.2.1">Client signaling can reduce/eliminate the resource intensive responsibility of identifying such scenarios and modifying the metadata accordingly. The per-packet metadata from the server would remain the same, simplifying signaling implementation on the server and making it more scalable.<a href="#section-5.2.4-8.2.1" class="pilcrow">¶</a></p>
+            <li id="section-5.2.4-7.2">
+              <p id="section-5.2.4-7.2.1">Client signaling can reduce/eliminate the resource intensive responsibility of identifying such scenarios and modifying the metadata accordingly. The per-packet metadata from the server would remain the same, simplifying signaling implementation on the server and making it more scalable.<a href="#section-5.2.4-7.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-8.3">
-              <p id="section-5.2.4-8.3.1">Client signaling based on user activity can improve user experience. Signaling the ISP to treat the same metadata differently based on the user activity can help improve/resolve this, while keeping the per packet metadata the same.<a href="#section-5.2.4-8.3.1" class="pilcrow">¶</a></p>
+            <li id="section-5.2.4-7.3">
+              <p id="section-5.2.4-7.3.1">Client signaling based on user activity can improve user experience. Signaling the ISP to treat the same metadata differently based on the user activity can help improve/resolve this, while keeping the per packet metadata the same.<a href="#section-5.2.4-7.3.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
 </section>

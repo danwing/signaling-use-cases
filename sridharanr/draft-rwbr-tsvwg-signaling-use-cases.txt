@@ -367,15 +367,18 @@ Table of Contents
    Problems:
 
    1.  All packets prioritized the same irrespective of user
-       preferences/needs: a.  A client based change in priority of a
-       certain type of data is not possible.  For example, a hearing
-       challenged user can choose video over audio while the priority is
-       different for other users. b.  Dynamic changes to priority based
-       on user activity is not possible today.  For example, audio
-       packets having the same priority when a user mutes the audio
-       locally, or change in priority during time of emergency where
-       video streaming applications share the same priority as SOS
-       signals.
+       preferences/needs:
+
+       a.  A client based change in priority of a certain type of data
+       is not possible.  For example, a hearing challenged user can
+       choose video over audio while the priority is different for other
+       users.
+
+       b.  Dynamic changes to priority based on user activity is not
+       possible today.  For example, audio packets having the same
+       priority when a user mutes the audio locally, or change in
+       priority during time of emergency where video streaming
+       applications share the same priority as SOS signals.
 
    2.  In loss-prone networks or during a reactive policy events,
        retransmissions cause immense delay.  Networks, not able to

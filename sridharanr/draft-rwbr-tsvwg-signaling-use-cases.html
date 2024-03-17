@@ -1758,9 +1758,11 @@ critical than video for almost all applications, but its importance
 <p id="section-5.2.1-6">Problems:<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.2.1-7">
 <li id="section-5.2.1-7.1">
-              <p id="section-5.2.1-7.1.1">All packets prioritized the same irrespective of user preferences/needs:
-a.  A client based change in priority of a certain type of data is not possible. For example, a hearing challenged user can choose video over audio while the priority is different for other users.
-b.  Dynamic changes to priority based on user activity is not possible today. For example, audio packets having the same priority when a user mutes the audio locally, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.<a href="#section-5.2.1-7.1.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.1-7.1.1">All packets prioritized the same irrespective of user preferences/needs:<a href="#section-5.2.1-7.1.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-7.1.2">
+a.  A client based change in priority of a certain type of data is not possible. For example, a hearing challenged user can choose video over audio while the priority is different for other users.<a href="#section-5.2.1-7.1.2" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-7.1.3">
+b.  Dynamic changes to priority based on user activity is not possible today. For example, audio packets having the same priority when a user mutes the audio locally, or change in priority during time of emergency where video streaming applications share the same priority as SOS signals.<a href="#section-5.2.1-7.1.3" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.2.1-7.2">
               <p id="section-5.2.1-7.2.1">In loss-prone networks or during a reactive policy events, retransmissions cause immense delay. Networks, not able to distinguish between reliable and loss-tolerant data or the critical data within a flow (i-frames, p-frames, and audio packets), can have challenges in efficiently handling/forwarding data.<a href="#section-5.2.1-7.2.1" class="pilcrow">¶</a></p>

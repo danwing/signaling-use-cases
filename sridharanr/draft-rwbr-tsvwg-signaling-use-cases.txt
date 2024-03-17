@@ -483,7 +483,7 @@ Table of Contents
        the same, simplifying signaling implementation on the server and
        making it more scalable.
 
-5.2.2.1.  Examples of same type of metadata with different preferences:
+5.2.2.1.  Examples of Same Type of Metadata with Different Preferences
 
    In many scenarios a game or VoIP application will want to signal
    different metadata for the same type of packet in each direction.

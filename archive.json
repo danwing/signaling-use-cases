@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-17T01:13:05.408390+00:00",
+  "timestamp": "2024-03-19T01:09:30.846422+00:00",
   "repo": "danwing/signaling-use-cases",
   "labels": [
     {
@@ -1137,24 +1137,26 @@
       "id": "PR_kwDOLZbGd85py4JB",
       "title": "avoiding design aspects",
       "url": "https://github.com/danwing/signaling-use-cases/pull/19",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "danwing",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-03-15T20:15:23Z",
-      "updatedAt": "2024-03-16T22:19:56Z",
+      "updatedAt": "2024-03-17T11:57:39Z",
       "baseRepository": "danwing/signaling-use-cases",
       "baseRefName": "main",
       "baseRefOid": "05b6fdc961222af58e42e9bfc5c3e7e799d85337",
       "headRepository": "danwing/signaling-use-cases",
       "headRefName": "avoid",
       "headRefOid": "64eddf453990770f55a2b4a167002d8fca81ee30",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-03-17T11:57:38Z",
+      "mergedAt": "2024-03-17T11:57:38Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "3427a8453a71ad877f56898637fd10ebe1fd5000"
+      },
       "comments": [],
       "reviews": [
         {
@@ -1169,6 +1171,97 @@
           "createdAt": "2024-03-16T22:19:56Z",
           "updatedAt": "2024-03-16T22:19:56Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOLZbGd85p2Z3e",
+      "title": "Elaborate signaling advantages for more use cases",
+      "url": "https://github.com/danwing/signaling-use-cases/pull/21",
+      "state": "MERGED",
+      "author": "sridharangirish91",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-17T02:51:05Z",
+      "updatedAt": "2024-03-17T11:59:47Z",
+      "baseRepository": "danwing/signaling-use-cases",
+      "baseRefName": "main",
+      "baseRefOid": "05b6fdc961222af58e42e9bfc5c3e7e799d85337",
+      "headRepository": "danwing/signaling-use-cases",
+      "headRefName": "sridharanr",
+      "headRefOid": "a11bbc87eedb874d8abeee3b1d5e21f4f3c7d64e",
+      "closedAt": "2024-03-17T11:59:46Z",
+      "mergedAt": "2024-03-17T11:59:46Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "b4b5fd4cf53e6a2d16211851652519efd56e95d1"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOLZbGd85zt6xx",
+          "commit": {
+            "abbreviatedOid": "2ae8cab"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-03-17T09:36:56Z",
+          "updatedAt": "2024-03-17T09:48:10Z",
+          "comments": [
+            {
+              "originalPosition": 66,
+              "body": "```suggestion\r\n#### Examples of Same Type of Metadata with Different Preferences\r\n```",
+              "createdAt": "2024-03-17T09:36:56Z",
+              "updatedAt": "2024-03-17T09:48:10Z"
+            },
+            {
+              "originalPosition": 68,
+              "body": "```suggestion\r\nA game or VoIP application may want to signal different metadata for the same type of packet in each direction.  For example, for a game, video in the server-to-client direction might be more important than audio, whereas input devices (e.g., keystrokes) might be more important than audio. Each user can have varied preferences for the same type of data originating from the server. Determination of such preferences is outside of the scope of this document.\r\n```",
+              "createdAt": "2024-03-17T09:38:26Z",
+              "updatedAt": "2024-03-17T09:48:10Z"
+            },
+            {
+              "originalPosition": 70,
+              "body": "```suggestion\r\n1. Video in a media session: One user can choose to keep the video and screen-sharing equally distributed on the screen while another user can minimize or reduce the size of the video. Based on the size/preference of the video window, video packets can be prioritized accordingly relative to screen-shared content. This preference can be propagated to the server as network-to-host signaling for more efficient transmission but that is out of the scope of this document.\r\n```",
+              "createdAt": "2024-03-17T09:39:28Z",
+              "updatedAt": "2024-03-17T09:48:11Z"
+            },
+            {
+              "originalPosition": 72,
+              "body": "```suggestion\r\n2. User Inactivity signal: When the user is inactive during an interactive session such as gaming (activity can be detected automatically or can be a simple user signal of Away-from-Keyboard (AFK)), the client can signal to the ISP to deprioritize the packets to the extent that the client receives some data to populate their playout jitter buffer.\r\n```",
+              "createdAt": "2024-03-17T09:40:47Z",
+              "updatedAt": "2024-03-17T09:48:11Z"
+            },
+            {
+              "originalPosition": 85,
+              "body": "```suggestion\r\n1. Bulk data is generally not interactive and can be forwarded of over paths of greater latency. It is treated as non-time sensitive operation. Although some bulk transfers (like saving a file in the middle of editing) that cannot be minimized, where the user will have to wait till it is completed to further use the device, should be given real-time importance. Bulk data such as printing a file while editing can be parallelized and need not have real-time priority. Similarly, backing up of data can be parallelized while restoring of data cannot be parallelized based on the application.\r\n```",
+              "createdAt": "2024-03-17T09:42:08Z",
+              "updatedAt": "2024-03-17T09:48:11Z"
+            },
+            {
+              "originalPosition": 89,
+              "body": "```suggestion\r\n1. Client-to-network signaling can enhance the user experience by identifying and signaling the flow's priority appropriately for the ISP to handle the packets accordingly.\r\n```",
+              "createdAt": "2024-03-17T09:42:40Z",
+              "updatedAt": "2024-03-17T09:48:11Z"
+            },
+            {
+              "originalPosition": 98,
+              "body": "```suggestion\r\n: Signal flow will vary depending on the nature of the packet. With variety of traffic going through the session, some packets can contain interactive traffic while the others contain bulk transfer. There can be combination of reliable and unreliable traffic within the same session through multiple streams. Host-to-network signaling plays a vital role in effectively forwarding mixed traffic for better user interactivity and network performance. ```",
+              "createdAt": "2024-03-17T09:45:01Z",
+              "updatedAt": "2024-03-17T09:48:11Z"
+            },
+            {
+              "originalPosition": 125,
+              "body": "```suggestion\r\n1. Client-to-network signal indicating ISP to honor the signaling data of a particular flow enables the servers, that are not even directly visible to the ISPs, to benefit from signaling. This enables client(user)-driven processing of metadata and client driven authorization of the IP addresses apart from the ISPs' list of recognized IP addresses.\r\n```",
+              "createdAt": "2024-03-17T09:46:31Z",
+              "updatedAt": "2024-03-17T09:48:11Z"
+            }
+          ]
         }
       ]
     }

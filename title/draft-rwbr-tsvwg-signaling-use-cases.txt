@@ -5,11 +5,11 @@
 Transport and Services Working Group                      S. Rajagopalan
 Internet-Draft                                                   D. Wing
 Intended status: Informational                      Cloud Software Group
-Expires: 12 September 2024                                  M. Boucadair
+Expires: 7 October 2024                                     M. Boucadair
                                                                   Orange
                                                                 T. Reddy
                                                                    Nokia
-                                                           11 March 2024
+                                                            5 April 2024
 
 
      Host to Network Signaling Use Cases for Collaborative Traffic
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2024.
+   This Internet-Draft will expire on 7 October 2024.
 
 Copyright Notice
 
